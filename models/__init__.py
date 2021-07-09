@@ -1,3 +1,2 @@
 # -*- coding: utf-8 -*-
-
-from . import models
+from . import stock_picking, stock_move, mrp_repair, mail_activity

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <template id="account_payment_extt" name="account_ext_cl" inherit_id="account.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/cloudalia_module_misc/static/src/js/account_payment_field.js"></script>
+            </xpath>
+        </template>
+    </data>
+</odoo>

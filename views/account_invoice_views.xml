@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cl_invoice_supplier_form" model="ir.ui.view">
+            <field name="name">cl_account.invoice.supplier.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="outstanding_credits_debits_widget" position="replace"/>
+                <group class="oe_subtotal_footer oe_right" position="after">
+                    <group>
+                        <field name="outstanding_credits_debits_widget" colspan="2" nolabel="1" widget="payment" attrs="{'invisible': [('state', 'not in', 'open')]}"/>
+                    </group>
+                </group>
+            </field>
+        </record>
+        <record id="cl_invoice_form" model="ir.ui.view">
+            <field name="name">cloud_account.invoice.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <field name="outstanding_credits_debits_widget" position="replace"/>
+                <group class="oe_subtotal_footer oe_right" position="after">
+                    <group>
+                        <field name="outstanding_credits_debits_widget" colspan="2" nolabel="1" widget="payment" attrs="{'invisible': [('state', 'not in', 'open')]}"/> 
+                    </group>
+                </group>
+            </field>
+        </record>
+    </data>
+</odoo>

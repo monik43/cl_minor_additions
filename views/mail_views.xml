@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="cl_mail_activity_view_form_popup" model="ir.ui.view">
+            <field name="name">cl_mail.activity.view.form.popup</field>
+            <field name="model">mail.activity</field>
+            <field name="inherit_id" ref="mail.mail_activity_view_form_popup"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="filtro_check"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
