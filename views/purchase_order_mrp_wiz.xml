@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="cl_wizard_purchase_order_mrp" model="ir.ui.view">
+            <field name="name">cl_transient.form.inherit</field>
+            <field name="model">create.purchaseorder_mrp</field>
+            <field name="inherit_id" ref="filtro_comercial-main.wizard_pchsorder"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_create_purchase_order_mrp_inherit']" position="replace">
+                    <button name="action_create_purchase_order_mrp_fix" string="Create Purchase Order" type="object" class="btn-primary"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
