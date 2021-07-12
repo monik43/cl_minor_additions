@@ -2,12 +2,13 @@
 import time
 from odoo import api, fields, models, _
 from datetime import datetime
-
+import odoo.addons.decimal_precision as dp
+from odoo.exceptions import UserError
 
 class createpurchaseordermrp(models.TransientModel):
     _inherit = 'create.purchaseorder_mrp'
 
-    @api.multi
+    
     def action_create_purchase_order_mrp_fix(self):
         self.ensure_one()
         res = self.env['purchase.order'].browse(self._context.get('id', []))
