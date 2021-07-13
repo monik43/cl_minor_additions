@@ -34,15 +34,17 @@
                             </td>
                         </t>
                         <td style="text-align:right;">
+                            &#160;&#160;<b>
                             <span class="oe_form_field oe_form_field_float oe_form_field_monetary" >
                                 <t t-if="line.position === 'before'">
-                                    &#160;&#160;<t t-esc="line.currency"/>
+                                    <t t-esc="line.currency"/>
                                 </t>
                                 <t t-esc="line.amount"></t>
                                 <t t-if="line.position === 'after'">
-                                    &#160;&#160;<t t-esc="line.currency"/>
+                                    <t t-esc="line.currency"/>
                                 </t>
                             </span>
+                            </b>
                         </td>
                     </tr>
                 </t>
