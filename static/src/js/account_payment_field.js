@@ -21,7 +21,7 @@ odoo.define('cloudalia_module_misc.payment', function (require) {
                     k.date = field_utils.format.date(field_utils.parse.date(k.date, {}, {isUTC: true}));
                 }
             });
-            this.$el.html(QWeb.render('ShowPaymentInfoCloud', {
+            this.$el.html(QWeb.render('ShowPaymentInfoCl', {
                 lines: info.content,
                 outstanding: info.outstanding,
                 title: info.title
