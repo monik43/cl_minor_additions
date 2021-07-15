@@ -22,6 +22,7 @@
         'views/stock_views.xml',
         'views/account_templates.xml',
         'views/purchase_order_mrp_wiz.xml',
+        'views/wizard_popup_helpdesk_ticket_view_view.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',

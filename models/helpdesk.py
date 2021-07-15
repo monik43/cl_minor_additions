@@ -21,3 +21,6 @@ class helpdesk_stage(models.Model):
                 rec.fold = True
             elif len(rec.env['helpdesk.ticket'].search([('stage_id','=',rec.id)])) > 0:
                 rec.fold = False
+
+
+    

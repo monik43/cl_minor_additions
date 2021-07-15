@@ -1,4 +1,4 @@
-odoo.define('cloudalia_module_misc.payment', function (require) {
+odoo.define('cl_minor_additions.payment', function (require) {
     "use strict";
 
     var core = require('web.core');
