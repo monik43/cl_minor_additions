@@ -16,5 +16,8 @@ class helpdesk_stage(models.Model):
 
     def _compute_fold(self):
         for rec in self:
+            prev_fold = rec.fold
             if len(rec.env['helpdesk.ticket'].search([('stage_id','=',rec.id)])) < 1:
                 rec.fold = True
+            elif len(rec.env['helpdesk.ticket'].search([('stage_id','=',rec.id)])) > 0:
+                rec.fold = False
