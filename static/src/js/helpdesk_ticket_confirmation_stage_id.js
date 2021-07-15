@@ -5,12 +5,24 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
     var helpdesk_dashboard = require('helpdesk.dashboard');
  
     var core = require('web.core');
-    var Dialog = require('web.Dialog');
- 
+    var KanbanController = require('web.KanbanController');
+    var KanbanModel = require('web.KanbanModel');
+    var KanbanRenderer = require('web.KanbanRenderer');
+    var KanbanView = require('web.KanbanView');
+    var session = require('web.session');
+    var view_registry = require('web.view_registry');
+    
+    var QWeb = core.qweb;
+    
     var _t = core._t;
- 
+    var _lt = core._lt;
+
     //override the method:
     helpdesk_dashboard.HelpdeskDashboardRenderer.include({
+        events: _.extend({}, KanbanRenderer.prototype.events, {
+            'click .o_dashboard_action': '_onDashboardActionClicked',
+            'click .o_target_to_set': '_onDashboardTargetClicked',
+        }),
         /**
          * @private
          * @param {MouseEvent}
