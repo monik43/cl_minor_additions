@@ -17,8 +17,3 @@ class helpdesk_stage(models.Model):
     def _compute_fold(self):
         for rec in self:
             print(rec)
-
-
-
-class helpdesk_ticket(models.Model):
-    _inherit = "helpdesk.ticket"
