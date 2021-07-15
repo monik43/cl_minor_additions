@@ -21,6 +21,7 @@
         'views/mrp_repair_views.xml',
         'views/stock_views.xml',
         'views/account_templates.xml',
+        'views/helpdesk_templates.xml',
         'views/purchase_order_mrp_wiz.xml',
     ],
     'qweb': [
