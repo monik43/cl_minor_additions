@@ -6,6 +6,9 @@ class mail_activity(models.Model):
 
     filtro_check = fields.Boolean('Habilitar usuarios externos?')
 
+    #activity_init_uid = fields.Many2one('res.users')
+    #activity_init_date = fields.Datetime('Fecha creación', required=True, readonly=True)
+
     @api.onchange('filtro_check')
     def onchange_filtro_check(self):
         for record in self:
