@@ -4,7 +4,7 @@
     <data>
         <template id="helpdesk_dash_cl" name="helpdesk cl" inherit_id="account.assets_backend">
             <xpath expr="." position="inside">
-                <script type="text/javascript" src="/cl_minor_additions/static/src/js/helpdesk_ticket_confirmation_stage_id.js"></script>
+                <!--<script type="text/javascript" src="/cl_minor_additions/static/src/js/helpdesk_ticket_confirmation_stage_id.js"></script>-->
             </xpath>
         </template>
     </data>
