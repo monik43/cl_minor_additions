@@ -20,7 +20,6 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
     //override the method:
     helpdesk_dashboard.HelpdeskDashboardRenderer.include({
         events: _.extend({}, KanbanRenderer.prototype.events, {
-            'click .o_dashboard_action': '_onDashboardActionClicked',
             'click .o_target_to_set': '_onDashboardTargetClicked',
         }),
         /**
