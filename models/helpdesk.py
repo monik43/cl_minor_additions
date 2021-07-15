@@ -16,4 +16,4 @@ class helpdesk_stage(models.Model):
 
     def _compute_fold(self):
         for rec in self:
-            print(rec)
+            print(rec, " " , len(rec.env['helpdesk.ticket'].search([('stage_id','=',rec.id)])))
