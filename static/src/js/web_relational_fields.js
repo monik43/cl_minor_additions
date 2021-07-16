@@ -25,6 +25,8 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
                     args:[$(e.currentTarget).data("value")]
                 }).then(function (data){
                     fdata = data;
+                    console.log(data);
+                    console.log(fdata);
                 });
                 console.log(fdata);
         },
