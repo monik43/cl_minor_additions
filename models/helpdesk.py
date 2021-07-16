@@ -24,5 +24,5 @@ class helpdesk_stage(models.Model):
 
     @api.model
     def get_template_id(self, id_stage):
-        return self.env['helpdesk.stage'].browse(id_stage)
+        print(self.env['helpdesk.stage'].browse(id_stage))
     
