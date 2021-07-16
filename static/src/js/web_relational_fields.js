@@ -25,11 +25,7 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
                     method: 'js_template_handler',
                     args:[$(e.currentTarget).data("value")]
                 }).then(function (data){
-                    if (data != false){
-                        console.log("test")
-                        with_template = true;
-                        console.log(with_template)
-                    }
+                    print(data)
                 });
 
                 if(with_template){
