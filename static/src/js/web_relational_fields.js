@@ -32,6 +32,7 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
                 if(with_template){
                     Dialog.confirm(this, _t("La etapa a la  que estás intentando cambiar tiene una plantilla de mail. \n Estás segurx de que quieres cambiar a esa etapa?"), {
                         confirm_callback: function () {
+                            console.log("test")
                             self._setValue($(e.currentTarget).data("value"));
                         },
                     });
