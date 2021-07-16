@@ -18,13 +18,12 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
              */
             _onClickStage: function (e) {
                 var self = this;
-                console.log($(e.currentTarget).data("value"))
                 _rpc.query({
                     model: 'helpdesk.stage',
                     method: 'js_template_handler',
-                    args:[self.record.data.stage_id.data.id]
+                    args:[$(e.currentTarget).data("value")]
                 }).then(function (data){
-                    if (data != False){
+                    if (data != false){
                         Dialog.confirm(this, _t("La etapa a la  que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa¿"), {
                             confirm_callback: function () {
                                 self._setValue($(e.currentTarget).data("value"));
