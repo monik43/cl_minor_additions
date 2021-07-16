@@ -29,9 +29,7 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
                     console.log("b", fdata);
                 });
 
-                setTimeout(function(){console.log("c", fdata);},3000);
-                setTimeout(function(){console.log("d", fdata);},6000);
-                setTimeout(function(){console.log("e", fdata);},20000);
+                setTimeout(function(){console.log("c", fdata);},1000);
         },
     });
 });
