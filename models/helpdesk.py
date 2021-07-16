@@ -22,5 +22,7 @@ class helpdesk_stage(models.Model):
             elif len(rec.env['helpdesk.ticket'].search([('stage_id','=',rec.id)])) > 0:
                 rec.fold = False
 
-
+    @api.model
+    def get_template_id(self, id_stage):
+        
     
