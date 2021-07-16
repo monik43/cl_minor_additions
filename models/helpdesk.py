@@ -24,7 +24,5 @@ class helpdesk_stage(models.Model):
 
     @api.model
     def js_template_handler(self, id_stage):
-        print(self.env['helpdesk.stage'].browse(id_stage))
-        print(self.env['helpdesk.stage'].browse(id_stage).template_id.id)
         return self.env['helpdesk.stage'].browse(id_stage).template_id.id
     
