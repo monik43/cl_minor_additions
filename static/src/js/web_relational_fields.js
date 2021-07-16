@@ -18,7 +18,8 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
          */
         _onClickStage: function (e) {
             var self = this;
-            console.log(Object.keys(self))
+            console.log(self)
+            console.log(self.record)
             Dialog.confirm(this, _t("You sure mate?"), {
                 confirm_callback: function () {
                     self._setValue($(e.currentTarget).data("value"));
