@@ -11,25 +11,32 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
 
     //override the method:
     relational_fields.FieldStatus.include({
-            /**
-             * Called when on status stage is clicked -> sets the field value.
-             * @private
-             * @param {MouseEvent} e
-             */
-            _onClickStage: function (e) {
-                var self = this;
-                var fdata;
-                _rpc.query({
-                    model: 'helpdesk.stage',
-                    method: 'js_template_handler',
-                    args:[$(e.currentTarget).data("value")]
-                }).then(function (data){
-                    fdata = data;
-                    console.log("a", data);
-                    console.log("b", fdata);
-                });
-
-                setTimeout(function(){console.log("c", fdata);},50);
+        /**
+         * Called when on status stage is clicked -> sets the field value.
+         * @private
+         * @param {MouseEvent} e
+         */
+        _onClickStage: function (e) {
+            var self = this;
+            var fdata;
+            _rpc.query({
+                model: 'helpdesk.stage',
+                method: 'js_template_handler',
+                args: [$(e.currentTarget).data("value")]
+            }).then(function (data) {
+                fdata = data;
+            });
+            setTimeout(function () {
+                if (fdata != false) {
+                    Dialog.confirm(self, _t("La etapa a la  que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa?"), {
+                        confirm_callback: function () {
+                            self._setValue($(e.currentTarget).data("value"));
+                        },
+                    });
+                } else {
+                    self._setValue($(e.currentTarget).data("value"));
+                }
+            }, 250);
         },
     });
 });
