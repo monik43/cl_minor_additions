@@ -23,7 +23,7 @@ class helpdesk_stage(models.Model):
                 rec.fold = False
 
     @api.model
-    def get_template_id(self, id_stage):
+    def js_template_handler(self, id_stage):
         print(self.env['helpdesk.stage'].browse(id_stage))
-        print(self.env['helpdesk.stage'].browse(id_stage).template_id)
+        print(self.env['helpdesk.stage'].browse(id_stage).template_id.id)
     
