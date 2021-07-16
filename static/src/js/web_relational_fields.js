@@ -17,7 +17,6 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
              * @param {MouseEvent} e
              */
             _onClickStage: function (e) {
-                var self = this;
                 _rpc.query({
                     model: 'helpdesk.stage',
                     method: 'js_template_handler',
@@ -26,11 +25,11 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
                     if(data != false){
                         Dialog.confirm(this, _t("La etapa a la  que estás intentando cambiar tiene una plantilla de mail. \n Estás segurx de que quieres cambiar a esa etapa?"), {
                             confirm_callback: function () {
-                                self._setValue($(e.currentTarget).data("value"));
+                                this._setValue($(e.currentTarget).data("value"));
                             },
                         });
                     } else {
-                        self._setValue($(e.currentTarget).data("value"));
+                        this._setValue($(e.currentTarget).data("value"));
                     }
                 });
 
