@@ -19,7 +19,7 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
             _onClickStage: function (e) {
                 var self = this;
                 console.log(self)
-                console.log($(e.currentTarget))
+                console.log(self.$(e.currentTarget))
                 _rpc.query({
                     model: 'helpdesk.stage',
                     method: 'js_template_handler',
