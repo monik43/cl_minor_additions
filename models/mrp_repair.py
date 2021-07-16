@@ -7,8 +7,8 @@ class repair_line(models.Model):
 
     pieza_añadida = fields.Boolean('Pieza añadida?')
 
-    purchase_order_exists = fields.Boolean(
-        'Existe purchase order?', compute="_compute_purchase_order_exists")
+class mrp_repair(models.Model):
+    _inherit = 'mrp.repair'
     po_rel = fields.Many2one(
         'purchase.order', string='Ticket relacionado', compute="_compute_po_rel")
 
