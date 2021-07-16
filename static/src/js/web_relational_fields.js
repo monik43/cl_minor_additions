@@ -27,7 +27,7 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
                 console.log(self._rpc({
                     model: 'helpdesk.stage',
                     method: 'get_template_id',
-                    args:[self, self.record.data.stage_id.data.id]
+                    args:[self.record.data.stage_id.data.id]
                 }));
                 
 
