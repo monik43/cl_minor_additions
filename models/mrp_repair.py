@@ -10,7 +10,7 @@ class repair_line(models.Model):
 class mrp_repair(models.Model):
     _inherit = 'mrp.repair'
     po_rel = fields.Many2one(
-        'purchase.order', string='Ticket relacionado', compute="_compute_po_rel")
+        'purchase.order', string='Purchase relacionada', compute="_compute_po_rel")
 
     def _compute_po_rel(self):
         for rec in self:
