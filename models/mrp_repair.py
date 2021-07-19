@@ -25,10 +25,13 @@ class mrp_repair(models.Model):
         doc = etree.XML(result['arch'])
         if self._module == 'cl_minor_additions':
             if doc.xpath("//button[@name='1122']"):
-                node = doc.xpath("//button[@name='1122']")
-                print(node.get('class'))
+                node = doc.xpath("//button[@name='1122']")[0]
+                if self.po_rel != False and node.get('class') == "btn-primary":
+                    node.set('class') = ""
+                elif self.po_rel == False and node.get('class') != "btn-primary":
+                    node.set('class') == "btn-primary"
 
-    """@api.model
+    @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
         result = super(mrp_repair, self).fields_view_get(view_id,
@@ -37,16 +40,12 @@ class mrp_repair(models.Model):
                                                             submenu=submenu)
 
         doc = etree.XML(result['arch'])
-        if view_type == 'form' and self._module == 'mrp.repair':
+        if view_type == 'form' and self._module == 'cl_minor_additions':
             if doc.xpath("//button[@name='1122']"):
-                print("a ", doc.xpath("//button[@name='1122']"))
-                for placeholder in doc.xpath("//button[@name='1122']"):
-                    print("b", placeholder)
-                    elem = etree.Element(
-                        'button', {
-                            'name': '1122',
-                            'class': 'True'
-                        })
-                    orm.setup_modifiers(elem)
-                    placeholder.addprevious(elem)
-        #return result"""
+                node = doc.xpath("//button[@name='1122']")[0]
+                if self.po_rel != False and node.get('class') == "btn-primary":
+                    node.set('class') = ""
+                elif self.po_rel == False and node.get('class') != "btn-primary":
+                    node.set('class') == "btn-primary"
+        result['arch'] = etree.tostring(doc)
+        return result
