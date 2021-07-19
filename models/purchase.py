@@ -8,5 +8,4 @@ class purchase_order(models.Model):
     def update_order_lines_fields(self):
         for rec in self:
                 for line in rec.order_line:
-                    if rec.partner_id in line.product_id.seller_ids.name:
                         print(line.product_id.seller_ids.name)
