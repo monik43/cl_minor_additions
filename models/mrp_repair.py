@@ -23,6 +23,7 @@ class mrp_repair(models.Model):
         result = super(mrp_repair, self).fields_view_get()
         doc = etree.XML(result['arch'])
         if self._module == 'mrp.repair':
+            print("si")
             if doc.xpath("//button[@name='1122']"):
                 print("a ", doc.xpath("//button[@name='1122']"))
                 for placeholder in doc.xpath("//button[@name='1122']"):
