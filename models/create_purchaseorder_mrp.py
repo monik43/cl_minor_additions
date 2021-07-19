@@ -49,32 +49,4 @@ class createpurchaseordermrp(models.TransientModel):
 
         return res
 
-    @api.multi
-    def button_create_purchase_order(self):
-        self.ensure_one()
-        action = {}
-        print (self.name)
-        """if self.env['purchase.order'].search([('origin', '=', self.name)]) == 'selection1':
-            action = {
-                'name': _('Action 1'),
-                'view_type': 'form',
-                'view_mode': 'form',
-                'res_model': 'my.model',
-                # 'view_id': # optional
-                'type': 'ir.actions.act_window',
-                # 'res_id': # optional
-                'target': 'new'  # or 'current'
-            }
-        elif self.my_selection_field == 'selection2':
-            action = {
-                'name': _('Action 2'),
-                'view_type': 'form',
-                'view_mode': 'tree',
-                'res_model': 'my.model',
-                # 'view_id': # optional
-                'type': 'ir.actions.act_window',
-                # 'res_id': # optional
-                'target': 'current'  # or 'new'
-            }
-        # and so on
-        return action"""
+    
