@@ -21,13 +21,9 @@ class mrp_repair(models.Model):
     
     @api.multi
     def test(self):
-        self.ensure_one()
-        print("test1")
-        print(self._module)
         result = super(mrp_repair, self).fields_view_get()
         doc = etree.XML(result['arch'])
-        if self._module == 'mrp.repair':
-            print("si")
+        if self._module == 'cl_minor_additions':
             if doc.xpath("//button[@name='1122']"):
                 print("a ", doc.xpath("//button[@name='1122']"))
                 for placeholder in doc.xpath("//button[@name='1122']"):
