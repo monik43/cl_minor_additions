@@ -16,7 +16,7 @@
             <field name="model">mrp.repair</field>
             <field name="inherit_id" ref="cloudalia_purchase_from_repair.mrp_repair_order_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//button[@name='1122']" position="replace">
+                <xpath expr="//button[@name='1122']" position="after">
                     <button name="test" string="test" type="object" class="btn-primary" attrs="{'invisible':[('state','in',['done','cancel'])]}"/>
                 </xpath>
             </field>
