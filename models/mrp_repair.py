@@ -23,9 +23,9 @@ class mrp_repair(models.Model):
         res = super(mrp_repair, self).fields_get()
         vres = super(mrp_repair, self).fields_view_get()
         for field in res:
-            print("r", field)
+            print("r", field, " = ", res[field])
         for field in vres:
-            print("v ", field)
+            print("v ", field, " = ", vres[field])
         """if self.env['purchase.order'].search([('origin', '=', self.name)]) == 'selection1':
             action = {
                 'name': _('Action 1'),
