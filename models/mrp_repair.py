@@ -26,7 +26,7 @@ class mrp_repair(models.Model):
         if self._module == 'cl_minor_additions':
             if doc.xpath("//button[@name='1122']"):
                 node = doc.xpath("//button[@name='1122']")[0]
-                print(node)
+                print(node.get('class'))
 
     """@api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
