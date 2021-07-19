@@ -25,7 +25,7 @@ class mrp_repair(models.Model):
         doc = etree.XML(result['arch'])
         if self._module == 'cl_minor_additions':
             if doc.xpath("//button[@name='1122']"):
-                node = doc.xpath("//button[@name='1122']")[0]
+                node = doc.xpath("//button[@name='1122']")
                 print(node.get('class'))
 
     """@api.model
