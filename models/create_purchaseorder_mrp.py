@@ -5,6 +5,7 @@ from datetime import datetime
 import odoo.addons.decimal_precision as dp
 from odoo.exceptions import UserError
 
+
 class createpurchaseordermrp(models.TransientModel):
     _inherit = 'create.purchaseorder_mrp'
 
@@ -47,3 +48,5 @@ class createpurchaseordermrp(models.TransientModel):
         })
 
         return res
+
+    
