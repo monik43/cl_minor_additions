@@ -25,16 +25,9 @@ class mrp_repair(models.Model):
         doc = etree.XML(result['arch'])
         if self._module == 'cl_minor_additions':
             if doc.xpath("//button[@name='1122']"):
-                print("a ", doc.xpath("//button[@name='1122']"))
-                for placeholder in doc.xpath("//button[@name='1122']"):
-                    print("b", placeholder)
-                    """elem = etree.Element(
-                        'button', {
-                            'name': '1122',
-                            'class': 'True'
-                        })
-                    orm.setup_modifiers(elem)
-                    placeholder.addprevious(elem)"""
+                node = doc.xpath("//button[@name='1122']")
+                print(node["name"])
+                print(node["class"])
 
     """@api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
