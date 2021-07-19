@@ -35,7 +35,7 @@ class mrp_repair(models.Model):
                     orm.setup_modifiers(elem)
                     placeholder.addprevious(elem)"""
 
-    @api.model
+    """@api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
         result = super(mrp_repair, self).fields_view_get(view_id,
@@ -49,11 +49,11 @@ class mrp_repair(models.Model):
                 print("a ", doc.xpath("//button[@name='1122']"))
                 for placeholder in doc.xpath("//button[@name='1122']"):
                     print("b", placeholder)
-                    """elem = etree.Element(
+                    elem = etree.Element(
                         'button', {
                             'name': '1122',
                             'class': 'True'
                         })
                     orm.setup_modifiers(elem)
-                    placeholder.addprevious(elem)"""
-        #return result
+                    placeholder.addprevious(elem)
+        #return result"""
