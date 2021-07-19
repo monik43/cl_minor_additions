@@ -20,7 +20,7 @@ class mrp_repair(models.Model):
     @api.multi
     def test(self):
         self.ensure_one()
-        vres = super(mrp_repair, self).fields_view_get(view_id="mrp_repair.view_repair_order_form")
+        vres = super(mrp_repair, self).fields_view_get(view_id=3838)
         for field in vres:
             print("v ", field, " = ", vres[field])
         """if self.env['purchase.order'].search([('origin', '=', self.name)]) == 'selection1':
