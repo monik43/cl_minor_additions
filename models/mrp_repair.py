@@ -21,7 +21,9 @@ class mrp_repair(models.Model):
     
     @api.multi
     def test(self):
+        self.ensure_one()
         print("test1")
+        print(self._module)
         result = super(mrp_repair, self).fields_view_get()
         doc = etree.XML(result['arch'])
         if self._module == 'mrp.repair':
