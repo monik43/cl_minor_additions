@@ -18,8 +18,10 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.env['purchase.order'].search([('origin', '=', rec.name)]):
                 rec.ticket_rel = rec.env['purchase.order'].search([('origin', '=', rec.name)])
+    
     @api.multi
     def test(self):
+        print("test1")
         result = super(mrp_repair, self).fields_view_get()
         doc = etree.XML(result['arch'])
         if self._module == 'mrp.repair':
