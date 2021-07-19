@@ -9,4 +9,4 @@ class purchase_order(models.Model):
         for rec in self:
                 for line in rec.order_line:
                     for seller_id in line.product_id.seller_ids:
-                        print(seller_id)
+                        print(seller_id.name, " ", seller_id.price)
