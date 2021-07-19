@@ -18,6 +18,22 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.env['purchase.order'].search([('origin', '=', rec.name)]):
                 rec.ticket_rel = rec.env['purchase.order'].search([('origin', '=', rec.name)])
+    @api.multi
+    def test(self):
+        result = super(mrp_repair, self).fields_view_get()
+        doc = etree.XML(result['arch'])
+        if self._module == 'mrp.repair':
+            if doc.xpath("//button[@name='1122']"):
+                print("a ", doc.xpath("//button[@name='1122']"))
+                for placeholder in doc.xpath("//button[@name='1122']"):
+                    print("b", placeholder)
+                    """elem = etree.Element(
+                        'button', {
+                            'name': '1122',
+                            'class': 'True'
+                        })
+                    orm.setup_modifiers(elem)
+                    placeholder.addprevious(elem)"""
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
@@ -30,39 +46,14 @@ class mrp_repair(models.Model):
         doc = etree.XML(result['arch'])
         if view_type == 'form' and self._module == 'mrp.repair':
             if doc.xpath("//button[@name='1122']"):
-                for placeholder in doc.xpath(
-                        "//field[@name='amount_currency']"):
-                    elem = etree.Element(
-                        'field', {
-                            'name': 'balance',
-                            'readonly': 'True'
+                print("a ", doc.xpath("//button[@name='1122']"))
+                for placeholder in doc.xpath("//button[@name='1122']"):
+                    print("b", placeholder)
+                    """elem = etree.Element(
+                        'button', {
+                            'name': '1122',
+                            'class': 'True'
                         })
                     orm.setup_modifiers(elem)
-                    placeholder.addprevious(elem)
-            if not doc.xpath("//field[@name='amount_residual_currency']"):
-                for placeholder in doc.xpath(
-                        "//field[@name='amount_currency']"):
-                    elem = etree.Element(
-                        'field', {
-                            'name': 'amount_residual_currency',
-                            'readonly': 'True'
-                        })
-                    orm.setup_modifiers(elem)
-                    placeholder.addnext(elem)
-            if not doc.xpath("//field[@name='amount_residual']"):
-                for placeholder in doc.xpath(
-                        "//field[@name='amount_currency']"):
-                    elem = etree.Element(
-                        'field', {
-                            'name': 'amount_residual',
-                            'readonly': 'True'
-                        })
-                    orm.setup_modifiers(elem)
-                    placeholder.addnext(elem)
-            # Remove credit and debit data - which is irrelevant in this case
-            for elem in doc.xpath("//field[@name='debit']"):
-                doc.remove(elem)
-            for elem in doc.xpath("//field[@name='credit']"):
-                doc.remove(elem)
-            result['arch'] = etree.tostring(doc)
-        return result
+                    placeholder.addprevious(elem)"""
+        #return result
