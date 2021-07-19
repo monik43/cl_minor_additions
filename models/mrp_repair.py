@@ -31,7 +31,7 @@ class mrp_repair(models.Model):
                 elif self.po_rel == False and node.get('class') != "btn-primary":
                     node.set('class','btn-primary')
 
-    @api.model
+    """@api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
                         submenu=False):
         result = super(mrp_repair, self).fields_view_get(view_id,
@@ -48,4 +48,4 @@ class mrp_repair(models.Model):
                 elif self.po_rel == False and node.get('class') != "btn-primary":
                     node.set('class') == "btn-primary"
         result['arch'] = etree.tostring(doc)
-        return result
+        return result"""
