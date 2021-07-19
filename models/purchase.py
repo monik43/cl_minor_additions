@@ -10,5 +10,5 @@ class purchase_order(models.Model):
         for rec in self:
             for line in rec.order_line:
                 for seller_id in line.product_id.seller_ids:
-                    if rec.partner_id == seller_id:
+                    if rec.partner_id == seller_id.name:
                         line.price_unit = seller_id.price
