@@ -18,10 +18,11 @@ class mrp_repair(models.Model):
                 rec.ticket_rel = rec.env['purchase.order'].search([('origin', '=', rec.name)])
 
     @api.multi
-    def button_create_purchase_order(self):
+    def test(self):
         self.ensure_one()
-        action = {}
-        print (self.name)
+        res = super(mrp_repair, self).fields_get(allfields, attributes=attributes)
+        for field in res:
+            print(field)
         """if self.env['purchase.order'].search([('origin', '=', self.name)]) == 'selection1':
             action = {
                 'name': _('Action 1'),
