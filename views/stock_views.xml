@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="cl_stock_move_op_nosg_form_inherit" model="ir.ui.view">
-            <field name="name">cl_stock.move.operations.nosuggest.form</field>
-            <field name="model">stock.move</field>
-            <field name="inherit_id" ref="stock.view_stock_move_operations"/>
-            <field name="arch" type="xml">
-                <xpath expr="/form/group/group" position="after">
-                    <group>
-                        <field name="ship_order_move" string="Ship/Transport Order"/>
-                    </group>
-                </xpath>
-            </field>
-        </record>
         <record id="cl_stock_picking_form_inherit" model="ir.ui.view">
             <field name="name">cl_stock.picking.form</field>
             <field name="model">stock.picking</field>
