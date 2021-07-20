@@ -36,7 +36,6 @@
                 </xpath>
             </field>
         </record>
-        <!--
         <record id="cl_stock_move_line_operation_tree_add_CSN" model="ir.ui.view">
             <field name="name">cl_stock.move.line.operations.tree.add.csn</field>
             <field name="model">stock.move.line</field>
@@ -46,6 +45,6 @@
                     <field name="CSN" attrs="{'readonly': [('in_entire_package', '=', True)]}"/>
                 </xpath>
             </field>
-        </record>-->
+        </record>
     </data>
 </odoo>

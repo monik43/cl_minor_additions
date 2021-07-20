@@ -14,3 +14,8 @@ class stockmove(models.Model):
             if stock_picking.browse(record.picking_id.id):
                 record.ship_order_move = stock_picking.browse(
                     record.picking_id.id).purchase_ship_order
+
+class stockmoveline(models.Model):
+    _inherit = 'stock.move.line'
+    
+    CSN = fields.Many2one('stock.production.csn','CSN')
