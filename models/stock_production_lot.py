@@ -10,4 +10,4 @@ class stock_production_lot(models.Model):
     def _get_CSN(self):
         for rec in self:
             if rec.env['stock.move.line'].search([('lot_id.id','=',rec.id)]):
-                rec.CSN = rec.env['stock.move.line'].search([('lot_id.id','=',rec.id)]).CSN
+                rec.CSN = rec.env['stock.move.line'].search([('lot_id.id','=',rec.id)])[0].CSN
