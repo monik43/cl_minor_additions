@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# no acabado
 from odoo import models, fields, api, _
 
 
