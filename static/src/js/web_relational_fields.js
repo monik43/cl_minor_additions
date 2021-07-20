@@ -18,7 +18,7 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
             var self = this;
             var target = $(e.currentTarget).data("value");
             console.log(self.model)
-            if (self.model == 'helpdesk.ticket') {
+            if (self.model == 'helpdesk.ticket'){
                 _rpc.query({
                     model: 'helpdesk.stage',
                     method: 'js_template_handler',
@@ -30,12 +30,14 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
                                 self._setValue(target);
                             },
                         });
+                    } else {
+                        self._setValue(target);
                     }
                 });
             } else {
                 self._setValue(target);
             }
-
+            
         },
     });
 });
