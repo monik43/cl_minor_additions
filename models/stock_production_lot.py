@@ -5,10 +5,9 @@ from odoo import models, fields, api, _
 class stock_production_lot(models.Model):
     _inherit = 'stock.production.lot'
 
-    CSN = fields.Many2one('stock.production.csn','CSN')
+    CSN = fields.Char(string="CSN", compute="_get_CSN")
 
-class stock_production_csn(models.Model):
-    _name = 'stock.production.csn'
-    _description = "CSN of stock.production.lot"
-    _rec_name = "CSN"
-    CSN = fields.Char(string="CSN")
+    def _get_CSN(self):
+        for rec in self:
+            if rec.env['stock.move.line'].search('lot_id.id','=',rec.id):
+                rec.CSN = rec.env['stock.move.line'].search('lot_id.id','=',rec.id)
