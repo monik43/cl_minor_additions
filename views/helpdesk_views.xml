@@ -10,6 +10,6 @@
                     <attribute name="context">{'default_lot_id': x_lot_id,'default_name': name_rma,'default_partner_id': partner_id, 'default_product_id': x_lot_it.product_id }</attribute>
                 </xpath>
             </field>
-            </record>
-        </data>
-    </odoo>
+        </record>
+    </data>
+</odoo>
