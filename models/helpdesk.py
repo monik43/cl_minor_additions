@@ -31,10 +31,10 @@ class helpdesk_ticket(models.Model):
     _inherit = "helpdesk.ticket"
 
     name_rma = fields.Char(compute="_get_name_rma")
-    
+
     def _get_name_rma(self):
         for rec in self:
             if rec.RMA != False:
-                rec.name_rma = rec.id + " - " + rec.RMA
+                rec.name_rma = str(rec.id) + " - " + str(rec.RMA)
             else:
-                rec.name_rma = rec.id + " - " + rec.name[:10]
+                rec.name_rma = str(rec.id) + " - " + str(rec.name[:10])
