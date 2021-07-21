@@ -452,7 +452,7 @@ msgstr "<strong>Fecha del presupuesto:</strong>"
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.report_saleorder_document
 msgid "<strong>Salesperson:</strong>"
-msgstr "<strong>Asesor pedagògico:</strong>"
+msgstr "<strong>Asesor pedagógico:</strong>"
 
 #. module: sale
 #: model:ir.ui.view,arch_db:sale.portal_order_page

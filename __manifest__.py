@@ -12,7 +12,7 @@
     'author': "Cloudalia Educacion",
     'website': "https://cloudaliaeducacion.com/",
     'category': 'Uncategorized',
-    'version': '11.0.0.1',
+    'version': '11.0.0.5',
 
     'depends': ['base', 'stock', 'cloudedu_mods', 'account', 'filtro_comercial-main'],
     'data': [
