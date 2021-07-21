@@ -31,7 +31,7 @@ class helpdesk_ticket(models.Model):
     _inherit = "helpdesk.ticket"
 
     name_rma = fields.Char(compute="_get_name_rma")
-
+    
     def _get_name_rma(self):
         for rec in self:
             if rec.RMA != False:
