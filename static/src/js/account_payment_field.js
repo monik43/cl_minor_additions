@@ -30,7 +30,7 @@ odoo.define('cl_minor_additions.payment', function (require) {
                 var content = info.content[v];
                 var options = {
                     content: function () {
-                        var $content = $(QWeb.render('PaymentPopOver', {x_lot_id
+                        var $content = $(QWeb.render('PaymentPopOver', {
                             name: content.name,
                             journal_name: content.journal_name,
                             date: content.date,
