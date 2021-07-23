@@ -34,7 +34,7 @@ class helpdesk_ticket(models.Model):
     prod_id_context = fields.Many2one('product.product', "Producto a reparar", compute="_get_prod_id_context")
     lot_id_context = fields.Many2one('stock.production.lot', "Lote/Nº de serie	", compute="_get_lot_id_context")
     self_cont = fields.Many2one('helpdesk.ticket', compute="_get_self_cont")
-    n_ordensat = fields.Many2one('mrp.repair', string='Orden SAT')#, compute="_get_orden_sat"
+    n_ordensat = fields.Many2one('mrp.repair', string='Orden SAT', compute="_get_orden_sat")
 
     def _get_orden_sat(self):
         for rec in self:
