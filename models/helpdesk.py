@@ -37,7 +37,7 @@ class helpdesk_ticket(models.Model):
     def _get_prod_id_context(self):
         for rec in self:
             if rec.x_lot_id != False:
-                rec.prod_id_context = rec.x_lot_id.product_id
+                rec.prod_id_context = rec.x_lot_id.product_id.id
 
     def _get_lot_id_context(self):
         for rec in self:
