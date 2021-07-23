@@ -12,9 +12,9 @@
                     <field name="lot_id_context" invisible="1"/>
                     <field name="self_cont" invisible="1"/>
                 </xpath>
-                <xpath expr="//field[@name='ordensat']" position="replace">
-                    <field name="ordensat" context="{'default_x_ticket': self_cont, 'default_product_id': prod_id_context, 'default_n_lot_id': lot_id_context ,'default_name': name_rma,'default_partner_id': partner_id }" />
-                </xpath>
+                <div class="oe_title" position="after">
+                    Reparacion: <field name="n_ordensat" context="{'default_x_ticket': self_cont, 'default_product_id': prod_id_context, 'default_n_lot_id': lot_id_context ,'default_name': name_rma,'default_partner_id': partner_id }" attrs="{'invisible':[('ordensat','!=',False)]}" />
+                </div>
             </field>
         </record><!--
         <record id="cl_helpdesk_ticket_view_form_misc_changes_2" model="ir.ui.view">
