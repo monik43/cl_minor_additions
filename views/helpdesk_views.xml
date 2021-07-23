@@ -17,6 +17,7 @@
         <record id="cl_helpdesk_ticket_view_form_misc_changes_2" model="ir.ui.view">
             <field name="name">cl_helpdesk.ticket.form.misc.changes2</field>
             <field name="model">helpdesk.ticket</field>
+            <field name="priority">15</field>
             <field name="inherit_id" ref="cloudedu_mods.helpdesk_ticket_view_form_ordensat"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='ordensat']" position="replace">
