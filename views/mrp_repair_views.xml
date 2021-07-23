@@ -10,7 +10,7 @@
                     <field name="pieza_añadida"/>
                 </xpath>
                 <xpath expr="//field[@name='lot_id']" position="attributes">
-                    <attribute name="invisible">{'n_lot_id','!=',False}</attribute>
+                    <attribute name="invisible">{'n_lot_id','=',False}</attribute>
                 </xpath>
                 <xpath expr="//field[@name='lot_id']" position="after">
                     <field name="n_lot_id"/>
