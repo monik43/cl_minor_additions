@@ -34,6 +34,12 @@ class repair_line(models.Model):
 
 class mrp_repair(models.Model):
     _inherit = 'mrp.repair'
+
+    n_lot_id = fields.Many2one(
+        'stock.production.lot', 'Lot/Serial',
+        domain="[('product_id','=', product_id)]",
+        help="Products repaired are all belonging to this lot", oldname="prodlot_id")
+
     po_rel = fields.Many2one(
         'purchase.order', string='Purchase relacionada', compute="_compute_po_rel")
 

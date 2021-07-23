@@ -9,6 +9,9 @@
                 <xpath expr="//field[@name='operations']/tree" position="inside">
                     <field name="pieza_añadida"/>
                 </xpath>
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="n_lot_id"/>
+                </xpath>
             </field>
         </record>
     </data>
