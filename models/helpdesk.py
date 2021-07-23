@@ -50,4 +50,4 @@ class helpdesk_ticket(models.Model):
             if rec.RMA != False:
                 rec.name_rma = str(rec.id) + " - " + str(rec.RMA)
             else:
-                rec.name_rma = str(rec.id) + " - " + str(rec.name[:10])
+                rec.name_rma = str(rec.id) + " - " + str(rec.name)
