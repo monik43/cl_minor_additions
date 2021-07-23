@@ -31,15 +31,14 @@ class helpdesk_ticket(models.Model):
     _inherit = "helpdesk.ticket"
 
     name_rma = fields.Char(compute="_get_name_rma")
-    lot_id_context = fields.Many2one('stock.production.lot', "Lote/Número de serie", compute="_get_lot_id_context")
+    prod_id_context = fields.Many2one('product.product', "Producto a reparar", compute="_get_prod_id_context")
 
-    def _get_lot_id_context(self):
+    def _get_prod_id_context(self):
         for rec in self:
             if rec.x_lot_id != False:
-                print("x",rec.x_lot_id)
                 print("x",rec.x_lot_id.product_id)
-                rec.lot_id_context = rec.x_lot_id
-                print("c",rec.lot_id_context)
+                rec.prod_id_context = rec.x_lot_id.product_id
+                print("c",rec.prod_id_context)
 
     def _get_name_rma(self):
         for rec in self:
