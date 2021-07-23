@@ -11,19 +11,18 @@
                     <field name="prod_id_context" invisible="1"/>
                     <field name="lot_id_context" invisible="1"/>
                     <field name="self_cont" invisible="1"/>
-                    <field name="ordensat" context="{'default_x_ticket':self_cont,'default_product_id': prod_id_context, 'default_n_lot_id': lot_id_context ,'default_name': name_rma,'default_partner_id': partner_id }" />
                 </xpath>
             </field>
-        </record><!--
+        </record>
         <record id="cl_helpdesk_ticket_view_form_misc_changes_2" model="ir.ui.view">
             <field name="name">cl_helpdesk.ticket.form.misc.changes2</field>
             <field name="model">helpdesk.ticket</field>
             <field name="inherit_id" ref="cloudedu_mods.helpdesk_ticket_view_form_ordensat"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='ordensat']" position="replace">
-                    <attribute name="context">{'default_lot_id': x_lot_id,'default_name': name_rma,'default_partner_id': partner_id, 'default_product_id': x_lot_id.product_id }</attribute>
+                    <field name="ordensat" context="{'default_x_ticket': self_cont, 'default_product_id': prod_id_context, 'default_n_lot_id': lot_id_context ,'default_name': name_rma,'default_partner_id': partner_id }" />
                 </xpath>
             </field>
-        </record>-->
+        </record>
     </data>
 </odoo>
