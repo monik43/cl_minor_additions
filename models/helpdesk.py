@@ -42,8 +42,8 @@ class helpdesk_ticket(models.Model):
     def _get_lot_id_context(self):
         for rec in self:
             if rec.x_lot_id != False:
-                rec.lot_id_context = rec.x_lot_id
-                print(rec.x_lot_id)
+                rec.lot_id_context = rec.env['stock.production.lot'].browse(rec.x_lot_id.id)
+                
 
     def _get_name_rma(self):
         for rec in self:
