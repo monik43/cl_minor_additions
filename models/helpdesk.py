@@ -47,10 +47,7 @@ class helpdesk_ticket(models.Model):
                 if name.startswith('#'):
                     name = name[1:]
                 if name.startswith(str(rec.id)):
-                    print(rep)
-                    print(rep.id)
-                    print(rep.name)
-                    #rec.ordensat = rep
+                    rec.ordensat = rep
                 
 
     def _get_name_rma(self):
