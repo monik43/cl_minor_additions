@@ -59,7 +59,7 @@ class helpdesk_ticket(models.Model):
                     'pricelist_id': 1
                 }
                 print(vals)
-                print(self.env['mrp.repair'].create())
+                print(self.env['mrp.repair'].create(vals))
                 #rec.env['mrp.repair'].create(vals)
 
     def _get_name_rma(self):
