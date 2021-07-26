@@ -31,20 +31,17 @@ class helpdesk_ticket(models.Model):
     _inherit = "helpdesk.ticket"
 
     name_rma = fields.Char(compute="_get_name_rma")
-    prod_id_context = fields.Many2one('product.product', "Producto a reparar", compute="_get_prod_id_context")
-    lot_id_context = fields.Many2one('stock.production.lot', "Lote/Nº de serie	", compute="_get_lot_id_context")
+    prod_id_context = fields.Many2one(
+        'product.product', "Producto a reparar", compute="_get_prod_id_context")
+    lot_id_context = fields.Many2one(
+        'stock.production.lot', "Lote/Nº de serie	", compute="_get_lot_id_context")
     self_cont = fields.Many2one('helpdesk.ticket', compute="_get_self_cont")
-    n_ordensat = fields.Many2one('mrp.repair', string='Orden SAT', compute="_get_orden_sat")
+    n_ordensat = fields.Many2one(
+        'mrp.repair', string='Orden SAT', compute="_get_orden_sat")
 
     def _get_orden_sat(self):
         for rec in self:
-            if rec.ordensat != False:
-                rec.n_ordensat = rec.ordensat
-            else:
-                rec.n_ordensat = rec.ordensat
-                print(rec.env['mrp.repair'].search([('name','like',rec.id )]).id)
-                print(rec.env['mrp.repair'].search([('name','like',rec.id )]).name)
-
+            print("test")
 
     def _get_name_rma(self):
         for rec in self:
@@ -52,7 +49,7 @@ class helpdesk_ticket(models.Model):
                 rec.name_rma = str(rec.id) + " - " + str(rec.RMA)
             else:
                 rec.name_rma = str(rec.id) + " - " + str(rec.name)
-            for rep in rec.env['mrp.repair'].search([('name','like',rec.id )]):
+            for rep in rec.env['mrp.repair'].search([('name', 'like', rec.id)]):
                 if rep.name[:4] == rec.id:
                     print(rep.id)
                     print(rep.name)
@@ -65,9 +62,9 @@ class helpdesk_ticket(models.Model):
     def _get_lot_id_context(self):
         for rec in self:
             if rec.x_lot_id != False:
-                rec.lot_id_context = rec.env['stock.production.lot'].browse(rec.x_lot_id.id)
-                
+                rec.lot_id_context = rec.env['stock.production.lot'].browse(
+                    rec.x_lot_id.id)
+
     def _get_self_cont(self):
         for rec in self:
             rec.self_cont = self
-    
