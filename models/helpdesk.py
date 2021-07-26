@@ -46,6 +46,7 @@ class helpdesk_ticket(models.Model):
                     [('x_ticket', '=', rec.id)])
             elif rec.stage_id.name == 'Asignado':
                 vals = {
+                    'id': 
                     'x_ticket': rec.id,
                     'product_id': rec.prod_id_context.id,
                     'n_lot_id': rec.lot_id_context.id,
@@ -55,7 +56,7 @@ class helpdesk_ticket(models.Model):
                     'product_uom': rec.prod_id_context.uom_id.id
                 }
                 
-                print(self.env['mrp.repair'].search([])[-1].id)
+                print(self.env['table.name'].search([], order='id desc')[0].id)
                 #self.env['mrp.repair'].create(vals)
 
     def _get_name_rma(self):
