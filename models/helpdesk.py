@@ -45,7 +45,7 @@ class helpdesk_ticket(models.Model):
                 rec.ordensat = rec.env['mrp.repair'].search(
                     [('x_ticket', '=', rec.id)])
             elif rec.stage_id.name == 'Asignado':
-                #nid = self.env['mrp.repair'].search([], order='id desc')[0].id + 1
+                print("aaa!!"*25)
                 vals = {
                     'x_ticket': rec.id,
                     'product_id': rec.prod_id_context.id,
@@ -58,10 +58,7 @@ class helpdesk_ticket(models.Model):
                     'invoice_method':'none',
                     'pricelist_id': 1
                 }
-                vals2 = {'name': 'RMA/02579', 'product_qty': 1, 'location_id': 66, 'location_dest_id': 66, 'company_id': 1, 'invoice_method': 'none', 'pricelist_id': 1, 'x_ticket': False, 'product_id': 3107,
-                         'product_uom': 1, 'lot_id': False, 'n_lot_id': False, 'partner_id': False, 'address_id': False, 'guarantee_limit': False, 'partner_invoice_id': False, 'internal_notes': False, 'quotation_notes': False}
-        
-        self.env['mrp.repair'].create(vals2)
+                #rec.env['mrp.repair'].create(vals)
 
     def _get_name_rma(self):
         for rec in self:
