@@ -44,6 +44,7 @@ class helpdesk_ticket(models.Model):
             print("test")
             for rep in rec.env['mrp.repair'].search([('name', 'like', rec.id)]):
                 name = rep.name
+                print(rep.name)
                 if name.startswith('#'):
                     name = name[1:]
                 if name[:4] == rep.id:
