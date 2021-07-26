@@ -50,8 +50,7 @@ class helpdesk_ticket(models.Model):
                         name = name[1:]
                     if name.startswith(str(rec.id)):
                         rec.ordensat = rep
-            else:
-                print(rec.stage_id)
+                
                 
 
     def _get_name_rma(self):
@@ -60,6 +59,7 @@ class helpdesk_ticket(models.Model):
                 rec.name_rma = str(rec.id) + " - " + str(rec.RMA)
             else:
                 rec.name_rma = str(rec.id) + " - " + str(rec.name)
+            print(rec.stage_id)
             
 
     def _get_prod_id_context(self):
