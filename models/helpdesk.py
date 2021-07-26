@@ -48,9 +48,9 @@ class helpdesk_ticket(models.Model):
                 #nid = self.env['mrp.repair'].search([], order='id desc')[0].id + 1
                 vals = {
                     #'x_ticket': rec.id,
-                    #'product_id': rec.prod_id_context.id,
+                    'product_id': rec.prod_id_context.id,
                     #'n_lot_id': rec.lot_id_context.id,
-                    'name': rec.name_rma,
+                    'name': 'test',
                     'partner_id': rec.partner_id.id,
                     'product_qty': 1.00,
                     'product_uom': rec.prod_id_context.uom_id.id
