@@ -14,7 +14,7 @@
     'category': 'Uncategorized',
     'version': '11.0.0.5',
 
-    'depends': ['base', 'stock', 'cloudedu_mods', 'account', 'filtro_comercial-main'],
+    'depends': ['base', 'stock', 'cloudedu_mods', 'account', 'filtro_comercial-main', 'helpdesk','mrp_repair'],
     'data': [
         'views/account_invoice_views.xml',
         'views/mail_views.xml',
