@@ -54,7 +54,12 @@ class helpdesk_ticket(models.Model):
                     'partner_id': rec.partner_id.id,
                     'product_qty': 1.00,
                     'product_uom': rec.prod_id_context.uom_id.id,
+                    'company_id':1,
+                    'invoice_method':'none',
+                    'pricelist_id': 1
                 }
+                vals2 = {'name': 'RMA/02577', 'product_qty': 1, 'location_id': 66, 'location_dest_id': 66, 'company_id': 1, 'invoice_method': 'none', 'pricelist_id': 1, 'x_ticket': False, 'product_id': 3107,
+                         'product_uom': 1, 'lot_id': False, 'n_lot_id': False, 'partner_id': False, 'address_id': False, 'guarantee_limit': False, 'partner_invoice_id': False, 'internal_notes': False, 'quotation_notes': False}
                 self.env['mrp.repair'].create(vals)
 
     def _get_name_rma(self):
