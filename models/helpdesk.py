@@ -46,7 +46,7 @@ class helpdesk_ticket(models.Model):
                 name = rep.name
                 if name.startswith('#'):
                     name = name[1:]
-                if name.startswith(rec.id):
+                if name.startswith(str(rec.id)):
                     print(rep)
                     print(rep.id)
                     print(rep.name)
