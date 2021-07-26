@@ -49,7 +49,9 @@ class helpdesk_ticket(models.Model):
                     if name.startswith('#'):
                         name = name[1:]
                     if name.startswith(str(rec.id)):
-                        rec.ordensat = rep
+                        rec.ordensat = rec
+            elif rec.stage_id.id == 5:
+                print("holi")
                 
                 
 
