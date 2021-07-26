@@ -50,8 +50,8 @@ class helpdesk_ticket(models.Model):
                         name = name[1:]
                     if name.startswith(str(rec.id)):
                         rec.ordensat = rep
-            elif rec.stage_id.name == 'Asignado':
-                print("holi")
+            else:
+                print(rec.stage_id)
                 
 
     def _get_name_rma(self):
