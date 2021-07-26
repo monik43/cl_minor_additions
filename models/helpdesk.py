@@ -40,7 +40,7 @@ class helpdesk_ticket(models.Model):
         for rec in self:
             if rec.ordensat != False:
                 rec.n_ordensat = rec.ordensat
-            elif rec.env['mrp.repair'].search([('name','like',rec.id )]):
+            else:
                 print(rec.env['mrp.repair'].search([('name','like',rec.id )]).id)
                 print(rec.env['mrp.repair'].search([('name','like',rec.id )]).name)
 
