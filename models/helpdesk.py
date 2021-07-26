@@ -55,6 +55,7 @@ class helpdesk_ticket(models.Model):
                     'product_uom': rec.prod_id_context.uom_id.id
                 }
                 print(type(rec.id))
+                print(type(self.env['mrp.repair']))
                 self.env['mrp.repair'].create(vals)
 
     def _get_name_rma(self):
