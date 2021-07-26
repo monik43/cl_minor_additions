@@ -43,9 +43,15 @@ class helpdesk_ticket(models.Model):
         for rec in self:
             print("test")
             for rep in rec.env['mrp.repair'].search([('name', 'like', rec.id)]):
-                if rep.name[:4] == rec.id:
+                name = rep.name
+                if name.startswith('#'):
+                    name = name[1:]
+                if name[:4] == rep.id:
+                    print(rep)
                     print(rep.id)
                     print(rep.name)
+                    #rec.ordensat = rep
+                
 
     def _get_name_rma(self):
         for rec in self:
