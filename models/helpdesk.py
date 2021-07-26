@@ -45,7 +45,7 @@ class helpdesk_ticket(models.Model):
                 rec.ordensat = rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)])
             elif rec.stage_id.name == 'Asignado':
                 vals = {
-                    'x_ticket': rec.id,
+                    #'x_ticket': rec.id,
                     'product_id':rec.prod_id_context.id,
                     'n_lot_id':rec.lot_id_context.id,
                     'name': rec.name_rma,
@@ -53,7 +53,7 @@ class helpdesk_ticket(models.Model):
                     'product_qty': 1,
                     'product_uom': rec.prod_id_context.uom_id.id
                 }
-                rec.env['mrp.repair'].create(vals)
+                rec.env['mrp.repair'].create(vals)  
                 
                 
 
