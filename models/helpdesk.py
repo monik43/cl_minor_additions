@@ -55,7 +55,7 @@ class helpdesk_ticket(models.Model):
                     'product_uom': rec.prod_id_context.uom_id.id
                 }
                 
-                print(self.env['table.name'].search([], order='id desc')[0].id)
+                print(self.env['mrp.repair'].search([], order='id desc')[0].id)
                 #self.env['mrp.repair'].create(vals)
 
     def _get_name_rma(self):
