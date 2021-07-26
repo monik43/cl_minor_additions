@@ -51,7 +51,7 @@ class helpdesk_ticket(models.Model):
                     'product_id': rec.prod_id_context.id,
                     #'n_lot_id': rec.lot_id_context.id,
                     'name': 'test',
-                    'partner_id': rec.partner_id.id,
+                    #'partner_id': rec.partner_id.id,
                     'product_qty': 1.00,
                     'product_uom': rec.prod_id_context.uom_id.id
                 }
