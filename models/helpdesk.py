@@ -46,10 +46,10 @@ class helpdesk_ticket(models.Model):
             elif rec.stage_id.name == 'Asignado':
                 vals = {
                     'x_ticket': rec.id,
-                    'product_id':rec.prod_id_context,
+                    'product_id':rec.prod_id_context.id,
                     'n_lot_id':rec.lot_id_context,
                     'name': rec.name_rma,
-                    'partner_id':rec.partner_id,
+                    'partner_id':rec.partner_id.id,
                 }
                 rec.env['mrp.repair'].create(vals)
                 
