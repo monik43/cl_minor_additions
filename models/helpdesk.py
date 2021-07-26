@@ -50,7 +50,7 @@ class helpdesk_ticket(models.Model):
                     'n_lot_id':rec.lot_id_context.id,
                     'name': rec.name_rma,
                     'partner_id':rec.partner_id.id,
-                    'product_qty': 1,
+                    'product_qty': 1.00,
                     'product_uom': rec.prod_id_context.uom_id.id
                 }
                 rec.env['mrp.repair'].create(vals)  
