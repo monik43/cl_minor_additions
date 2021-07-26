@@ -38,7 +38,9 @@ class helpdesk_ticket(models.Model):
 
     def _get_orden_sat(self):
         for rec in self:
-            if rec.ordensat == False and rec.env['mrp.repair'].search([('name','like',rec.id )]):
+            if rec.ordensat != False:
+                rec.n_ordensat = rec.ordensat
+            elif rec.env['mrp.repair'].search([('name','like',rec.id )]):
                 print(rec.env['mrp.repair'].search([('name','like',rec.id )]).id)
                 print(rec.env['mrp.repair'].search([('name','like',rec.id )]).name)
 
