@@ -61,7 +61,9 @@ class helpdesk_ticket(models.Model):
                 rec.name_rma = str(rec.id) + " - " + str(rec.RMA)
             else:
                 rec.name_rma = str(rec.id) + " - " + str(rec.name)
-            print(rec.stage_id)
+            if rec.stage_id.id == 5:
+                print("holi")
+                print(rec.stage_id)
             
 
     def _get_prod_id_context(self):
