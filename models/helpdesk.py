@@ -43,6 +43,7 @@ class helpdesk_ticket(models.Model):
         for rec in self:
             if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
                 rec.ordensat = rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)])
+                print("1")
             elif rec.env['mrp.repair'].search([('name', 'like', rec.id)]):
                 for rep in rec.env['mrp.repair'].search([('name', 'like', rec.id)]):
                     name = rep.name
@@ -50,8 +51,9 @@ class helpdesk_ticket(models.Model):
                         name = name[1:]
                     if name.startswith(str(rec.id)):
                         rec.ordensat = rec
+                    print("2")
             elif rec.stage_id.id == 5:
-                print("holi")
+                print("tiesto")
                 
                 
 
