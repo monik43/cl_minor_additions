@@ -42,7 +42,7 @@ class helpdesk_ticket(models.Model):
     def _get_orden_sat(self):
         for rec in self:
             print("test")
-            if rec.env['mrp.repair'].search([('x_ticket', '=', rec)]):
+            if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
                 rec.ordensat = rec.env['mrp.repair'].search([('x_ticket', '=', rec)])
                 print(rec.ordensat)
             else:
