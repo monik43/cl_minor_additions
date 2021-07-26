@@ -42,12 +42,16 @@ class helpdesk_ticket(models.Model):
     def _get_orden_sat(self):
         for rec in self:
             print("test")
-            for rep in rec.env['mrp.repair'].search([('name', 'like', rec.id)]):
-                name = rep.name
-                if name.startswith('#'):
-                    name = name[1:]
-                if name.startswith(str(rec.id)):
-                    rec.ordensat = rep
+            if rec.env['mrp.repair'].search([('x_ticket', '=', rec)]):
+                rec.ordensat = rec.env['mrp.repair'].search([('x_ticket', '=', rec)])
+                print(rec.ordensat)
+            else:
+                for rep in rec.env['mrp.repair'].search([('name', 'like', rec.id)]):
+                    name = rep.name
+                    if name.startswith('#'):
+                        name = name[1:]
+                    if name.startswith(str(rec.id)):
+                        rec.ordensat = rep
                 
 
     def _get_name_rma(self):
