@@ -42,6 +42,10 @@ class helpdesk_ticket(models.Model):
     def _get_orden_sat(self):
         for rec in self:
             print("test")
+            for rep in rec.env['mrp.repair'].search([('name', 'like', rec.id)]):
+                if rep.name[:4] == rec.id:
+                    print(rep.id)
+                    print(rep.name)
 
     def _get_name_rma(self):
         for rec in self:
@@ -49,10 +53,7 @@ class helpdesk_ticket(models.Model):
                 rec.name_rma = str(rec.id) + " - " + str(rec.RMA)
             else:
                 rec.name_rma = str(rec.id) + " - " + str(rec.name)
-            for rep in rec.env['mrp.repair'].search([('name', 'like', rec.id)]):
-                if rep.name[:4] == rec.id:
-                    print(rep.id)
-                    print(rep.name)
+            
 
     def _get_prod_id_context(self):
         for rec in self:
