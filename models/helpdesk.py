@@ -53,9 +53,9 @@ class helpdesk_ticket(models.Model):
                     'name': rec.name_rma,
                     'partner_id': rec.partner_id.id,
                     'product_qty': 1.00,
-                    'product_uom': rec.prod_id_context.uom_id.id
+                    'product_uom': rec.prod_id_context.uom_id.id,
                 }
-                #rec.env['mrp.repair'].create(vals)
+                rec.env['mrp.repair'].write(vals)
 
     def _get_name_rma(self):
         for rec in self:
