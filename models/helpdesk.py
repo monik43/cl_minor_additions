@@ -52,6 +52,8 @@ class helpdesk_ticket(models.Model):
                 rec.name_rma = str(rec.id) + " - " + str(rec.RMA)
             else:
                 rec.name_rma = str(rec.id) + " - " + str(rec.name)
+            print(rec.env['mrp.repair'].search([('name','like',rec.id )]).id)
+            print(rec.env['mrp.repair'].search([('name','like',rec.id )]).name)
 
     def _get_prod_id_context(self):
         for rec in self:
