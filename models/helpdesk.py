@@ -47,15 +47,15 @@ class helpdesk_ticket(models.Model):
             elif rec.stage_id.name == 'Asignado':
                 #nid = self.env['mrp.repair'].search([], order='id desc')[0].id + 1
                 vals = {
-                    #'x_ticket': rec.id,
+                    'x_ticket': rec.id,
                     'product_id': rec.prod_id_context.id,
-                    #'n_lot_id': rec.lot_id_context.id,
-                    'name': 'test',
-                    #'partner_id': rec.partner_id.id,
+                    'n_lot_id': rec.lot_id_context.id,
+                    'name': rec.name_rma,
+                    'partner_id': rec.partner_id.id,
                     'product_qty': 1.00,
                     'product_uom': rec.prod_id_context.uom_id.id
                 }
-                rec.env['mrp.repair'].create(vals)
+                #rec.env['mrp.repair'].create(vals)
 
     def _get_name_rma(self):
         for rec in self:
