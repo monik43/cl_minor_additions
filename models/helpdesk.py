@@ -44,9 +44,7 @@ class helpdesk_ticket(models.Model):
 
             if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
                 rec.ordensat = rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)])
-            elif rec.stage_id.id == 5:
-                print("tiesto")
-                
+            print(rec.stage_id.name)
                 
 
     def _get_name_rma(self):
@@ -55,9 +53,6 @@ class helpdesk_ticket(models.Model):
                 rec.name_rma = str(rec.id) + " - " + str(rec.RMA)
             else:
                 rec.name_rma = str(rec.id) + " - " + str(rec.name)
-            if rec.stage_id.id == 5:
-                print("holi")
-                print(rec.stage_id)
             
 
     def _get_prod_id_context(self):
