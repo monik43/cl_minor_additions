@@ -49,7 +49,7 @@ class helpdesk_ticket(models.Model):
                 vals = {
                     'x_ticket': rec.id,
                     'product_id': rec.prod_id_context.id,
-                    'n_lot_id': rec.lot_id_context.id,
+                    #'n_lot_id': rec.lot_id_context.id,
                     'name': rec.name_rma,
                     'partner_id': rec.partner_id.id,
                     'product_qty': 1.00,
