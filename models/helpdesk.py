@@ -52,7 +52,7 @@ class helpdesk_ticket(models.Model):
                 rec.name_rma = str(rec.id) + " - " + str(rec.RMA)
             else:
                 rec.name_rma = str(rec.id) + " - " + str(rec.name)
-            for rep in rec.env['mrp.repair'].search([('name','like',rec.id )]):
+            for rep in rec.env['mrp.repair'].search([('name'[:4],'like',rec.id )]):
                 print(rep.id)
                 print(rep.name)
 
