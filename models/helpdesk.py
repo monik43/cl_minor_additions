@@ -51,7 +51,7 @@ class helpdesk_ticket(models.Model):
                     'name': rec.name_rma,
                     'partner_id':rec.partner_id.id,
                 }
-                rec.env['mrp.repair'].create(vals)
+                #rec.env['mrp.repair'].create(vals)
                 
                 
 
