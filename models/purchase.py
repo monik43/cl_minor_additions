@@ -9,7 +9,7 @@ class purchase_order(models.Model):
     def print_fields(self):
         for rec in self:
             for field in rec.fields_get():
-                print(field)
+                print(field, " ", field[0])
 
 
     @api.onchange('order_line')
