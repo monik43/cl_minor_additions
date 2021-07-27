@@ -8,7 +8,7 @@ class purchase_order(models.Model):
     @api.multi
     def print_fields(self):
         for rec in self:
-            fields = rec.fields_get()
+            print(rec._fields )
             for field in rec._fields:
                 print(field)
 
