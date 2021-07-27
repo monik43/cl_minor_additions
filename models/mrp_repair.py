@@ -46,7 +46,7 @@ class mrp_repair(models.Model):
     def _compute_po_rel(self):
         for rec in self:
             if rec.env['purchase.order'].search([('partner_ref','like',rec.name)]) != False:
-                rec.po_rel = rec.env['purchase.order'].search([('partner_ref','like',rec.name)])
+                rec.po_rel = rec.env['purchase.order'].search([('partner_ref','=',rec.name)])
             print(rec.po_rel)
 
     
