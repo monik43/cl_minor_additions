@@ -45,8 +45,8 @@ class mrp_repair(models.Model):
 
     def _compute_po_rel(self):
         for rec in self:
+            print(rec.x_ticket)
             if rec.env['purchase.order'].search([('origin', '=', rec.name)]):
-                print(rec.env['purchase.order'].search([('origin', '=', rec.name)]))
                 rec.po_rel = rec.env['purchase.order'].search([('origin', '=', rec.name)])
 
     @api.model
@@ -61,14 +61,11 @@ class mrp_repair(models.Model):
         if view_type == 'form' and self._module == 'cl_minor_additions':
             if doc.xpath("//button[@name='1122']"):
                 node = doc.xpath("//button[@name='1122']")[0]
-                print(node.get('class'))
                 for rec in self:
-                    if rec.po_rel != False and node.get('class') == "btn-primary":
+                    if rec.po_rel != False:
                         node.set('class','')
-                        print(node.get('class'))
-                    elif rec.po_rel == False and node.get('class') != "btn-primary":
+                    else:
                         node.set('class','btn-primary')
-                        print(node.get('class'))
         result['arch'] = etree.tostring(doc)
         return result
 
