@@ -47,6 +47,7 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.env['purchase.order'].search([('partner_ref','like',rec.name)]) != False:
                 rec.po_rel = rec.env['purchase.order'].search([('partner_ref','like',rec.name)])
+            print(rec.po_rel)
 
     
 
