@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <odoo>
     <data>
-        <record id="cl_view_order_form_tst" model="ir.ui.view">
-            <field name="name">cl_sale.order.form.tst</field>
-            <field name="model">sale.order</field>
-            <field name="inherit_id" ref="sale.view_order_form"/>
+        <record id="cl_purchase_order_form_tst" model="ir.ui.view">
+            <field name="name">cl_purchase.order.form.tst</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//header" position="inside">
                     <button name="print_fields" string="PRINT" type="object"/>
