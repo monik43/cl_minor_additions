@@ -52,11 +52,12 @@ class helpdesk_ticket(models.Model):
                     'n_lot_id': rec.lot_id_context.id,
                     'name': rec.name_rma,
                     'partner_id': rec.partner_id.id,
-                    'product_qty': 1.00,
+                    'product_qty': 1,
                     'product_uom': rec.prod_id_context.uom_id.id,
                     'company_id':1,
                     'invoice_method':'none',
-                    'pricelist_id': 1
+                    'pricelist_id': 1,
+                    'internal_notes': "Reparación creada cuando el estado del ticket relacionado se cambió a \"Asignado\"."
                 }
                 test = rec.env['mrp.repair'].create(vals)
                 rec.ordensat = test
