@@ -8,12 +8,7 @@ class purchase_order(models.Model):
     @api.multi
     def print_fields(self):
         for rec in self:
-            print(rec._fields )
-            for field in rec._fields:
-                val = rec.
-                val += field
-                print(val)
-                print(field)
+            print("test")
 
 
     @api.onchange('order_line')
