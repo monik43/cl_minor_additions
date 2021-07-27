@@ -5,6 +5,11 @@ from odoo import models, fields, api, _
 class purchase_order(models.Model):
     _inherit = 'purchase.order'
 
+    @api.multi
+    def print_fields(self):
+        for rec in self:
+            print(rec.fields_get())
+
     @api.onchange('order_line')
     def update_order_lines_fields(self):
         for rec in self:
