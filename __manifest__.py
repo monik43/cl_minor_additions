@@ -12,8 +12,7 @@
     'author': "Cloudalia Educacion",
     'website': "https://cloudaliaeducacion.com/",
     'category': 'Uncategorized',
-    'version': '11.0.0.5',
-
+    'version': '11.0.0.6',
     'depends': ['base', 'stock', 'cloudedu_mods', 'account', 'filtro_comercial-main', 'helpdesk','mrp_repair'],
     'data': [
         'views/account_invoice_views.xml',
