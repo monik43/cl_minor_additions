@@ -45,6 +45,7 @@ class mrp_repair(models.Model):
 
     def _compute_po_rel(self):
         for rec in self:
+            print("ordensat " , rec.x_ticket.ordensat)
             if rec.x_ticket.ordensat != False:
                 rec.po_rel = rec.x_ticket.ordensat.id
 
