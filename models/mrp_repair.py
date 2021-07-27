@@ -58,6 +58,7 @@ class mrp_repair(models.Model):
 
         doc = etree.XML(result['arch'])
         if view_type == 'form' and self._module == 'cl_minor_additions':
+            print("holi")
             if doc.xpath("//button[@name='1122']"):
                 print("holi")
                 node = doc.xpath("//button[@name='1122']")[0]
