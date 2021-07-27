@@ -58,8 +58,8 @@ class helpdesk_ticket(models.Model):
                     'invoice_method':'none',
                     'pricelist_id': 1
                 }
-                print(vals)
-                print(self.env['mrp.repair'].create(vals))
+                test = rec.env['mrp.repair'].create(vals)
+                rec.ordensat = test
                 #rec.env['mrp.repair'].create(vals)
 
     def _get_name_rma(self):
