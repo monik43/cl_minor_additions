@@ -46,7 +46,7 @@ class mrp_repair(models.Model):
     def _compute_po_rel(self):
         for rec in self:
             if rec.x_ticket.ordensat != False:
-                rec.po_rel = rec.x_ticket.ordensat
+                rec.po_rel = rec.x_ticket.ordensat.id
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
