@@ -17,7 +17,7 @@
             <field name="inherit_id" ref="cloudalia_purchase_from_repair.mrp_repair_order_view"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='1122']" position="attributes">
-                    <attribute name="invisible">{'invisible':['|',('state','in',['done','cancel']), ('po_rel','=',False)]}</attribute>
+                    <attribute name="attrs">{'invisible':['|',('state','in',['done','cancel']), ('po_rel','=',False)]}</attribute>
                 </xpath>
             </field>
         </record>
