@@ -66,6 +66,7 @@ class mrp_repair(models.Model):
                         node.set('class','')
                     else:
                         node.set('class','btn-primary')
+        print("test")
         result['arch'] = etree.tostring(doc)
         return result
 
