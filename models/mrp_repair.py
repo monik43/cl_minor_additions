@@ -60,7 +60,7 @@ class mrp_repair(models.Model):
         if view_type == 'form' and self._module == 'cl_minor_additions':
             print("holi")
             if doc.xpath("//button[@name='1122']"):
-                print("holi")
+                print("holo")
                 node = doc.xpath("//button[@name='1122']")[0]
                 for rec in self:
                     print("porel ",rec.po_rel)
