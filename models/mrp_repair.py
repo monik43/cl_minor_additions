@@ -59,6 +59,7 @@ class mrp_repair(models.Model):
         doc = etree.XML(result['arch'])
         if view_type == 'form' and self._module == 'cl_minor_additions':
             if doc.xpath("//button[@name='1122']"):
+                print("holi")
                 node = doc.xpath("//button[@name='1122']")[0]
                 for rec in self:
                     print("porel ",rec.po_rel)
@@ -66,7 +67,7 @@ class mrp_repair(models.Model):
                         node.set('class','')
                     else:
                         node.set('class','btn-primary')
-        print("test")
+        
         result['arch'] = etree.tostring(doc)
         return result
 
