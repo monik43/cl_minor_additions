@@ -61,6 +61,7 @@ class mrp_repair(models.Model):
             if doc.xpath("//button[@name='1122']"):
                 node = doc.xpath("//button[@name='1122']")[0]
                 for rec in self:
+                    print(rec.po_rel)
                     if rec.po_rel != False:
                         node.set('class','')
                     else:
