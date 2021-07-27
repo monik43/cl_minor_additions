@@ -45,7 +45,7 @@ class mrp_repair(models.Model):
 
     def _compute_po_rel(self):
         for rec in self:
-            print(rec.x_ticket)
+            print(rec.x_ticket.ordensat)
             if rec.env['purchase.order'].search([('origin', '=', rec.name)]):
                 rec.po_rel = rec.env['purchase.order'].search([('origin', '=', rec.name)])
 
