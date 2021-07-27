@@ -14,6 +14,7 @@
                 </xpath>
                 <xpath expr="//field[@name='lot_id']" position="after">
                     <field name="n_lot_id" attrs="{'invisible':[('lot_id','!=',False)]}"/>
+                    <field name="po_rel" invisible="1"/>
                 </xpath>
             </field>
         </record>
