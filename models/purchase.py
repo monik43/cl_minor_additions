@@ -10,7 +10,8 @@ class purchase_order(models.Model):
         for rec in self:
             print(rec._fields )
             for field in rec._fields:
-                val = str(rec) + "." + str(field)
+                val = rec.
+                val += field
                 print(val)
                 print(field)
 
