@@ -15,11 +15,12 @@ class createpurchaseordermrp(models.TransientModel):
         res = self.env['purchase.order'].browse(self._context.get('id', []))
         value = []
         partner_pricelist = self.partner_id.property_product_pricelist
-        print(self.partner_id)
+        
         mrp_repair_name = ""
         for data in self.new_order_line_ids:
             final_price = 00.0
             mrp_repair_name = data.order_id.name
+            print(data.order_id.name)
             if partner_pricelist:
                 product_context = dict(
                     self.env.context, partner_id=self.partner_id.id, date=self.date_order, uom=data.product_uom.id)
