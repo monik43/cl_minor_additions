@@ -45,8 +45,7 @@ class mrp_repair(models.Model):
 
     def _compute_po_rel(self):
         for rec in self:
-            if rec.env['purchase.order'].search([('partner_ref','=',rec.name)]) != False:
-                print(rec.env['purchase.order'].search([('partner_ref','=',rec.name)]))
+            print(rec.name)
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form', toolbar=False,
