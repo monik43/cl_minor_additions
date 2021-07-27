@@ -11,7 +11,7 @@ class purchase_order(models.Model):
             fields = rec.fields_get()
             for field in fields:
                 for val in field:
-                    print(field, " ", field(val))
+                    print(field, " ", val)
 
 
     @api.onchange('order_line')
