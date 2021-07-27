@@ -61,12 +61,13 @@ class mrp_repair(models.Model):
             if doc.xpath("//button[@name='1122']"):
                 node = doc.xpath("//button[@name='1122']")[0]
                 print(node.get('class'))
-                if self.po_rel != False and node.get('class') == "btn-primary":
-                    node.set('class','')
-                    print(node.get('class'))
-                elif self.po_rel == False and node.get('class') != "btn-primary":
-                    node.set('class','btn-primary')
-                    print(node.get('class'))
+                for rec in self:
+                    if rec.po_rel != False and node.get('class') == "btn-primary":
+                        node.set('class','')
+                        print(node.get('class'))
+                    elif rec.po_rel == False and node.get('class') != "btn-primary":
+                        node.set('class','btn-primary')
+                        print(node.get('class'))
         result['arch'] = etree.tostring(doc)
         return result
 
