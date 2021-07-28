@@ -52,5 +52,5 @@ class mrp_repair(models.Model):
             
     def _get_state(self):
         for rec in self:
-            if rec.state == 'confirmed' and rec.rep_conf != True:
+            if rec.state == 'confirmed':# and rec.rep_conf != True:
                 print("helloworld!")
