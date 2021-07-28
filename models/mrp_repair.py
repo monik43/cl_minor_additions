@@ -45,6 +45,8 @@ class mrp_repair(models.Model):
 
     rep_conf = fields.Boolean(default=False,compute="_get_state")
 
+    reparation = fields.One2many('reparation')
+    
     def _compute_po_rel(self):
         for rec in self:
             if rec.env['purchase.order'].search([('partner_ref','like',rec.name)]) != False:
@@ -52,6 +54,6 @@ class mrp_repair(models.Model):
             
     def _get_state(self):
         for rec in self:
-            print(rec.state)
-            if rec.state == 'confirmed':# and rec.rep_conf != True:
-                print("helloworld!")
+            if rec.state == 'confirmed' and rec.rep_conf != True:
+                rec.rep_conf = True
+
