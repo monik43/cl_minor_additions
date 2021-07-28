@@ -8,18 +8,19 @@ class reparation(models.Model):
 
     
     tecnico = fields.Many2one('res.partner', domain="[('share','=',False)]")
-    origen_rep = fields.Many2one('mrp.repair')
+    origen_rep = fields.One2many('mrp.repair','reparation')
     ticket = fields.Many2one('helpdesk.ticket')
     #date = fields.Date(string="Date" ,default=datetime.now())
 
     RMA = fields.Char()
 
-    #reparation_test = fields.One2many('cl.reparation.test')
+    reparation_test = fields.One2many('cl.reparation.test','reparation')
 
 
 class reparation_test(models.Model):
     _name = 'cl.reparation.test'
 
+    reparation = fields.One2many('cl.reparation','reparation_test') 
     it_works = fields.Boolean(string="Si")
     doesnot_work = fields.Boolean(string="No")
     notes = fields.Text()
