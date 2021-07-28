@@ -14,7 +14,7 @@ class reparation(models.Model):
 
     RMA = fields.Char()
 
-    reparation_test = fields.One2many('cl.reparation.test')
+    #reparation_test = fields.One2many('cl.reparation.test')
 
 
 class reparation_test(models.Model):
