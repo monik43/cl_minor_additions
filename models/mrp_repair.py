@@ -45,7 +45,7 @@ class mrp_repair(models.Model):
 
     rep_conf = fields.Boolean(default=False,compute="_get_state")
 
-    reparation = fields.One2many('cl.reparation')
+    reparation = fields.Many2one('cl.reparation')
 
     def _compute_po_rel(self):
         for rec in self:
