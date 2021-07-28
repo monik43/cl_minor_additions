@@ -68,6 +68,7 @@ class mrp_repair(models.Model):
 
     @api.onchange('state')
     def onchange_state_confirmed(self):
-        print("start"*10)
-        if self.state == 'confirmed':
-            print("end"*10)
+        for rec in self:
+            print("start"*10)
+            if rec.state == 'confirmed':
+                print("end"*10)
