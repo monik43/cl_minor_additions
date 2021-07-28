@@ -52,13 +52,13 @@ class mrp_repair(models.Model):
         ('2binvoiced', 'To be Invoiced'),
         ('invoice_except', 'Invoice Exception'),
         ('done', 'Repaired')], string='Status',
-        copy=False, default='draft', readonly=False, track_visibility='onchange',
+        copy=False, default='draft', readonly=True, track_visibility='onchange',
         help="* The \'Draft\' status is used when a user is encoding a new and unconfirmed repair order.\n"
              "* The \'Confirmed\' status is used when a user confirms the repair order.\n"
              "* The \'Ready to Repair\' status is used to start to repairing, user can start repairing only after repair order is confirmed.\n"
              "* The \'To be Invoiced\' status is used to generate the invoice before or after repairing done.\n"
              "* The \'Done\' status is set when repairing is completed.\n"
-             "* The \'Cancelled\' status is used when user cancel repair order.")
+             "* The \'Cancelled\' status is used when user cancel repair order.", compute="_get_state")
 
     def _compute_po_rel(self):
         for rec in self:
@@ -66,9 +66,7 @@ class mrp_repair(models.Model):
                 rec.po_rel = rec.env['purchase.order'].search([('partner_ref','=',rec.name)])
             print(rec.state)
 
-    @api.onchange('state')
-    def onchange_state_confirmed(self):
+    def _get_state(self):
         for rec in self:
-            print("start"*10)
             if rec.state == 'confirmed':
-                print("end"*10)
+                print("helloworld!")
