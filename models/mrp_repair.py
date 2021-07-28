@@ -52,7 +52,7 @@ class mrp_repair(models.Model):
         ('2binvoiced', 'To be Invoiced'),
         ('invoice_except', 'Invoice Exception'),
         ('done', 'Repaired')], string='Status',
-        copy=False, default='draft', readonly=True, track_visibility='onchange',
+        copy=False, default='draft', readonly=False, track_visibility='onchange',
         help="* The \'Draft\' status is used when a user is encoding a new and unconfirmed repair order.\n"
              "* The \'Confirmed\' status is used when a user confirms the repair order.\n"
              "* The \'Ready to Repair\' status is used to start to repairing, user can start repairing only after repair order is confirmed.\n"
