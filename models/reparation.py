@@ -10,7 +10,7 @@ class reparation(models.Model):
     tecnico = fields.Many2one('res.partner', domain="[('share','=',False)]")
     origen_rep = fields.Many2one('mrp.repair')
     ticket = fields.Many2one('helpdesk.ticket')
-    #date = fields.Date(string="Date" ,default=datetime.now())
+    date = fields.Datetime(string="Date" ,default=lambda self: fields.datetime.now())
 
     RMA = fields.Char()
 
