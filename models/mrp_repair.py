@@ -44,8 +44,13 @@ class mrp_repair(models.Model):
         'purchase.order', string='Purchase relacionada', compute="_compute_po_rel")
 
     rep_conf = fields.Boolean(default=False,compute="_get_state")
+    rec = fields.Many2one('mrp.repair', compute="_get_rec")
 
     reparation = fields.One2many('cl.reparation','origen_rep')
+
+    def _get_rec(self):
+        for rec in self:
+            rec.rec = rec
 
     def _compute_po_rel(self):
         for rec in self:
