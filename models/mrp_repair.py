@@ -49,6 +49,8 @@ class mrp_repair(models.Model):
                 rec.po_rel = rec.env['purchase.order'].search([('partner_ref','=',rec.name)])
             print(rec.po_rel)
 
-    
-
-    
+    @api.onchange('state')
+    def onchange_state_confirmed(self):
+        for rec in self:
+            if rec.state == 'confirmed':
+                print("o"*25)
