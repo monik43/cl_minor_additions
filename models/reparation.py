@@ -7,7 +7,7 @@ class reparation(models.Model):
     _description = 'Test de la reparación'
 
     
-    tecnico = fields.Many2one('res.partner', domain="[('share','=',False)]")
+    tecnico = fields.Many2one('res.users', domain="[('share','=',False)]")
     origen_rep = fields.Many2one('mrp.repair')
     ticket = fields.Many2one('helpdesk.ticket')
     date = fields.Datetime(string="Date" ,default=lambda self: fields.datetime.now())
