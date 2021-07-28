@@ -20,7 +20,7 @@
                     <field name="rep_conf" invisible="1" />
                     <field name="rec" invisible="1" />
                     <field name="rma" invisible="1"/>
-                    <field name="reparation" attrs="{'invisible':[('rep_conf','=',False)]}" context="{'default_ticket':x_ticket, 'default_origen_rep':rec ,'default_RMA':x_ticket.RMA}"/>
+                    <field name="reparation" attrs="{'invisible':[('rep_conf','=',False)]}" context="{'default_ticket':x_ticket, 'default_origen_rep':rec ,'default_RMA':rma}"/>
                 </xpath>
             </field>
         </record>
