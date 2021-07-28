@@ -45,8 +45,8 @@ class mrp_repair(models.Model):
 
     rep_conf = fields.Boolean(default=False,compute="_get_state")
 
-    reparation = fields.One2many('reparation')
-    
+    reparation = fields.One2many('cl.reparation')
+
     def _compute_po_rel(self):
         for rec in self:
             if rec.env['purchase.order'].search([('partner_ref','like',rec.name)]) != False:

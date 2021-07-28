@@ -3,7 +3,7 @@ from odoo import models, fields, api, _
 import datetime
 
 class reparation(models.Model):
-    _name = 'reparation'
+    _name = 'cl.reparation'
     _description = 'Test de la reparación'
 
     
@@ -18,7 +18,7 @@ class reparation(models.Model):
 
 
 class reparation_test(models.Model):
-    _name = 'reparation.test'
+    _name = 'cl.reparation.test'
 
     it_works = fields.Boolean(string="Si")
     doesnot_work = fields.Boolean(string="No")
