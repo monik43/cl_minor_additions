@@ -23,6 +23,7 @@
         'views/account_templates.xml',
         'views/web_assets.xml',
         'views/purchase_order_mrp_wiz.xml',
+        'views/report_picking_final.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
