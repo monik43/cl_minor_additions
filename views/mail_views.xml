@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="mail.mail_activity_view_form_popup"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='user_id']" position="after">
-                    <field name="filtro_check" attrs="{'invisible': [('activity_category', '!=', 'meeting')]}"/>
+                    <field name="filtro_check" attrs="{'invisible': [('activity_category', '=', 'meeting')]}"/>
                 </xpath>
             </field>
         </record>
