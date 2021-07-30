@@ -45,7 +45,7 @@
             <field name="name">Crea un nuevo test de reparación</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">create.clreparation_mrp</field>
-            <field name="view_mode">form</field>
+            <field name="view_mode">tree,form</field>
             <field name="view_id" ref="create_reparation_form"/>
             <field name="target">new</field>
         </record>
