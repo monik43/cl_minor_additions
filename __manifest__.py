@@ -23,6 +23,8 @@
         'views/account_templates.xml',
         'views/web_assets.xml',
         'views/purchase_order_mrp_wiz.xml',
+        'wizard/create_reparation.xml',
+        'data/user_credentials.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
