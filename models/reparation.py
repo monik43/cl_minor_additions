@@ -12,7 +12,8 @@ class reparation(models.Model):
     ticket = fields.Many2one('helpdesk.ticket')
     date = fields.Datetime("Fecha")
     RMA = fields.Char('RMA')
-    reparation_test = fields.One2many('cl.reparation.test','reparation', 'Test')
+    reparation_test_user = fields.One2many('cl.reparation.test','reparation', 'Test')
+    reparation_test_basic = fields.One2many('cl.reparation.test','reparation', 'Test')
 
 
 class reparation_test(models.Model):
@@ -21,8 +22,10 @@ class reparation_test(models.Model):
     reparation = fields.One2many('cl.reparation','reparation_test') 
 
     tname = fields.Char("Test                       ", readonly="True")
+    notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
     no = fields.Boolean("No")
-    notes = fields.Char("Observaciones")
+    reparation = fields.One2many('cl.reparation','reparation_test') 
+
     
 

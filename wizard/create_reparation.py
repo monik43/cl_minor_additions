@@ -11,6 +11,8 @@ class createclreparation_mrp(models.TransientModel):
     _name = 'create.clreparation_mrp'
     _description = "Crea un nuevo Test"
 
+    origen_hdt = fields.Many2one(
+        'helpdesk.ticket', 'Ticket reparación / Incidencia')
     tecnico_rep = fields.Many2one(
         'res.users', 'Técnico', domain="[('share','=',False)]", default=lambda self: self.env.user.id)
     origen_rep = fields.Many2one('mrp.repair', 'Reparación')
@@ -23,6 +25,28 @@ class createclreparation_mrp(models.TransientModel):
     reparation_test_user = fields.One2many(
         'cl.reparation.test', 'reparation', 'Test')
     product = fields.Many2one('product.product', 'Producto a reparar')
+
+    @api.multi
+    def action_create_reparation_test(self):
+        self.ensure_one()
+        res = self.env['cl.reparation'].browse(self._context.get('id', []))
+        test_basic, test_user = []
+        for line in self.reparation_test_basic:
+            test_basic.append(
+                [0, 0, {'tname': line.tname, 'yes': line.yes, 'no': line.no, 'notes': line.notes}])
+
+        for line in self.reparation_test_user:
+            test_user.append(
+                [0, 0, {'tname': line.tname, 'yes': line.yes, 'no': line.no, 'notes': line.notes}])
+        res.create({
+            'tecnico': self.tecnico_rep,
+            'origen_rep': self.origen_rep,
+            'usr_credentials': self.usr_credentials,
+            'ticket': self.origen_hdt,
+            'date': self.date,
+            'RMA': self.RMA,
+            'reparation_test_basic': test_basic,
+            'reparation_test_user': test_user})
 
     @api.model
     def default_get(self, fields):
