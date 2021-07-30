@@ -28,7 +28,7 @@
         <record id="create_reparation_wizard" model="ir.actions.act_window">
             <field name="name">Crea un nuevo test de reparación</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">cl.reparation</field>
+            <field name="res_model">cl_minor_additions</field>
             <field name="view_mode">form</field>
             <field name="view_id" ref="create_reparation_form"/>
             <field name="target">new</field>
