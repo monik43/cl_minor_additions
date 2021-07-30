@@ -22,7 +22,7 @@ class user_credentials(models.Model):
                 #rec.name = name_number
             elif rec.name == False and rec.desc != False and rec.env['cl.user.credentials'].search([('name', '=', name_number)]):
                 for x in range(10):
-                    name_number = rec.desc, " ", x+1
+                    name_number = rec.desc+" "+ x+1
                     if not rec.env['cl.user.credentials'].search([('name', '=', name_number)]):
                         print(name_number)#
                         #rec.name = name_number
