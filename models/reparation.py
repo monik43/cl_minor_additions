@@ -20,8 +20,8 @@ class reparation_test(models.Model):
 
     reparation = fields.One2many('cl.reparation','reparation_test') 
 
-    tname = fields.Char("Test")
+    tname = fields.Char("Test         ")
     yes = fields.Boolean("Si")
     no = fields.Boolean("No")
-    notes = fields.Text()
+    notes = fields.Text("Observaciones")
 
