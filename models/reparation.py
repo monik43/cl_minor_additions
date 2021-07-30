@@ -7,10 +7,10 @@ class reparation(models.Model):
     _description = 'Test de la reparación'
 
     usr_credentials = fields.Many2one('cl.user.credentials')
-    tecnico = fields.Many2one('res.users','Técnico', domain="[('share','=',False)]", default=lambda self: self.env.user.id)
+    tecnico = fields.Many2one('res.users','Técnico', domain="[('share','=',False)]")
     origen_rep = fields.Many2one('mrp.repair', 'Reparación')
     ticket = fields.Many2one('helpdesk.ticket')
-    date = fields.Datetime("Fecha" ,default=lambda self: fields.datetime.now())
+    date = fields.Datetime("Fecha")
     RMA = fields.Char('RMA')
     reparation_test = fields.One2many('cl.reparation.test','reparation', 'Test')
 
