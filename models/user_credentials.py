@@ -6,7 +6,7 @@ class user_credentials(models.Model):
     _name = 'cl.user.credentials'
     _description = 'Credenciales de usuario'
 
-    desc = fields.Char('Dominio Google Admin')
+    name = fields.Char('Dominio Google Admin')
     mail = fields.Char('Correo electrónico')
     password = fields.Char('Contraseña')
 
