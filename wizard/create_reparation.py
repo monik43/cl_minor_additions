@@ -26,5 +26,5 @@ class createclreparation_mrp(models.TransientModel):
     @api.model
     def default_get(self, fields):
         res = super(createclreparation_mrp, self).default_get(fields)
-        self.write({'move_lines': [(0, 0, {'tname':'WIFI'})]})
+        self.write({'reparation_test_basic': [(0, 0, {'tname':'WIFI'})]})
         return res
