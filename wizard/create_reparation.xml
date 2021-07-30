@@ -15,9 +15,13 @@
                             <field name="date"/>
                             <field name="RMA"/>
                         </group>
-                        <field name="reparation_test_basic"/>
-                        <field name="usr_credentials"/>
-                        <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}"/>
+                        <group>
+                            <field name="reparation_test_basic"/>
+                        </group>
+                        <group>
+                            <field name="usr_credentials"/>
+                            <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}"/>
+                        </group>
                     </group>
                     <footer>
                         <button string="Cancelar" class="btn-secondary" special="cancel"/>
