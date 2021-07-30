@@ -26,13 +26,14 @@
                         <group>
                             <field name="usr_credentials"/>
                         </group>
-                        <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}"/>
+                        <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}">
                         <tree><!--editable="bottom"-->
                             <field name="tname"/>
                             <field name="yes"/>
                             <field name="no"/>
                             <field name="notes"/>
                         </tree>
+                        </field>
                     </group>
                     <footer>
                         <button string="Cancelar" class="btn-secondary" special="cancel"/>
