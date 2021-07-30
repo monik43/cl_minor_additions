@@ -23,7 +23,7 @@
                     <field name="reparation" attrs="{'invisible':[('rep_conf','=',False)]}" context="{'default_ticket':x_ticket, 'default_origen_rep':rec ,'default_RMA':rma}"/>
                 </xpath>
                 <xpath expr="//header" position="inside">
-                    <button name="%(cl_minor_additions.create_reparation_wizard)d" string="Nuevo test" type="action" class="oe_highlight"/>
+                    <button name="%(create_reparation_wizard)d" string="Nuevo test" type="action" class="oe_highlight"/>
                 </xpath>
             </field>
         </record>
