@@ -25,7 +25,7 @@ class reparation_test(models.Model):
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
     no = fields.Boolean("No")
-    reparation = fields.One2many('cl.reparation','reparation_test') 
+    #reparation = fields.One2many('cl.reparation','reparation_test') 
 
     
 
