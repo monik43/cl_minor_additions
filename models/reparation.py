@@ -19,7 +19,7 @@ class reparation(models.Model):
 class reparation_test(models.Model):
     _name = 'cl.reparation.test'
 
-    reparation = fields.One2many('cl.reparation','reparation_new_test') 
+    reparation = fields.One2many('cl.reparation','reparation_new_test', 'Test') 
 
     tname = fields.Char("Test                       ", readonly="True")
     notes = fields.Char("Observaciones")
