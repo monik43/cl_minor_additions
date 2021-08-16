@@ -14,7 +14,6 @@ class reparation(models.Model):
     RMA = fields.Char('RMA')
     reparation_test_user = fields.One2many('cl.reparation.test.user','reparation', 'Test')
     reparation_test_basic = fields.One2many('cl.reparation.test.basic','reparation', 'Test')
-    rep_link = fields.One2many('cl.reparation.test','reparation', 'Test')
 
 
 class reparation_test_user(models.Model):
