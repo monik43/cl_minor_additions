@@ -12,20 +12,28 @@ class reparation(models.Model):
     ticket = fields.Many2one('helpdesk.ticket')
     date = fields.Datetime("Fecha")
     RMA = fields.Char('RMA')
-    reparation_test_user = fields.One2many('cl.reparation.test','reparation', 'Test')
-    reparation_test_basic = fields.One2many('cl.reparation.test','reparation', 'Test')
+    reparation_test_user = fields.One2many('cl.reparation.test.user','reparation', 'Test')
+    reparation_test_basic = fields.One2many('cl.reparation.test.basic','reparation', 'Test')
+    rep_link = fields.One2many('cl.reparation.test','reparation', 'Test')
 
 
-class reparation_test(models.Model):
-    _name = 'cl.reparation.test'
+class reparation_test_user(models.Model):
+    _name = 'cl.reparation.test.user'
 
-    #reparation = fields.One2many('cl.reparation','reparation_new_test', 'Test') 
-
+    reparation = fields.One2many('cl.reparation','reparation_test_user', 'Test user') 
     tname = fields.Char("Test                       ", readonly="True")
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
     no = fields.Boolean("No")
-    #reparation = fields.One2many('cl.reparation','reparation_test') 
+
+class reparation_test_basic(models.Model):
+    _name = 'cl.reparation.test.user.basic'
+
+    reparation = fields.One2many('cl.reparation','reparation_test_basic', 'Test basic') 
+    tname = fields.Char("Test                       ", readonly="True")
+    notes = fields.Char("Observaciones")
+    yes = fields.Boolean("Si")
+    no = fields.Boolean("No")
 
     
 
