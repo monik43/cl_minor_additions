@@ -26,7 +26,7 @@ class reparation_test_user(models.Model):
     no = fields.Boolean("No")
 
 class reparation_test_basic(models.Model):
-    _name = 'cl.reparation.test.user.basic'
+    _name = 'cl.reparation.test.basic'
 
     breparation = fields.One2many('cl.reparation','reparation_test_basic', 'Test basic') 
     tname = fields.Char("Test                       ", readonly="True")
