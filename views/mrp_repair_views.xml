@@ -22,9 +22,11 @@
                     <field name="rma" invisible="1"/>
                     <field name="reparation" attrs="{'invisible':[('rep_conf','=',False)]}" />
                 </xpath>
+                <!--
                 <xpath expr="//header" position="inside">
                     <button name="%(cl_minor_additions.create_reparation_wizard)d" string="Nuevo test" type="action" class="oe_highlight" context="{'default_origen_rep':rec,'default_RMA':rma, 'default_product':product_id}"/>
                 </xpath>
+                -->
             </field>
         </record>
     </data>
