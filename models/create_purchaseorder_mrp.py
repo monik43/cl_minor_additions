@@ -13,10 +13,10 @@ class createpurchaseordermrp(models.TransientModel):
 
     @api.multi
     def test(self):
-        self.ensure_one()
-        for p in self.new_order_line_ids:
-            for s in p.product_id.seller_ids:
-                print(p.product_id, s.name)
+        for rec in self:
+            for p in rec.new_order_line_ids:
+                for s in p.product_id.seller_ids:
+                    print(p.product_id, s.name, "/"*25)
 
 
     @api.multi
