@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+from odoo import models, fields, api, _
+import datetime
+
+class reparation(models.Model):
+    _name = 'cl.reparation'
+    _description = 'Test de la reparación'
+
+    usr_credentials = fields.Many2one('cl.user.credentials')
+    tecnico = fields.Many2one('res.users','Técnico', domain="[('share','=',False)]")
+    origen_rep = fields.Many2one('mrp.repair', 'Reparación')
+    ticket = fields.Many2one('helpdesk.ticket')
+    date = fields.Datetime("Fecha")
+    RMA = fields.Char('RMA')
+    reparation_test_user = fields.One2many('cl.reparation.test.user','ureparation', 'Test usuario')
+    reparation_test_basic = fields.One2many('cl.reparation.test.basic','breparation', 'Test básico')
+
+
+class reparation_test_user(models.Model):
+    _name = 'cl.reparation.test.user'
+
+    ureparation = fields.One2many('cl.reparation','reparation_test_user', 'Reparacion') 
+    tname = fields.Char("Test                       ", readonly="True")
+    notes = fields.Char("Observaciones")
+    yes = fields.Boolean("Si")
+    no = fields.Boolean("No")
+
+class reparation_test_basic(models.Model):
+    _name = 'cl.reparation.test.basic'
+
+    breparation = fields.One2many('cl.reparation','reparation_test_basic', 'Reparacion') 
+    tname = fields.Char("Test                       ", readonly="True")
+    notes = fields.Char("Observaciones")
+    yes = fields.Boolean("Si")
+    no = fields.Boolean("No")

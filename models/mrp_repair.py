@@ -43,12 +43,27 @@ class mrp_repair(models.Model):
     po_rel = fields.Many2one(
         'purchase.order', string='Purchase relacionada', compute="_compute_po_rel")
 
+    rep_conf = fields.Boolean(default=False,compute="_get_state")
+    rec = fields.Many2one('mrp.repair', compute="_get_rec")
+    rma = fields.Char(compute="_get_rma")
+    reparation = fields.One2many('cl.reparation','origen_rep')
+
+    def _get_rec(self):
+        for rec in self:
+            rec.rec = rec
+
+    def _get_rma(self):
+        for rec in self:
+            if rec.x_ticket.RMA != False:
+                rec.rma = rec.x_ticket.RMA
+
     def _compute_po_rel(self):
         for rec in self:
             if rec.env['purchase.order'].search([('partner_ref','like',rec.name)]) != False:
                 rec.po_rel = rec.env['purchase.order'].search([('partner_ref','=',rec.name)])
-            print(rec.po_rel)
+            
+    def _get_state(self):
+        for rec in self:
+            if rec.state == 'confirmed' and rec.rep_conf != True:
+                rec.rep_conf = True
 
-    
-
-    
