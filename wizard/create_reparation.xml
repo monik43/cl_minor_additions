@@ -16,7 +16,7 @@
                             <field name="RMA"/>
                         </group>
                         <field name="reparation_test_basic">
-                        <tree> <!--editable="bottom"-->
+                        <tree editable="bottom">
                             <field name="tname"/>
                             <field name="yes"/>
                             <field name="no"/>

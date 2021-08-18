@@ -7,8 +7,8 @@ class user_credentials(models.Model):
     _description = 'Credenciales de usuario'
 
     name = fields.Char('Dominio Google Admin')
-    mail = fields.Char('Correo electrónico')
     password = fields.Char('Contraseña')
+    mail = fields.Char('Correo electrónico')
 
     def _get_name(self):
         for rec in self:
