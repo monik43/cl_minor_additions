@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="mrp_repair.view_repair_order_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='operations']/tree" position="inside">
-                    <field name="pieza_añadida"/>
+                    <field name="pieza_anyadida"/>
                 </xpath>
                 <xpath expr="//field[@name='lot_id']" position="attributes">
                     <attribute name="attrs">{'invisible':[('n_lot_id','!=',False)]}</attribute>
