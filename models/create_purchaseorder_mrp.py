@@ -21,6 +21,25 @@ class createpurchaseordermrp(models.TransientModel):
         res['domain'] = {'partner_id': [('id','in', s_ids)]}
         return res
 
+    @api.model
+    def default_get(self,  default_fields):
+        res = super(createpurchaseordermrp, self).default_get(default_fields)
+        data = self.env['mrp.repair'].browse(self._context.get('active_ids',[]))
+        update = []
+        for record in data.operations:
+            if record.product_id.default_code != "COMPENSACION":
+                update.append((0,0,{
+                                'product_id' : record.product_id.id,
+                                'product_uom' : record.product_uom.id,
+                                'order_id': record.repair_id.id,
+                                'name' : record.name,
+                                'product_qty' : record.product_uom_qty,
+                                'price_unit' : record.price_unit,
+                                'product_subtotal' : record.price_subtotal,
+                                }))
+        res.update({'new_order_line_ids':update})
+        return res
+
     @api.multi
     def action_create_purchase_order_mrp_fix(self):
         self.ensure_one()
