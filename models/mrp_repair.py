@@ -7,7 +7,7 @@ from lxml import etree
 class repair_line(models.Model):
     _inherit = 'mrp.repair.line'
 
-    pieza_añadida = fields.Boolean('Pieza añadida?')
+    pieza_anyadida = fields.Boolean('Pieza añadida?')
 
     @api.onchange('type', 'repair_id')
     def onchange_operation_type(self):
