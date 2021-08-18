@@ -9,9 +9,10 @@ from odoo.exceptions import UserError
 class createpurchaseordermrp(models.TransientModel):
     _inherit = 'create.purchaseorder_mrp'
     
-    new_order_line_ids = fields.One2many( 'getsale.mrpdata', 'new_order_line_id',String="Order Line", compute="_test")
+    new_order_line_ids = fields.One2many( 'getsale.mrpdata', 'new_order_line_id',String="Order Line")
 
-    def _test(self):
+    def test(self):
+        self.ensure_one()
         for p in self.new_order_line_ids:
             for s in p.product_id.seller_ids:
                 print(p.product_id, s.name)
