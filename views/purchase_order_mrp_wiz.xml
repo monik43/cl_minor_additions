@@ -10,7 +10,7 @@
                     <button name="action_create_purchase_order_mrp_fix" string="Create Purchase Order" type="object" class="btn-primary"/>
                 </xpath>
                 <xpath expr="//footer" position="inside">
-                    <button name="test" type="object"/>
+                    <button name="test" type="object" string="test"/>
                 </xpath>
             </field>
         </record>

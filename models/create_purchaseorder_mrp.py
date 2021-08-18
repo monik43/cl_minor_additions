@@ -11,6 +11,7 @@ class createpurchaseordermrp(models.TransientModel):
     
     new_order_line_ids = fields.One2many( 'getsale.mrpdata', 'new_order_line_id',String="Order Line")
 
+    @api.multi
     def test(self):
         self.ensure_one()
         for p in self.new_order_line_ids:
