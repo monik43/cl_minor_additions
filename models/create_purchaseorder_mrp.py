@@ -19,8 +19,7 @@ class createpurchaseordermrp(models.TransientModel):
                 if s.id not in s_ids:
                     s_ids.append(str(s.id))
         res['domain'] = {'partner_id': [('id','in', s_ids)]}
-        print(res)
-        #return res
+        return res
 
     @api.multi
     def action_create_purchase_order_mrp_fix(self):
