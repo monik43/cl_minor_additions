@@ -18,6 +18,17 @@ class createpurchaseordermrp(models.TransientModel):
             for s in p.product_id.seller_ids:
                 print(p.product_id.name, s.name.name, "/"*25)
 
+    @api.onchange("new_order_line_ids")
+    def _onchange_new_order_line_ids(self):
+        res = {}
+        s_ids = []
+        self.ensure_one()
+        for p in self.new_order_line_ids:
+            for s in p.product_id.seller_ids:
+                if s.id not in s_ids:
+                    s_ids.append(s.id)
+        print(s_ids)
+        #return res
 
     @api.multi
     def action_create_purchase_order_mrp_fix(self):
