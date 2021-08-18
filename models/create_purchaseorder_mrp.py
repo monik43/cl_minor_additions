@@ -8,15 +8,6 @@ from odoo.exceptions import UserError
 
 class createpurchaseordermrp(models.TransientModel):
     _inherit = 'create.purchaseorder_mrp'
-    
-    new_order_line_ids = fields.One2many( 'getsale.mrpdata', 'new_order_line_id',String="Order Line")
-
-    @api.multi
-    def test(self):
-        self.ensure_one()
-        for p in self.new_order_line_ids:
-            for s in p.product_id.seller_ids:
-                print(p.product_id.name, s.name.name, "/"*25)
 
     @api.onchange("new_order_line_ids")
     def _onchange_new_order_line_ids(self):
@@ -27,8 +18,8 @@ class createpurchaseordermrp(models.TransientModel):
             for s in p.product_id.seller_ids:
                 if s.id not in s_ids:
                     s_ids.append(s.id)
-        print(s_ids)
-        #return res
+        res['domain'] = {'partner_id': [('id','=', s_ids)]}
+        return res
 
     @api.multi
     def action_create_purchase_order_mrp_fix(self):
