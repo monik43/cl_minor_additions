@@ -15,9 +15,9 @@ class createpurchaseordermrp(models.TransientModel):
         s_ids = []
         self.ensure_one()
         for p in self.new_order_line_ids:
-            for s in p.product_id.seller_ids.name:
-                if s.id not in s_ids:
-                    s_ids.append(str(s.id))
+            for s in p.product_id.seller_ids:
+                if s.name.id not in s_ids:
+                    s_ids.append(str(s.name.id))
         res['domain'] = {'partner_id': [('id','in', s_ids)]}
         return res
 
