@@ -47,30 +47,34 @@ odoo.define('cl_minor_additions.confirm_kanban_stage_change', function (require)
                         });
                     } else {
                         self.alive(self.model.moveRecord(record.db_id, column.db_id, self.handle))
-                                    .then(function (column_db_ids) {
-                                        return self._resequenceRecords(column.db_id, event.data.ids)
-                                            .then(function () {
-                                                _.each(column_db_ids, function (db_id) {
-                                                    var data = self.model.get(db_id);
-                                                    self.renderer.updateColumn(db_id, data);
-                                                });
-                                            });
-                                    }).fail(self.reload.bind(self));
+                            .then(function (column_db_ids) {
+                                return self._resequenceRecords(column.db_id, event.data.ids)
+                                    .then(function () {
+                                        _.each(column_db_ids, function (db_id) {
+                                            var data = self.model.get(db_id);
+                                            self.renderer.updateColumn(db_id, data);
+                                        });
+                                    });
+                            }).fail(self.reload.bind(self));
                     }
                 });
             } else {
                 self.alive(self.model.moveRecord(record.db_id, column.db_id, self.handle))
-                                    .then(function (column_db_ids) {
-                                        return self._resequenceRecords(column.db_id, event.data.ids)
-                                            .then(function () {
-                                                _.each(column_db_ids, function (db_id) {
-                                                    var data = self.model.get(db_id);
-                                                    self.renderer.updateColumn(db_id, data);
-                                                });
-                                            });
-                                    }).fail(self.reload.bind(self));
+                    .then(function (column_db_ids) {
+                        return self._resequenceRecords(column.db_id, event.data.ids)
+                            .then(function () {
+                                _.each(column_db_ids, function (db_id) {
+                                    var data = self.model.get(db_id);
+                                    self.renderer.updateColumn(db_id, data);
+                                });
+                            });
+                    }).fail(self.reload.bind(self));
             }
-            self.reload.bind(self);
+
+            _.each(column_db_ids, function (db_id) {
+                var data = self.model.get(db_id);
+                self.renderer.updateColumn(db_id, data);
+            });
 
         },
     });
