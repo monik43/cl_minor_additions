@@ -26,7 +26,7 @@
                     <button name="%(cl_minor_additions.create_reparation_wizard)d" string="Nuevo test" type="action" class="oe_highlight" context="{'default_origen_rep':rec,'default_RMA':rma, 'default_product':product_id}"/>
                 </xpath>
                 <xpath expr="//page[4]" position="after">
-                    <page string="Reparaciones" attrs="{'invisible':[('reparation','=', False)]}">
+                    <page string="Reparaciones">
                         <field name="reparation"/>
                     </page>
                 </xpath>
