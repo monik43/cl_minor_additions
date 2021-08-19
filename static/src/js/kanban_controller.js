@@ -24,6 +24,7 @@ odoo.define('cl_minor_additions.confirm_kanban_stage_change', function (require)
             var self = this;
             var record = event.data.record;
             var column = event.target;
+            console.log("pre ",this.model);
             if (column.relation == "helpdesk.stage" & column.modelName == "helpdesk.ticket") {
                 _rpc.query({
                     model: 'helpdesk.stage',
@@ -33,6 +34,7 @@ odoo.define('cl_minor_additions.confirm_kanban_stage_change', function (require)
                     if (data != false) {
                         Dialog.confirm(this, _t("La etapa a la  que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa?"), {
                             confirm_callback: function () {
+                                console.log("si ",this.model);
                                 this.alive(this.model.moveRecord(record.db_id, column.db_id, this.handle))
                                     .then(function (column_db_ids) {
                                         return self._resequenceRecords(column.db_id, event.data.ids)
