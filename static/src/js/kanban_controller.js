@@ -45,7 +45,7 @@ odoo.define('cl_minor_additions.confirm_kanban_stage_change', function (require)
                                     }).fail(self.reload.bind(self));
                             },
                             cancel_callback: function(){
-                                self.reload()
+                                location.reload()
                             }
                         });
                     } else {
