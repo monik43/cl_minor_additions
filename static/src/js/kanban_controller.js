@@ -24,8 +24,9 @@ odoo.define('cl_minor_additions.confirm_kanban_stage_change', function (require)
             var self = this;
             var record = event.data.record;
             var column = event.target;
-            console.log(record);
-            console.log(column);
+            console.log("e",event);
+            console.log("r",record);
+            console.log("c",column);
             if (column.relation == "helpdesk.stage" & column.modelName == "helpdesk.ticket") {
                 _rpc.query({
                     model: 'helpdesk.stage',
