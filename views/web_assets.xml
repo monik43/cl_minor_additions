@@ -5,6 +5,7 @@
         <template id="helpdesk_dash_cl" name="helpdesk cl" inherit_id="account.assets_backend">
             <xpath expr="." position="inside">
                 <script type="text/javascript" src="/cl_minor_additions/static/src/js/web_relational_fields.js"></script>
+                <script type="text/javascript" src="/cl_minor_additions/static/src/js/kanban_controller.js"></script>
             </xpath>
         </template>
     </data>
