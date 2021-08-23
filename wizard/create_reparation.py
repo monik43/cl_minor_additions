@@ -37,23 +37,23 @@ class createclreparation_mrp(models.TransientModel):
         basic_data = []
         user_data = []
 
-        """for data in self.reparation_test_basic:
+        for data in self.reparation_test_basic:
             basic_data.append([0, 0, {'breparation': data.breparation, 'tname': data.tname,
                               'notes': data.notes, 'yes': data.yes, 'no': data.no}])
 
         for data in self.reparation_test_user:
             user_data.append([0, 0, {'ureparation': data.ureparation, 'tname': data.tname,
-                             'notes': data.notes, 'yes': data.yes, 'no': data.no}])"""
+                             'notes': data.notes, 'yes': data.yes, 'no': data.no}])
 
         res.create({
             'usr_credentials': self.usr_credentials, 
-            #'tecnico': self.tecnico_rep, 
+            'tecnico': self.tecnico_rep, 
             'origen_rep': self.origen_rep,
-            #'ticket': self.origen_hdt, 
-            #'date': self.date, 
-            #'RMA': self.RMA, 
-            #'reparation_test_basic': basic_data, 
-            #'reparation_test_user': user_data
+            'ticket': self.origen_hdt, 
+            'date': self.date, 
+            'RMA': self.RMA, 
+            'reparation_test_basic': basic_data, 
+            'reparation_test_user': user_data
             })
 
         print("/"*25,res)
