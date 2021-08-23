@@ -50,7 +50,7 @@ class createclreparation_mrp(models.TransientModel):
     def action_create_reparation_test(self):
         print("test"*10)
         self.ensure_one()
-        print("a"*25)
+        """print("a"*25)
         res = self.env['cl.reparation']
         test_basic, test_user = []
         print("b"*25)
@@ -69,11 +69,10 @@ class createclreparation_mrp(models.TransientModel):
             'ticket': self.origen_hdt,
             'date': self.date,
             'RMA': self.RMA,
-            #'reparation_test_basic': test_basic,
-            #'reparation_test_user': test_user
-            })
+            'reparation_test_basic': test_basic,
+            'reparation_test_user': test_user})"""
         print("e"*25)
-        return res
+        #return res
 
     @api.model
     def default_get(self, fields):
