@@ -44,7 +44,9 @@ class createclreparation_mrp(models.TransientModel):
         res.create({'usr_credentials': self.usr_credentials, 'tecnico': self.tecnico_reps, 'origen_rep': self.origen_rep,
                    'ticket': self.origen_hdt, 'date': self.date, 'RMA': self.RMA, 'reparation_test_basic': basic_data, 'reparation_test_user': user_data})
         return res
-
+    @api.multi
+    def tprint(self):
+        print("test"*25)
     @api.multi
     def action_create_reparation_test(self):
         self.ensure_one()
