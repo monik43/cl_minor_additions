@@ -15,6 +15,7 @@
                             <field name="date"/>
                             <field name="RMA"/>
                         </group>
+                        <!--
                         <field name="reparation_test_basic">
                             <tree editable="bottom">
                                 <field name="tname"/>
@@ -33,7 +34,7 @@
                                 <field name="no"/>
                                 <field name="notes"/>
                             </tree>
-                        </field>
+                        </field>-->
                     </group>
                     <footer>
                         <button name="action_create_cl_reparation" string="Finalizar test" type="object" class="btn-primary"/>
