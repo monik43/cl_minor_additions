@@ -58,6 +58,7 @@ class createclreparation_mrp(models.TransientModel):
         for line in self.reparation_test_user:
             test_user.append(
                 [0, 0, {'tname': line.tname, 'yes': line.yes, 'no': line.no, 'notes': line.notes}])
+                
         res.create({
             'tecnico': self.tecnico_rep,
             'origen_rep': self.origen_rep,
@@ -67,6 +68,7 @@ class createclreparation_mrp(models.TransientModel):
             'RMA': self.RMA,
             'reparation_test_basic': test_basic,
             'reparation_test_user': test_user})
+        return res
 
     @api.model
     def default_get(self, fields):
