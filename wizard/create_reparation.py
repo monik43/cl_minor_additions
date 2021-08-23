@@ -69,8 +69,9 @@ class createclreparation_mrp(models.TransientModel):
             'ticket': self.origen_hdt,
             'date': self.date,
             'RMA': self.RMA,
-            'reparation_test_basic': test_basic,
-            'reparation_test_user': test_user})
+            #'reparation_test_basic': test_basic,
+            #'reparation_test_user': test_user
+            })
         print("e"*25)
         return res
 
