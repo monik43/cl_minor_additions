@@ -50,7 +50,7 @@ class createclreparation_mrp(models.TransientModel):
             'tecnico': self.tecnico_rep, 
             'origen_rep': self.origen_rep,
             'ticket': self.origen_hdt, 
-            'date': self.date, 
+            #'date': self.date, 
             #'RMA': self.RMA, 
             #'reparation_test_basic': basic_data, 
             #'reparation_test_user': user_data
