@@ -42,7 +42,7 @@ class createclreparation_mrp(models.TransientModel):
             user_data.append([0, 0, {'ureparation': data.ureparation, 'tname': data.tname,
                              'notes': data.notes, 'yes': data.yes, 'no': data.no}])"""
 
-        res.create({
+        self.env['cl.reparation'].create({
             'usr_credentials': self.usr_credentials, 
             'tecnico': self.tecnico_reps, 
             'origen_rep': self.origen_rep,
@@ -54,8 +54,6 @@ class createclreparation_mrp(models.TransientModel):
             })
 
         print("/"*25,res)
-
-        return res
 
     @api.multi
     def tprint(self):
