@@ -30,7 +30,7 @@
                         <field name="reparation"/>
                         <tree>
                             <!--<field name="tecnico"/>-->
-                            <field name="date"/>
+                            <!--<field name="date"/>-->
                         </tree>
                     </page>
                 </xpath>
