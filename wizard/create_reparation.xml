@@ -36,7 +36,7 @@
                         </field>
                     </group>
                     <footer>
-                        <button name="tprint" string="Finalizar test" class="btn-primary" type="object"/>
+                        <button name="tprint" string="Finalizar test" type="object"/>
                         <button string="Cancelar" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>
