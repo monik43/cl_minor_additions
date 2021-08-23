@@ -49,7 +49,7 @@ class createclreparation_mrp(models.TransientModel):
     @api.multi
     def action_create_reparation_test(self):
         print("test"*10)
-        self.ensure_one()
+        #self.ensure_one()
         """print("a"*25)
         res = self.env['cl.reparation']
         test_basic, test_user = []
