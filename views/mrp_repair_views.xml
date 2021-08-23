@@ -28,6 +28,10 @@
                 <xpath expr="//page[4]" position="after">
                     <page string="Reparaciones">
                         <field name="reparation"/>
+                        <tree>
+                            <field name="tecnico"/>
+                            <field name="date"/>
+                        </tree>
                     </page>
                 </xpath>
             </field>
