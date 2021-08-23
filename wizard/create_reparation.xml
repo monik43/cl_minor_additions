@@ -37,6 +37,7 @@
                     </group>
                     <footer>
                         <button name="action_create_cl_reparation" string="Finalizar test" type="object" class="btn-primary"/>
+                        <button name="tprint" string="test" type="object"/>
                         <button string="Cancelar" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>
