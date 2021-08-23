@@ -15,6 +15,10 @@ class reparation(models.Model):
     reparation_test_user = fields.One2many('cl.reparation.test.user','ureparation', 'Test usuario')
     reparation_test_basic = fields.One2many('cl.reparation.test.basic','breparation', 'Test básico')
 
+    @api.model
+    def create(self, vals):
+        return super(reparation, self).create(vals)
+
 class reparation_test_user(models.Model):
     _name = 'cl.reparation.test.user'
 

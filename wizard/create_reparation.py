@@ -26,7 +26,7 @@ class createclreparation_mrp(models.TransientModel):
         'cl.reparation.test.user', 'ureparation', 'Test')
     product = fields.Many2one('product.product', 'Producto a reparar')
 
-    """@api.multi
+    @api.multi
     def action_create_cl_reparation(self):
         self.ensure_one()
         res = self.env['cl.reparation'].browse(self._context.get('id', []))
@@ -38,12 +38,12 @@ class createclreparation_mrp(models.TransientModel):
                               'notes': data.notes, 'yes': data.yes, 'no': data.no}])
 
         for data in self.reparation_test_user:
-            user_data.append([0, 0, {'breparation': data.ureparation, 'tname': data.tname,
+            user_data.append([0, 0, {'ureparation': data.ureparation, 'tname': data.tname,
                              'notes': data.notes, 'yes': data.yes, 'no': data.no}])
 
         res.create({'usr_credentials': self.usr_credentials, 'tecnico': self.tecnico_reps, 'origen_rep': self.origen_rep,
                    'ticket': self.origen_hdt, 'date': self.date, 'RMA': self.RMA, 'reparation_test_basic': basic_data, 'reparation_test_user': user_data})
-        return res"""
+        return res
 
     @api.multi
     def tprint(self):
