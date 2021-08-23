@@ -30,6 +30,7 @@ class createclreparation_mrp(models.TransientModel):
     def action_create_cl_reparation(self):
         self.ensure_one()
         res = self.env['cl.reparation'].browse(self._context.get('id', []))
+        print("/"*25,res)
         basic_data = []
         user_data = []
 
@@ -43,33 +44,14 @@ class createclreparation_mrp(models.TransientModel):
 
         res.create({'usr_credentials': self.usr_credentials, 'tecnico': self.tecnico_reps, 'origen_rep': self.origen_rep,
                    'ticket': self.origen_hdt, 'date': self.date, 'RMA': self.RMA, 'reparation_test_basic': basic_data, 'reparation_test_user': user_data})
+
+        print("/"*25,res)
+
         return res
 
     @api.multi
     def tprint(self):
         print("test"*25)
-
-    """@api.multi
-    def action_create_reparation_test(self):
-        self.ensure_one()
-        res = self.env['cl.reparation'].browse(self._context.get('id', []))
-        test_basic, test_user = []
-        for line in self.reparation_test_basic:
-            test_basic.append(
-                [0, 0, {'tname': line.tname, 'yes': line.yes, 'no': line.no, 'notes': line.notes}])
-
-        for line in self.reparation_test_user:
-            test_user.append(
-                [0, 0, {'tname': line.tname, 'yes': line.yes, 'no': line.no, 'notes': line.notes}])
-        res.create({
-            'tecnico': self.tecnico_rep,
-            'origen_rep': self.origen_rep,
-            'usr_credentials': self.usr_credentials,
-            'ticket': self.origen_hdt,
-            'date': self.date,
-            'RMA': self.RMA,
-            'reparation_test_basic': test_basic,
-            'reparation_test_user': test_user})"""
 
     @api.model
     def default_get(self, fields):

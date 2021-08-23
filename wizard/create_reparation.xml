@@ -16,27 +16,27 @@
                             <field name="RMA"/>
                         </group>
                         <field name="reparation_test_basic">
-                        <tree editable="bottom">
-                            <field name="tname"/>
-                            <field name="yes"/>
-                            <field name="no"/>
-                            <field name="notes"/>
-                        </tree>
+                            <tree editable="bottom">
+                                <field name="tname"/>
+                                <field name="yes"/>
+                                <field name="no"/>
+                                <field name="notes"/>
+                            </tree>
                         </field>
                         <group>
                             <field name="usr_credentials"/>
                         </group>
                         <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}">
-                        <tree editable="bottom">
-                            <field name="tname"/>
-                            <field name="yes"/>
-                            <field name="no"/>
-                            <field name="notes"/>
-                        </tree>
+                            <tree editable="bottom">
+                                <field name="tname"/>
+                                <field name="yes"/>
+                                <field name="no"/>
+                                <field name="notes"/>
+                            </tree>
                         </field>
                     </group>
                     <footer>
-                        <button name="tprint" string="Finalizar test" type="object"/>
+                        <button name="action_create_cl_reparation" string="Finalizar test" type="object" class="btn-primary"/>
                         <button string="Cancelar" class="btn-secondary" special="cancel"/>
                     </footer>
                 </form>
