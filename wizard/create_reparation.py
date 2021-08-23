@@ -25,7 +25,7 @@ class createclreparation_mrp(models.TransientModel):
     reparation_test_user = fields.One2many(
         'cl.reparation.test.user', 'ureparation', 'Test')
     product = fields.Many2one('product.product', 'Producto a reparar', compute="_test")
-    
+
     def _test(self):
         print("test"*25)
 
@@ -62,7 +62,7 @@ class createclreparation_mrp(models.TransientModel):
     def tprint(self):
         print("test"*25)
 
-    @api.model
+    """@api.model
     def default_get(self, fields):
         res = super(createclreparation_mrp, self).default_get(fields)
         if self.product.id in (3365, 3364, 3247, 1276, 1277, 3352, 3379):
@@ -73,4 +73,4 @@ class createclreparation_mrp(models.TransientModel):
                 'tname': 'Prueba de carga (superior al 10%) 5% D 5% IZ'}), (0, 0, {'tname': 'Tornillos'}), (0, 0, {'tname': 'Embalaje'}), (0, 0, {'tname': 'Equipo de sustitución'})]})
         res.update({'reparation_test_user': [(0, 0, {'tname': 'Battery Test'}), (0, 0, {'tname': 'Cámara #1 (1ª opción web: probar cámara)'}), (0, 0, {
                    'tname': 'Cámara #2'}), (0, 0, {'tname': 'Micrófono (1ª opción web: probar micrófono)'}), (0, 0, {'tname': 'Audio (videos YouTube etc)'})]})
-        return res
+        return res"""
