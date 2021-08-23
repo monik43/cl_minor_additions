@@ -20,10 +20,10 @@ class createclreparation_mrp(models.TransientModel):
     RMA = fields.Char('RMA')
     usr_credentials = fields.Many2one(
         'cl.user.credentials', 'Credenciales test usuario')
-    reparation_test_basic = fields.One2many(
+    """reparation_test_basic = fields.One2many(
         'cl.reparation.test.basic', 'breparation', 'Test')
     reparation_test_user = fields.One2many(
-        'cl.reparation.test.user', 'ureparation', 'Test')
+        'cl.reparation.test.user', 'ureparation', 'Test')"""
     product = fields.Many2one('product.product', 'Producto a reparar', compute="_test")
 
     def _test(self):
