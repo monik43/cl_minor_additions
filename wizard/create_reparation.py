@@ -24,7 +24,10 @@ class createclreparation_mrp(models.TransientModel):
         'cl.reparation.test.basic', 'breparation', 'Test')
     reparation_test_user = fields.One2many(
         'cl.reparation.test.user', 'ureparation', 'Test')
-    product = fields.Many2one('product.product', 'Producto a reparar')
+    product = fields.Many2one('product.product', 'Producto a reparar', compute="_test")
+    
+    def _test(self):
+        print("test"*25)
 
     @api.multi
     def action_create_cl_reparation(self):
