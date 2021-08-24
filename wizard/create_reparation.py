@@ -48,11 +48,9 @@ class createclreparation_mrp(models.TransientModel):
             'origen_rep': self.origen_rep,
             'ticket': self.origen_hdt,
             'date': self.date,
-            'RMA': self.RMA,
-            'reparation_test_user': data_user,
-            'reparation_test_basic': data_basic
+            'RMA': self.RMA
             })
-        return res1, res2, res3
+        return res1
 
     @api.multi
     def tprint(self):
