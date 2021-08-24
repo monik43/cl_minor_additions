@@ -37,6 +37,7 @@ class createclreparation_mrp(models.TransientModel):
         print(data.id)
         print(data.RMA)
         print(data, "/"*50)
+        print("a")
         return res
 
     @api.multi
