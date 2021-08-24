@@ -33,13 +33,13 @@ class createclreparation_mrp(models.TransientModel):
     def action_create_cl_reparation(self):
         res = self.env['cl.reparation'].browse(self._context.get('id', []))
         for line in self.reparation_test_basic:
-            print(line)
+            print(line.tname)
         return res
 
     @api.multi
     def tprint(self):
         for line in self.reparation_test_basic:
-            print(line)
+            print(line.tname)
 
     @api.model
     def default_get(self, fields):
