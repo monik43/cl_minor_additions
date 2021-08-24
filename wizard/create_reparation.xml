@@ -17,7 +17,7 @@
                         </group>
                         
                         <field name="reparation_test_basic">
-                            <tree editable="bottom">
+                            <tree>
                                 <field name="tname"/>
                                 <field name="yes"/>
                                 <field name="no"/>
@@ -28,7 +28,7 @@
                             <field name="usr_credentials"/>
                         </group>
                         <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}">
-                            <tree editable="bottom">
+                            <tree>
                                 <field name="tname"/>
                                 <field name="yes"/>
                                 <field name="no"/>
