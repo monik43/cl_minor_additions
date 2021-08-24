@@ -29,8 +29,8 @@
                     <page string="Reparaciones">
                         <field name="reparation"/>
                         <tree>
-                            <!--<field name="tecnico"/>-->
-                            <!--<field name="date"/>-->
+                            <field name="tecnico"/>
+                            <field name="date"/>
                         </tree>
                     </page>
                 </xpath>
