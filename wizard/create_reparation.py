@@ -33,30 +33,7 @@ class createclreparation_mrp(models.TransientModel):
     def action_create_cl_reparation(self):
         self.ensure_one()
         res = self.env['cl.reparation'].browse(self._context.get('id', []))
-        basic_data, user_data = []
         print(res, "/"*50)
-        for data in self.reparation_test_basic:
-            basic_data.append([0, 0, {'breparation': data.breparation, 'tname': data.tname,
-                              'notes': data.notes, 'yes': data.yes, 'no': data.no}])
-
-        for data in self.reparation_test_user:
-            user_data.append([0, 0, {'ureparation': data.ureparation, 'tname': data.tname,
-                             'notes': data.notes, 'yes': data.yes, 'no': data.no}])
-
-        print(basic_data)
-        print(user_data)
-        res.create({
-            'usr_credentials': self.usr_credentials, 
-            'tecnico': self.tecnico_rep, 
-            'origen_rep': self.origen_rep,
-            'ticket': self.origen_hdt, 
-            'date': self.date, 
-            'RMA': self.RMA, 
-            'reparation_test_basic': basic_data, 
-            'reparation_test_user': user_data
-            })
-
-        print("/"*25,res)
         return res
 
     @api.multi
