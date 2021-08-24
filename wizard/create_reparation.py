@@ -44,7 +44,7 @@ class createclreparation_mrp(models.TransientModel):
     def tprint(self):
         data = super(createclreparation_mrp, self).browse(self._context.get('active_ids',[]))
 
-        print(data)
+        print(data.fields_get())
 
     @api.model
     def default_get(self, fields):
