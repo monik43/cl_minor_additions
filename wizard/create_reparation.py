@@ -35,25 +35,17 @@ class createclreparation_mrp(models.TransientModel):
         data = super(createclreparation_mrp, self).browse(self._context.get('active_ids',[]))
 
         print(data.id)
-        print(data.RMA)
-        print(data, "/"*50)
-        print("a")
         return res
 
     @api.multi
     def tprint(self):
-        data = super(createclreparation_mrp, self).browse(self._context.get('active_ids',[]))
 
-        print(data.fields_get("RMA"))
-        print("data ",data.RMA)
+        print(self)
 
     @api.model
     def default_get(self, fields):
         res = super(createclreparation_mrp, self).default_get(fields)
         data = self.env['mrp.repair'].browse(self._context.get('active_ids',[]))
-        
-        print(data.product_id.id)
-        print(data.product_id.name)
 
         if data.product_id.id in (3412, 1279, 3405, 104, 1227, 242, 3379, 19, 400, 3165, 403, 3102, 3247, 1276, 3365, 3364, 3086, 297, 324, 330):
             print("/"*50)
