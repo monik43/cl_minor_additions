@@ -40,7 +40,7 @@ class createclreparation_mrp(models.TransientModel):
     @api.multi
     def tprint(self):
 
-        print(self.id)
+        print(self.RMA)
 
     @api.model
     def default_get(self, fields):
