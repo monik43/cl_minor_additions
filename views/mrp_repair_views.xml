@@ -29,7 +29,7 @@
                     <page string="Reparaciones">
                         <field name="reparation"/>
                             <tree editable="bottom">
-                                <field name="name"/>
+                                <field name="tname"/>
                             </tree>
                     </page>
                 </xpath>
