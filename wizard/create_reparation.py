@@ -21,9 +21,9 @@ class createclreparation_mrp(models.TransientModel):
     usr_credentials = fields.Many2one(
         'cl.user.credentials', 'Credenciales test usuario')
     reparation_test_basic = fields.One2many(
-        'cl.reparation.test.basic', 'breparation', 'Test', store=True)
+        'getmrp.data.basic', 'new_line_id_b', 'Test')
     reparation_test_user = fields.One2many(
-        'cl.reparation.test.user', 'ureparation', 'Test', store=True)
+        'getmrp.data.user', 'new_line_id_u', 'Test')
     product = fields.Many2one('product.product', 'Producto a reparar')
 
     def _test(self):
@@ -67,8 +67,11 @@ class createclreparation_mrp(models.TransientModel):
     def default_get(self, fields):
         res = super(createclreparation_mrp, self).default_get(fields)
         data = self.env['mrp.repair'].browse(self._context.get('active_ids',[]))
-        print("test ", data)
-        if self.product.id in (3365, 3364, 3247, 1276, 1277, 3352, 3379):
+        for record in data:
+            print(record)
+        print("fi")
+        
+        """if self.product.id in (3365, 3364, 3247, 1276, 1277, 3352, 3379):
             res.update({'reparation_test_basic': [(0, 0, {'tname': 'WIFI'}), (0, 0, {'tname': 'Teclado'}), (0, 0, {'tname': 'Touchpad'}), (0, 0, {'tname': 'Pantalla táctil (Si lo és)'}), (0, 0, {'tname': 'Prueba carga (cargador original)'}), (0, 0, {
                 'tname': 'Prueba de carga (superior al 10%) 5% D 5% IZ'}), (0, 0, {'tname': 'Tornillos'}), (0, 0, {'tname': 'Embalaje'}), (0, 0, {'tname': 'Modo tablet (Táctil y que funcione KB y TP)'}), (0, 0, {'tname': 'Equipo de sustitución'})]})
         else:
@@ -76,6 +79,30 @@ class createclreparation_mrp(models.TransientModel):
                 'tname': 'Prueba de carga (superior al 10%) 5% D 5% IZ'}), (0, 0, {'tname': 'Tornillos'}), (0, 0, {'tname': 'Embalaje'}), (0, 0, {'tname': 'Equipo de sustitución'})]})
 
         res.update({'reparation_test_user': [(0, 0, {'tname': 'Battery Test'}), (0, 0, {'tname': 'Cámara #1 (1ª opción web: probar cámara)'}), (0, 0, {
-                   'tname': 'Cámara #2'}), (0, 0, {'tname': 'Micrófono (1ª opción web: probar micrófono)'}), (0, 0, {'tname': 'Audio (videos YouTube etc)'})]})
+                   'tname': 'Cámara #2'}), (0, 0, {'tname': 'Micrófono (1ª opción web: probar micrófono)'}), (0, 0, {'tname': 'Audio (videos YouTube etc)'})]})"""
 
         return res
+
+class getmrpdata(models.TransientModel):
+    _name = 'getmrp.data.user'
+    _description = "Get MRP Repair user Data"
+
+    new_line_id_u = fields.Many2one('create.clreparation_mrp')
+        
+    ureparation = fields.One2many('cl.reparation','reparation_test_user', 'Reparacion') 
+    tname = fields.Char("Test                       ", readonly="True")
+    notes = fields.Char("Observaciones")
+    yes = fields.Boolean("Si")
+    no = fields.Boolean("No")
+
+class getmrpdata(models.TransientModel):
+    _name = 'getmrp.data.basic'
+    _description = "Get MRP Repair basic Data"
+
+    new_line_id_b = fields.Many2one('create.clreparation_mrp')
+        
+    ureparation = fields.One2many('cl.reparation','reparation_test_user', 'Reparacion') 
+    tname = fields.Char("Test                       ", readonly="True")
+    notes = fields.Char("Observaciones")
+    yes = fields.Boolean("Si")
+    no = fields.Boolean("No")
