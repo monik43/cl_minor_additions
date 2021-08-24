@@ -39,10 +39,10 @@ class createclreparation_mrp(models.TransientModel):
         data_user = []
         data_basic = []
         for data in self.reparation_test_user:
-            data_user.append([0,0,{'tname': data.tname, 'notes': data.notes, 'yes': data.yes, 'no': data.no, 'ureparation':res1}])
+            data_user.append([0,0,{'tname': data.tname, 'notes': data.notes, 'yes': data.yes, 'no': data.no}])
 
         for data in self.reparation_test_basic:
-            data_basic.append([0,0,{'tname': data.tname, 'notes': data.notes, 'yes': data.yes, 'no': data.no, 'breparation':res1}])
+            data_basic.append([0,0,{'tname': data.tname, 'notes': data.notes, 'yes': data.yes, 'no': data.no}])
         print(data_user)
         res1.create({
             'usr_credentials': self.usr_credentials,
