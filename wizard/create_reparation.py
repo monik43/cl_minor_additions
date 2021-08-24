@@ -69,7 +69,7 @@ class createclreparation_mrp(models.TransientModel):
         data = self.env['mrp.repair'].browse(self._context.get('active_ids',[]))
         
         print(data.product_id.id)
-        print(data.product_id.name)
+        print(data.product_id)
         
         """if self.product.id in (3365, 3364, 3247, 1276, 1277, 3352, 3379):
             res.update({'reparation_test_basic': [(0, 0, {'tname': 'WIFI'}), (0, 0, {'tname': 'Teclado'}), (0, 0, {'tname': 'Touchpad'}), (0, 0, {'tname': 'Pantalla táctil (Si lo és)'}), (0, 0, {'tname': 'Prueba carga (cargador original)'}), (0, 0, {
