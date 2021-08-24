@@ -35,6 +35,7 @@ class createclreparation_mrp(models.TransientModel):
         res1 = self.env['cl.reparation'].browse(self._context.get('id',[]))
         res2 = self.env['cl.reparation.test.user'].browse(self._context.get('id',[]))
         res3 = self.env['cl.reparation.test.basic'].browse(self._context.get('id',[]))
+        datamrp = self.env['mrp.repair'].browse(self._context.get('active_ids',[]))
         data_user = []
         data_basic = []
         for data in self.reparation_test_user:
@@ -46,7 +47,7 @@ class createclreparation_mrp(models.TransientModel):
         res1.create({
             'usr_credentials': self.usr_credentials,
             #'tecnico': self.tecnico_rep,
-            'origen_rep': self.origen_rep,
+            'origen_rep': datamrp,
             'ticket': self.origen_hdt,
             'date': self.date,
             'RMA': self.RMA,
