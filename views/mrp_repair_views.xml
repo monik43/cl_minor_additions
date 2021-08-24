@@ -29,7 +29,6 @@
                     <page string="Reparaciones">
                         <field name="reparation"/>
                         <tree editable="bottom">
-                            <field name="tecnico"/>
                             <field name="date"/>
                         </tree>
                     </page>
