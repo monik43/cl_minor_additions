@@ -79,7 +79,7 @@ class createclreparation_mrp(models.TransientModel):
         basic_data = []
 
         print("1. ", self.reparation_test_basic)
-        print("2. ", self)
+        print("2. ", self.id)
         
         for x in basic_data:
             print("a ",x)
