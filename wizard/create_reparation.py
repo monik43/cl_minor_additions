@@ -82,6 +82,6 @@ class createclreparation_mrp(models.TransientModel):
                               'notes': data.notes, 'yes': data.yes, 'no': data.no}])
         
         for x in basic_data:
-            print(x)
-            
+            print("a ",x)
+
         return res
