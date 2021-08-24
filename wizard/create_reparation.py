@@ -67,9 +67,8 @@ class createclreparation_mrp(models.TransientModel):
     def default_get(self, fields):
         res = super(createclreparation_mrp, self).default_get(fields)
         data = self.env['mrp.repair'].browse(self._context.get('active_ids',[]))
-        for record in data:
-            print(record)
-        print("fi")
+        
+        print(data.product_id.id)
         
         """if self.product.id in (3365, 3364, 3247, 1276, 1277, 3352, 3379):
             res.update({'reparation_test_basic': [(0, 0, {'tname': 'WIFI'}), (0, 0, {'tname': 'Teclado'}), (0, 0, {'tname': 'Touchpad'}), (0, 0, {'tname': 'Pantalla táctil (Si lo és)'}), (0, 0, {'tname': 'Prueba carga (cargador original)'}), (0, 0, {
