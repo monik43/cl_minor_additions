@@ -34,8 +34,7 @@ class createclreparation_mrp(models.TransientModel):
         self.ensure_one()
         res = self.env['cl.reparation'].browse(self._context.get('id', []))
         print("/"*25,res)
-        basic_data = []
-        user_data = []
+        basic_data, user_data = []
 
         for data in self.reparation_test_basic:
             basic_data.append([0, 0, {'breparation': data.breparation, 'tname': data.tname,
