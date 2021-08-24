@@ -79,10 +79,11 @@ class createclreparation_mrp(models.TransientModel):
         basic_data = []
 
         for data in self.reparation_test_basic:
+
             basic_data.append([0, 0, {'breparation': data.breparation, 'tname': data.tname,
                               'notes': data.notes, 'yes': data.yes, 'no': data.no}])
         
         for x in basic_data:
             print("a ",x)
-
+        print("uwu")
         return res
