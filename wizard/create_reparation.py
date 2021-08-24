@@ -31,40 +31,39 @@ class createclreparation_mrp(models.TransientModel):
 
     @api.multi
     def action_create_cl_reparation(self):
-        for rec in self:
+        """self.ensure_one()
+        res = self.env['cl.reparation'].browse(self._context.get('id', []))"""
+        basic_data, user_data = []
 
-        
-            res = rec.env['cl.reparation'].browse(rec._context.get('id', []))
-            print("/"*25,res)
-            """basic_data, user_data = []
+        for data in self.reparation_test_basic:
+            basic_data.append([0, 0, {'breparation': data.breparation, 'tname': data.tname,
+                              'notes': data.notes, 'yes': data.yes, 'no': data.no}])
 
-            for data in self.reparation_test_basic:
-                basic_data.append([0, 0, {'breparation': data.breparation, 'tname': data.tname,
-                                'notes': data.notes, 'yes': data.yes, 'no': data.no}])
+        for data in self.reparation_test_user:
+            user_data.append([0, 0, {'ureparation': data.ureparation, 'tname': data.tname,
+                             'notes': data.notes, 'yes': data.yes, 'no': data.no}])
 
-            for data in self.reparation_test_user:
-                user_data.append([0, 0, {'ureparation': data.ureparation, 'tname': data.tname,
-                                'notes': data.notes, 'yes': data.yes, 'no': data.no}])"""
+        print(basic_data)
+        print(user_data)
+        """res.create({
+            'usr_credentials': self.usr_credentials, 
+            'tecnico': self.tecnico_rep, 
+            'origen_rep': self.origen_rep,
+            'ticket': self.origen_hdt, 
+            'date': self.date, 
+            'RMA': self.RMA, 
+            'reparation_test_basic': basic_data, 
+            'reparation_test_user': user_data
+            })
 
-            res.create({
-                'usr_credentials': rec.usr_credentials, 
-                'tecnico': rec.tecnico_rep, 
-                'origen_rep': rec.origen_rep,
-                'ticket': rec.origen_hdt, 
-                'date': rec.date, 
-                'RMA': rec.RMA
-                #'reparation_test_basic': basic_data, 
-                #'reparation_test_user': user_data
-                })
-
-            print("/"*25,res)
-            return res
+        print("/"*25,res)
+        return res"""
 
     @api.multi
     def tprint(self):
         print("test"*25)
 
-    """@api.model
+    @api.model
     def default_get(self, fields):
         res = super(createclreparation_mrp, self).default_get(fields)
         if self.product.id in (3365, 3364, 3247, 1276, 1277, 3352, 3379):
@@ -75,4 +74,4 @@ class createclreparation_mrp(models.TransientModel):
                 'tname': 'Prueba de carga (superior al 10%) 5% D 5% IZ'}), (0, 0, {'tname': 'Tornillos'}), (0, 0, {'tname': 'Embalaje'}), (0, 0, {'tname': 'Equipo de sustitución'})]})
         res.update({'reparation_test_user': [(0, 0, {'tname': 'Battery Test'}), (0, 0, {'tname': 'Cámara #1 (1ª opción web: probar cámara)'}), (0, 0, {
                    'tname': 'Cámara #2'}), (0, 0, {'tname': 'Micrófono (1ª opción web: probar micrófono)'}), (0, 0, {'tname': 'Audio (videos YouTube etc)'})]})
-        return res"""
+        return res
