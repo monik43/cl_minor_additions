@@ -75,16 +75,13 @@ class createclreparation_mrp(models.TransientModel):
         res.update({'reparation_test_user': [(0, 0, {'tname': 'Battery Test'}), (0, 0, {'tname': 'Cámara #1 (1ª opción web: probar cámara)'}), (0, 0, {
                    'tname': 'Cámara #2'}), (0, 0, {'tname': 'Micrófono (1ª opción web: probar micrófono)'}), (0, 0, {'tname': 'Audio (videos YouTube etc)'})]})
 
-        basic_data, user_data = []
+        basic_data = []
 
         for data in self.reparation_test_basic:
             basic_data.append([0, 0, {'breparation': data.breparation, 'tname': data.tname,
                               'notes': data.notes, 'yes': data.yes, 'no': data.no}])
-
-        for data in self.reparation_test_user:
-            user_data.append([0, 0, {'ureparation': data.ureparation, 'tname': data.tname,
-                             'notes': data.notes, 'yes': data.yes, 'no': data.no}])
         
-        print(basic_data)
-        print(user_data)
+        for x in basic_data:
+            print(x)
+            
         return res
