@@ -31,10 +31,10 @@ class createclreparation_mrp(models.TransientModel):
 
     @api.multi
     def action_create_cl_reparation(self):
-        """self.ensure_one()
-        res = self.env['cl.reparation'].browse(self._context.get('id', []))"""
+        self.ensure_one()
+        res = self.env['cl.reparation'].browse(self._context.get('id', []))
         basic_data, user_data = []
-
+        print(res, "/"*50)
         for data in self.reparation_test_basic:
             basic_data.append([0, 0, {'breparation': data.breparation, 'tname': data.tname,
                               'notes': data.notes, 'yes': data.yes, 'no': data.no}])
@@ -45,7 +45,7 @@ class createclreparation_mrp(models.TransientModel):
 
         print(basic_data)
         print(user_data)
-        """res.create({
+        res.create({
             'usr_credentials': self.usr_credentials, 
             'tecnico': self.tecnico_rep, 
             'origen_rep': self.origen_rep,
@@ -57,7 +57,7 @@ class createclreparation_mrp(models.TransientModel):
             })
 
         print("/"*25,res)
-        return res"""
+        return res
 
     @api.multi
     def tprint(self):
