@@ -33,7 +33,9 @@ class createclreparation_mrp(models.TransientModel):
     def action_create_cl_reparation(self):
         self.ensure_one()
         res = self.env['cl.reparation'].browse(self._context.get('id', []))
-        print(res, "/"*50)
+        data = super(createclreparation_mrp, self).browse(self._context.get('active_ids',[]))
+        
+        print(data, "/"*50)
         return res
 
     @api.multi
