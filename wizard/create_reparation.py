@@ -35,7 +35,8 @@ class createclreparation_mrp(models.TransientModel):
         res1 = self.env['cl.reparation'].browse(self._context.get('id',[]))
         res2 = self.env['cl.reparation.test.user'].browse(self._context.get('id',[]))
         res3 = self.env['cl.reparation.test.basic'].browse(self._context.get('id',[]))
-        data_user, data_basic = []
+        data_user = []
+        data_basic = []
         for data in self.reparation_test_user:
             data_user.append([0,0,{'tname': data.tname, 'notes': data.notes, 'yes': data.yes, 'no': data.no, 'ureparation':res1}])
 
