@@ -34,6 +34,8 @@ class createclreparation_mrp(models.TransientModel):
         res = self.env['cl.reparation'].browse(self._context.get('id', []))
         data = super(createclreparation_mrp, self).browse(self._context.get('active_ids',[]))
 
+        print(data.id)
+        print(data.RMA)
         print(data, "/"*50)
         return res
 
