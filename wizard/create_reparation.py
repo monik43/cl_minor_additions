@@ -31,32 +31,34 @@ class createclreparation_mrp(models.TransientModel):
 
     @api.multi
     def action_create_cl_reparation(self):
-        self.ensure_one()
-        res = self.env['cl.reparation'].browse(self._context.get('id', []))
-        print("/"*25,res)
-        """basic_data, user_data = []
+        for rec in self:
 
-        for data in self.reparation_test_basic:
-            basic_data.append([0, 0, {'breparation': data.breparation, 'tname': data.tname,
-                              'notes': data.notes, 'yes': data.yes, 'no': data.no}])
+        
+            res = rec.env['cl.reparation'].browse(rec._context.get('id', []))
+            print("/"*25,res)
+            """basic_data, user_data = []
 
-        for data in self.reparation_test_user:
-            user_data.append([0, 0, {'ureparation': data.ureparation, 'tname': data.tname,
-                             'notes': data.notes, 'yes': data.yes, 'no': data.no}])"""
+            for data in self.reparation_test_basic:
+                basic_data.append([0, 0, {'breparation': data.breparation, 'tname': data.tname,
+                                'notes': data.notes, 'yes': data.yes, 'no': data.no}])
 
-        res.create({
-            'usr_credentials': self.usr_credentials, 
-            'tecnico': self.tecnico_rep, 
-            'origen_rep': self.origen_rep,
-            'ticket': self.origen_hdt, 
-            'date': self.date, 
-            'RMA': self.RMA
-            #'reparation_test_basic': basic_data, 
-            #'reparation_test_user': user_data
-            })
+            for data in self.reparation_test_user:
+                user_data.append([0, 0, {'ureparation': data.ureparation, 'tname': data.tname,
+                                'notes': data.notes, 'yes': data.yes, 'no': data.no}])"""
 
-        print("/"*25,res)
-        return res
+            res.create({
+                'usr_credentials': rec.usr_credentials, 
+                'tecnico': rec.tecnico_rep, 
+                'origen_rep': rec.origen_rep,
+                'ticket': rec.origen_hdt, 
+                'date': rec.date, 
+                'RMA': rec.RMA
+                #'reparation_test_basic': basic_data, 
+                #'reparation_test_user': user_data
+                })
+
+            print("/"*25,res)
+            return res
 
     @api.multi
     def tprint(self):
