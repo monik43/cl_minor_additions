@@ -39,7 +39,7 @@ class createclreparation_mrp(models.TransientModel):
     @api.multi
     def tprint(self):
         for line in self.reparation_test_basic:
-            print(line.tname)
+            print(line.notes)
 
     @api.model
     def default_get(self, fields):
