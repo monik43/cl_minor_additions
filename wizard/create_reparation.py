@@ -46,7 +46,7 @@ class createclreparation_mrp(models.TransientModel):
 
         res1.create({
             'usr_credentials': self.usr_credentials,
-            #'tecnico': self.tecnico_rep,
+            'tecnico': self.tecnico_rep.id,
             'origen_rep': datamrp.id,
             'ticket': self.origen_hdt,
             'date': self.date,
