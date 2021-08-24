@@ -67,7 +67,7 @@ class getmrpdata(models.TransientModel):
     new_line_id_u = fields.Many2one('create.clreparation_mrp')
         
     ureparation = fields.One2many('cl.reparation','reparation_test_user', 'Reparacion') 
-    tname = fields.Char("Test                       ", readonly="True")
+    tname = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
     no = fields.Boolean("No")
@@ -79,7 +79,7 @@ class getmrpdata(models.TransientModel):
     new_line_id_b = fields.Many2one('create.clreparation_mrp')
         
     ureparation = fields.One2many('cl.reparation','reparation_test_user', 'Reparacion') 
-    tname = fields.Char("Test                       ", readonly="True")
+    tname = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
     no = fields.Boolean("No")
