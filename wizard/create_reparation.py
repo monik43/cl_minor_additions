@@ -45,6 +45,7 @@ class createclreparation_mrp(models.TransientModel):
         data = super(createclreparation_mrp, self).browse(self._context.get('active_ids',[]))
 
         print(data.fields_get("RMA"))
+        print(data.RMA)
 
     @api.model
     def default_get(self, fields):
