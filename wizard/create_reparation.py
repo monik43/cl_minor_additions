@@ -31,10 +31,28 @@ class createclreparation_mrp(models.TransientModel):
 
     @api.multi
     def action_create_cl_reparation(self):
-        res = self.env['cl.reparation'].browse(self._context.get('id', []))
-        for line in self.reparation_test_basic:
-            print(line.tname)
-        return res
+        self.ensure_one()
+        res1 = self.env['cl.reparation'].browse(self._context.get('id',[]))
+        res2 = self.env['cl.reparation.test.user'].browse(self._context.get('id',[]))
+        res3 = self.env['cl.reparation.test.basic'].browse(self._context.get('id',[]))
+        data_user, data_basic = []
+        for data in self.reparation_test_user:
+            data_user.append([0,0,{'tname': data.tname, 'notes': data.notes, 'yes': data.yes, 'no': data.no, 'ureparation':res1}])
+
+        for data in self.reparation_test_basic:
+            data_basic.append([0,0,{'tname': data.tname, 'notes': data.notes, 'yes': data.yes, 'no': data.no, 'breparation':res1}])
+
+        res1.create({
+            'usr_credentials': self.usr_credentials,
+            'tecnico': self.tecnico_rep,
+            'origen_rep': self.origen_rep,
+            'ticket': self.origen_hdt,
+            'date': self.date,
+            'RMA': self.RMA,
+            'reparation_test_user': data_user,
+            'reparation_test_basic': data_basic
+            })
+        return res1, res2, res3
 
     @api.multi
     def tprint(self):
