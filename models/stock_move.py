@@ -21,7 +21,7 @@ class stockmoveline(models.Model):
     _inherit = 'stock.move.line'
 
     ship_order_move = fields.Char(compute="_get_purchase_ship_order")
-    CSN = fields.Char(string="CSN", readonly=False)
+    CSN = fields.Char(string="CSN")
 
     def _get_purchase_ship_order(self):
         for record in self:
