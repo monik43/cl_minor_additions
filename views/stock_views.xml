@@ -30,7 +30,7 @@
             <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='owner_id']" position="before">
-                    <field name="CSN" attrs="{'invisible':[('lot_id','=',False)]}" />
+                    <field name="CSN" /><!--attrs="{'invisible':[('lot_id','=',False)]}" -->
                     <field name="ship_order_move" attrs="{'readonly': [('in_entire_package', '=', True)]}" string="Ship/Transport Order"/>
                 </xpath>
             </field>
