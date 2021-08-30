@@ -15,7 +15,7 @@ class createclreparation_mrp(models.TransientModel):
         'helpdesk.ticket', 'Ticket reparación / Incidencia')
     tecnico_rep = fields.Many2one(
         'res.users', 'Técnico', domain="[('share','=',False)]",
-         default=lambda self: self.env.user.id)
+        default=lambda self: self.env.user.id)
     origen_rep = fields.Many2one(
         'mrp.repair', 'Reparación')
     date = fields.Datetime(
@@ -35,38 +35,59 @@ class createclreparation_mrp(models.TransientModel):
     @api.multi
     def action_create_cl_reparation(self):
         self.ensure_one()
-        res1 = self.env['cl.reparation'].browse(self._context.get('id', []))
-        test = self.env['cl.reparation.newtest'].browse(self._context.get('id', []))
-        datamrp = self.env['mrp.repair'].browse(self._context.get('active_ids', []))
+        res = self.env['cl.reparation'].browse(
+            self._context.get('id', []))
+        test = self.env['cl.reparation.newtest'].browse(
+            self._context.get('id', []))
+        datamrp = self.env['mrp.repair'].browse(
+            self._context.get('active_ids', []))
+        if self.env['cl.reparation.newtest'].search([(
+            'origin', '=', str(self.origen_rep.id)+"_b")]) != False:
+            for num in range(50):
+                if self.env['cl.reparation.newtest'].search([(
+                    'origin', '=', str(self.origen_rep.id)+"_"+str(num)+"_b"
+                    )]) == False:
+                    origin = str(self.origen_rep.id)+"_"+str(num)
+        else:
+            origin = str(self.origen_rep.id)
+
         for data in self.reparation_test_user:
             test.create({
                 'name': data.name,
                 'notes': data.notes,
                 'yes': data.yes,
                 'no': data.no,
-                'origin': str(self.origen_rep.id)+"_u"
+                'origin': origin+"_u"
             })
-        
+
         for data in self.reparation_test_basic:
             test.create({
                 'name': data.name,
                 'notes': data.notes,
                 'yes': data.yes,
                 'no': data.no,
-                'origin': str(self.origen_rep.id)+"_b"
+                'origin': origin+"_b"
             })
-        print(self.env['cl.reparation.newtest'].search([('origin','=', str(self.origen_rep.id)+"_b")]), "/"*50)
-        res1.create({
+        value_basic = []
+        value_user = []
+        
+        for test in self.env['cl.reparation.newtest'].search([('origin', '=', str(self.origen_rep.id)+"_b")]):
+            value_basic.append(test.id)
+
+        for test in self.env['cl.reparation.newtest'].search([('origin', '=', str(self.origen_rep.id)+"_u")]):
+            value_user.append(test.id)
+
+        res.create({
             'usr_credentials': self.usr_credentials,
             'tecnico': self.tecnico_rep.id,
             'origen_rep': datamrp.id,
             'ticket': self.origen_hdt,
             'date': self.date,
             'RMA': self.RMA,
-            #'reparation_test_user': test,
-            #'reparation_test_basic': res3
+            'reparation_test_user': [(6, 0, value_user)],
+            'reparation_test_basic': [(6, 0, value_basic)]
         })
-        return res1
+        return res
 
     @api.multi
     def tprint(self):
@@ -77,7 +98,8 @@ class createclreparation_mrp(models.TransientModel):
     @api.model
     def default_get(self, fields):
         res = super(createclreparation_mrp, self).default_get(fields)
-        data = self.env['mrp.repair'].browse(self._context.get('active_ids', []))
+        data = self.env['mrp.repair'].browse(
+            self._context.get('active_ids', []))
 
         if data.product_id.id in (3412, 1279, 3405, 104, 1227, 242, 3379, 19, 400, 3165, 403, 3102, 3247, 1276, 3365, 3364, 3086, 297, 324, 330):
             print("/"*50)
@@ -97,8 +119,10 @@ class getmrpdata(models.TransientModel):
     _name = 'getmrp.data'
     _description = "Get MRP Repair user Data"
 
-    ureparation = fields.Many2one('create.clreparation_mrp', 'reparation_test_user')
-    breparation = fields.Many2one('create.clreparation_mrp', 'reparation_test_basic')
+    ureparation = fields.Many2one(
+        'create.clreparation_mrp', 'reparation_test_user')
+    breparation = fields.Many2one(
+        'create.clreparation_mrp', 'reparation_test_basic')
     name = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
