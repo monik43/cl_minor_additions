@@ -43,15 +43,19 @@ class createclreparation_mrp(models.TransientModel):
                 'name': data.name,
                 'notes': data.notes,
                 'yes': data.yes,
-                'no': data.no
+                'no': data.no,
+                'origin': str(self.origen_rep.id)+"_u"
             })
+        
+        for data in self.reparation_test_basic:
             test.create({
                 'name': data.name,
                 'notes': data.notes,
                 'yes': data.yes,
-                'no': data.no
+                'no': data.no,
+                'origin': str(self.origen_rep.id)+"_b"
             })
-
+        print(self.env['cl.reparation.newtest'].search([('origin','=', str(self.origen_rep.id)+"_b")]), "/"*50)
         res1.create({
             'usr_credentials': self.usr_credentials,
             'tecnico': self.tecnico_rep.id,

@@ -19,7 +19,7 @@ class reparation(models.Model):
 
 class reparation_test(models.Model):
     _name = 'cl.reparation.newtest'
-
+    origin = fields.Char()
     urep = fields.Many2one('cl.reparation','reparation_test_user')
     brep = fields.Many2one('cl.reparation','reparation_test_basic')
     name = fields.Char("Test                       ", readonly="True")
