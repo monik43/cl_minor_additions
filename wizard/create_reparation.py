@@ -73,10 +73,10 @@ class createclreparation_mrp(models.TransientModel):
         value_basic = []
         value_user = []
 
-        for test in self.env['cl.reparation.newtest'].search([('origin', '=', str(self.origen_rep.id)+"_b")]):
+        for test in self.env['cl.reparation.newtest'].search([('origin', '=', origin+"_b")]):
             value_basic.append(test.id)
 
-        for test in self.env['cl.reparation.newtest'].search([('origin', '=', str(self.origen_rep.id)+"_u")]):
+        for test in self.env['cl.reparation.newtest'].search([('origin', '=', origin+"_u")]):
             value_user.append(test.id)
 
         res.create({
