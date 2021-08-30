@@ -48,6 +48,9 @@ class createclreparation_mrp(models.TransientModel):
             print("False"*12)
             for num in range(50):
                 print(num,"|"*25)
+                print(self.env['cl.reparation.newtest'].search([(
+                    'origin', '=', str(self.origen_rep.id)+"_"+str(num)+"_b"
+                )]))
                 if self.env['cl.reparation.newtest'].search([(
                     'origin', '=', str(self.origen_rep.id)+"_"+str(num)+"_b"
                 )]) == False:
