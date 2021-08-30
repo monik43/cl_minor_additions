@@ -32,22 +32,29 @@ class createclreparation_mrp(models.TransientModel):
     @api.multi
     def action_create_cl_reparation(self):
         self.ensure_one()
-        res1 = self.env['cl.reparation'].browse(self._context.get('id',[]))
-        res2 = self.env['cl.reparation.test.user'].browse(self._context.get('id',[]))
-        res3 = self.env['cl.reparation.test.basic'].browse(self._context.get('id',[]))
-        datamrp = self.env['mrp.repair'].browse(self._context.get('active_ids',[]))
-        data_user = []
-        data_basic = []
+        res1 = self.env['cl.reparation'].browse(self._context.get('id', []))
+        res2 = self.env['cl.reparation.test.user'].browse(
+            self._context.get('id', []))
+        res3 = self.env['cl.reparation.test.basic'].browse(
+            self._context.get('id', []))
+        datamrp = self.env['mrp.repair'].browse(
+            self._context.get('active_ids', []))
         for data in self.reparation_test_user:
-            data_user.append([0,0,{'tname': data.tname, 'notes': data.notes, 'yes': data.yes, 'no': data.no}])
+            res2.create({
+                'tname': data.tname,
+                'notes': data.notes,
+                'yes': data.yes,
+                'no': data.no
+            })
 
         for data in self.reparation_test_basic:
-            data_basic.append([0,0,{'tname': data.tname, 'notes': data.notes, 'yes': data.yes, 'no': data.no}])
-        print(" ")
-        print(" ")
-        print(data_user)
-        print(" ")
-        print(" ")
+            res3.create({
+                'tname': data.tname,
+                'notes': data.notes,
+                'yes': data.yes,
+                'no': data.no
+            })
+
         res1.create({
             'usr_credentials': self.usr_credentials,
             'tecnico': self.tecnico_rep.id,
@@ -55,9 +62,9 @@ class createclreparation_mrp(models.TransientModel):
             'ticket': self.origen_hdt,
             'date': self.date,
             'RMA': self.RMA,
-            #'reparation_test_user': data_user,
-            #'reparation_test_basic': data_basic
-            })
+            'reparation_test_user': res2,
+            'reparation_test_basic': res3
+        })
         return res1
 
     @api.multi
@@ -69,7 +76,8 @@ class createclreparation_mrp(models.TransientModel):
     @api.model
     def default_get(self, fields):
         res = super(createclreparation_mrp, self).default_get(fields)
-        data = self.env['mrp.repair'].browse(self._context.get('active_ids',[]))
+        data = self.env['mrp.repair'].browse(
+            self._context.get('active_ids', []))
 
         if data.product_id.id in (3412, 1279, 3405, 104, 1227, 242, 3379, 19, 400, 3165, 403, 3102, 3247, 1276, 3365, 3364, 3086, 297, 324, 330):
             print("/"*50)
@@ -84,25 +92,29 @@ class createclreparation_mrp(models.TransientModel):
 
         return res
 
+
 class getmrpdata(models.TransientModel):
     _name = 'getmrp.data.user'
     _description = "Get MRP Repair user Data"
 
     new_line_id_u = fields.Many2one('create.clreparation_mrp')
-        
-    ureparation = fields.One2many('cl.reparation','reparation_test_user', 'Reparacion') 
+
+    ureparation = fields.One2many(
+        'cl.reparation', 'reparation_test_user', 'Reparacion')
     tname = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
     no = fields.Boolean("No")
+
 
 class getmrpdata(models.TransientModel):
     _name = 'getmrp.data.basic'
     _description = "Get MRP Repair basic Data"
 
     new_line_id_b = fields.Many2one('create.clreparation_mrp')
-        
-    ureparation = fields.One2many('cl.reparation','reparation_test_user', 'Reparacion') 
+
+    ureparation = fields.One2many(
+        'cl.reparation', 'reparation_test_user', 'Reparacion')
     tname = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
