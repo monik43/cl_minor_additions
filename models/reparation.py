@@ -12,16 +12,16 @@ class reparation(models.Model):
     ticket = fields.Many2one('helpdesk.ticket')
     date = fields.Datetime("Fecha")
     RMA = fields.Char('RMA')
-    reparation_test_user = fields.One2many('cl.reparation.newtest','ureparation', 'Test usuario')
-    reparation_test_basic = fields.One2many('cl.reparation.newtest','breparation', 'Test usuario')
+    reparation_test_user = fields.One2many('cl.reparation.newtest','urep', 'Test usuario')
+    reparation_test_basic = fields.One2many('cl.reparation.newtest','brep', 'Test usuario')
     test_pasado = fields.Boolean()
 
 
 class reparation_test(models.Model):
     _name = 'cl.reparation.newtest'
 
-    ureparation = fields.Many2one('cl.reparation','reparation_test_user', 'Reparacion')
-    breparation = fields.Many2one('cl.reparation','reparation_test_basic', 'Reparacion')
+    urep = fields.Many2one('cl.reparation','reparation_test_user', 'Reparacion')
+    brep = fields.Many2one('cl.reparation','reparation_test_basic', 'Reparacion')
     name = fields.Char("Test                       ", readonly="True")
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
