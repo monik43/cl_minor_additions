@@ -24,9 +24,9 @@ class createclreparation_mrp(models.TransientModel):
     usr_credentials = fields.Many2one(
         'cl.user.credentials', 'Credenciales test usuario')
     reparation_test_basic = fields.One2many(
-        'getmrp.data', 'new_line_id', 'Test')
+        'getmrp.data', 'breparation', 'Test')
     reparation_test_user = fields.One2many(
-        'getmrp.data', 'new_line_id', 'Test')
+        'getmrp.data', 'ureparation', 'Test')
     product = fields.Many2one('product.product', 'Producto a reparar')
 
     def _test(self):
@@ -93,10 +93,8 @@ class getmrpdata(models.TransientModel):
     _name = 'getmrp.data'
     _description = "Get MRP Repair user Data"
 
-    new_line_id = fields.Many2one('create.clreparation_mrp')
-
-    ureparation = fields.One2many('cl.reparation', 'reparation_test_user', 'Reparacion')
-    breparation = fields.One2many('cl.reparation', 'reparation_test_basic', 'Reparacion')
+    ureparation = fields.Many2one('create.clreparation_mrp', 'reparation_test_user', 'Reparacion')
+    breparation = fields.Many2one('create.clreparation_mrp', 'reparation_test_basic', 'Reparacion')
     name = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
