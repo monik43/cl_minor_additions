@@ -36,7 +36,7 @@ class createclreparation_mrp(models.TransientModel):
     def action_create_cl_reparation(self):
         self.ensure_one()
         res1 = self.env['cl.reparation'].browse(self._context.get('id', []))
-        test = self.env['cl.reparation.test'].browse(self._context.get('id', []))
+        test = self.env['cl.reparation.newtest'].browse(self._context.get('id', []))
         datamrp = self.env['mrp.repair'].browse(self._context.get('active_ids', []))
         for data in self.reparation_test_user:
             test.create({
