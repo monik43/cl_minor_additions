@@ -95,8 +95,8 @@ class getmrpdata(models.TransientModel):
 
     new_line_id = fields.Many2one('create.clreparation_mrp')
 
-    ureparation = fields.One2many('cl.reparation', 'reparation_test', 'Reparacion')
-    breparation = fields.One2many('cl.reparation', 'reparation_test', 'Reparacion')
+    ureparation = fields.One2many('cl.reparation', 'reparation_test_user', 'Reparacion')
+    breparation = fields.One2many('cl.reparation', 'reparation_test_basic', 'Reparacion')
     name = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
