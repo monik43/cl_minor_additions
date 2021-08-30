@@ -9,7 +9,7 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="tecnico_rep"/>
+                                <field name="tecnico"/>
                                 <field name="origen_rep"/>
                             </group>
                             <group>
@@ -40,7 +40,7 @@
                 </form>
             </field>
         </record>
-        
+
         <record model="ir.actions.cat.window" id="reparation_action">
             <field name="name">Tests de reparaciones</field>
             <field name="res_model">cl.reparation</field>
