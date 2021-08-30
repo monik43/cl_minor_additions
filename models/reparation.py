@@ -20,8 +20,8 @@ class reparation(models.Model):
 class reparation_test(models.Model):
     _name = 'cl.reparation.newtest'
 
-    urep = fields.Many2one('cl.reparation','reparation_test_user','Reparacion')
-    brep = fields.Many2one('cl.reparation','reparation_test_basic','Reparacion')
+    urep = fields.Many2one('cl.reparation','reparation_test_user')
+    brep = fields.Many2one('cl.reparation','reparation_test_basic')
     name = fields.Char("Test                       ", readonly="True")
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
