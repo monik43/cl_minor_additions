@@ -80,7 +80,7 @@ class createclreparation_mrp(models.TransientModel):
             value_user.append(test.id)
 
         res.create({
-            'usr_credentials': self.usr_credentials,
+            'usr_credentials': self.usr_credentials.id,
             'tecnico': self.tecnico_rep.id,
             'origen_rep': datamrp.id,
             'ticket': self.origen_hdt,
