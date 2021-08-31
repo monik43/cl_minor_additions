@@ -15,7 +15,6 @@
     'version': '11.0.0.6',
     'depends': ['base'],
     'data': [
-        'wizard/create_reparation.xml',
 
         'views/web_assets.xml',
         'views/account_invoice_views.xml',
@@ -33,6 +32,8 @@
         'views/helpdesk_views.xml',
         'views/stock_views.xml',
         'views/mail_views.xml',
+
+        'wizard/create_reparation.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
