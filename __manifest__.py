@@ -13,7 +13,7 @@
     'website': "https://cloudaliaeducacion.com/",
     'category': 'Uncategorized',
     'version': '11.0.0.6',
-    'depends': ['base', 'stock', 'cloudedu_mods', 'account', 'filtro_comercial-main', 'helpdesk'],
+    'depends': ['base'],
     'data': [
         'wizard/create_reparation.xml',
 
