@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-from . import mrp_repair
+
 from . import reparation
+from . import mrp_repair
 from . import user_credentials
 from . import stock_production_lot
 from . import mail_activity
