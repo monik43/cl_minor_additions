@@ -24,11 +24,12 @@
         'views/report_picking_final_2.xml',
         'wizard/create_reparation.xml',
         'views/reparation_views.xml',
-        'views/mrp_repair_views.xml',
 
         'views/stock_views.xml',
 
         'views/mail_views.xml',
+
+        'views/mrp_repair_views.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
