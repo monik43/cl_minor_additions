@@ -47,9 +47,6 @@
             <field name="arch" type="xml">
                 <tree string="Tests de reparaciones">
                     <field name="id" invisible="1"/>
-                    <field name="usr_credentials" invisible="1"/>
-                    <field name="origen_rep" invisible="1"/>
-                    <field name="ticket" invisible="1"/>
                     <field name="tecnico"/>
                     <field name="date"/>
                     <field name="RMA" invisible="1"/>
