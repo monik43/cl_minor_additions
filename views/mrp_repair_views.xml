@@ -27,14 +27,12 @@
                 </xpath>
                 <xpath expr="//page[4]" position="after">
                     <page string="Reparaciones">
-                        <group string="Reparaciones">
-                            <field name="reparation">
-                                <tree>
-                                    <field name="tecnico"/>
-                                    <field name="date"/>
-                                </tree>
-                            </field>
-                        </group>
+                        <field name="reparation">
+                            <tree>
+                                <field name="tecnico"/>
+                                <field name="date"/>
+                            </tree>
+                        </field>
                     </page>
                 </xpath>
             </field>
