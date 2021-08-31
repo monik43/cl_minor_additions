@@ -22,7 +22,6 @@
         'views/account_templates.xml',
 
         
-        'views/helpdesk_views.xml',
         'views/report_picking_final_2.xml',
         
         'views/purchase_order_mrp_wiz.xml',
@@ -30,6 +29,7 @@
         'views/reparation_views.xml',
         'views/mrp_repair_views.xml',
 
+        'views/helpdesk_views.xml',
         'views/stock_views.xml',
         'views/mail_views.xml',
     ],
