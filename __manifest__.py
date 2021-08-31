@@ -16,7 +16,6 @@
     'depends': ['base', 'stock', 'cloudedu_mods', 'account', 'filtro_comercial-main', 'helpdesk', 'mrp_repair'],
     'data': [
         'wizard/create_reparation.xml',
-        'data/user_credentials.xml',
         'views/reparation_views.xml',
         'views/mrp_repair_views.xml',
         'views/stock_views.xml',
@@ -27,6 +26,7 @@
         'views/web_assets.xml',
         'views/report_picking_final_2.xml',
         'views/helpdesk_views.xml',
+        'data/user_credentials.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
