@@ -7,6 +7,7 @@ from . import mail_activity
 from . import stock_picking
 from . import stock_move
 from . import helpdesk
+
+from . import create_purchaseorder_mrp
 from . import user_credentials
 from . import purchase
-from . import create_purchaseorder_mrp
