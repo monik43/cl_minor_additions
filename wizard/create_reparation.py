@@ -41,19 +41,15 @@ class createclreparation_mrp(models.TransientModel):
             self._context.get('id', []))
         datamrp = self.env['mrp.repair'].browse(
             self._context.get('active_ids', []))
-
+    ###TODO
         origin = str(self.origen_rep.id)
         if self.env['cl.reparation.newtest'].search([(
                 'origin', '=', str(self.origen_rep.id)+"_b")]) != False:
-            print("False"*12)
+            print("_b find")
             for num in range(50):
-                print(num,"|"*25)
-                print(self.env['cl.reparation.newtest'].search([(
-                    'origin', '=', str(self.origen_rep.id)+"_"+str(num)+"_b"
-                )]))
                 if self.env['cl.reparation.newtest'].search([(
                     'origin', '=', str(self.origen_rep.id)+"_"+str(num)+"_b"
-                )]) == False:
+                )]) != False:
                     print("origin = ")
                     origin = str(self.origen_rep.id)+"_"+str(num)
                     break
