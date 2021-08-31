@@ -47,12 +47,12 @@
             <field name="arch" type="xml">
                 <tree string="Tests de reparaciones">
                     <field name="id" invisible="1"/>
-                    <field name="usr_credentials" invisible="1"/>invisible="1"
+                    <field name="usr_credentials" invisible="1"/>
                     <field name="origen_rep" invisible="1"/>
                     <field name="ticket" invisible="1"/>
                     <field name="tecnico"/>
                     <field name="date"/>
-                    <field name="RMA"/>
+                    <field name="RMA" invisible="1"/>
                     <field name="test_pasado"/>
                 </tree>
             </field>
