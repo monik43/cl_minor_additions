@@ -21,7 +21,6 @@
         'views/account_templates.xml',
         'views/web_assets.xml',
         'views/report_picking_final_2.xml',
-        'wizard/create_reparation.xml',
         'views/reparation_views.xml',
 
         'views/stock_views.xml',
@@ -31,6 +30,8 @@
         'views/mrp_repair_views.xml',
 
         'views/purchase_order_mrp_wiz.xml',
+
+        'wizard/create_reparation.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
