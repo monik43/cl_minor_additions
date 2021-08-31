@@ -29,9 +29,6 @@ class createclreparation_mrp(models.TransientModel):
         'getmrp.data', 'ureparation', 'Test')
     product = fields.Many2one('product.product', 'Producto a reparar')
 
-    def _test(self):
-        print("test"*25)
-
     @api.multi
     def action_create_cl_reparation(self):
         self.ensure_one()
@@ -41,22 +38,19 @@ class createclreparation_mrp(models.TransientModel):
             self._context.get('id', []))
         datamrp = self.env['mrp.repair'].browse(
             self._context.get('active_ids', []))
-    ###TODO
         origin = str(self.origen_rep.id)
+
         if self.env['cl.reparation.newtest'].search([(
                 'origin', '=', str(self.origen_rep.id)+"_b")]) != False:
-            print("_b find")
             for num in range(50):
                 if not self.env['cl.reparation.newtest'].search([(
                     'origin', '=', str(self.origen_rep.id)+"_"+str(num)+"_b"
                 )]):
                     origin = str(self.origen_rep.id)+"_"+str(num)
-                    print("origin = ", origin)
                     break
         else:
             origin = str(self.origen_rep.id)
 
-        print("origin = ",origin)
         for data in self.reparation_test_user:
             test.create({
                 'name': data.name,
@@ -94,12 +88,6 @@ class createclreparation_mrp(models.TransientModel):
             'reparation_test_basic': [(6, 0, value_basic)]
         })
         return res
-
-    @api.multi
-    def tprint(self):
-        for line in self.reparation_test_basic:
-            print(line.name)
-            print(line.notes)
 
     @api.model
     def default_get(self, fields):
