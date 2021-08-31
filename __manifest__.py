@@ -33,7 +33,7 @@
 
         #'views/mrp_repair_views.xml',
 
-        'views/purchase_order_mrp_wiz.xml',
+        #'views/purchase_order_mrp_wiz.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
