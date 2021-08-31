@@ -17,6 +17,9 @@
     'data': [
         
 
+        'data/user_credentials.xml',
+
+        'views/helpdesk_views.xml',
         'views/reparation_views.xml',
         'views/mrp_repair_views.xml',
 
@@ -27,8 +30,6 @@
         'views/account_templates.xml',
         'views/web_assets.xml',
         'views/report_picking_final_2.xml',
-        'views/helpdesk_views.xml',
-        'data/user_credentials.xml',
         'wizard/create_reparation.xml',
     ],
     'qweb': [
