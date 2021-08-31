@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 from . import reparation
 from . import mrp_repair
 from . import user_credentials
