@@ -16,11 +16,12 @@
     'depends': ['base', 'stock', 'cloudedu_mods', 'account', 'filtro_comercial-main', 'helpdesk', 'mrp_repair'],
     'data': [
         'views/helpdesk_views.xml',
-        'data/user_credentials.xml',
         'views/account_invoice_views.xml',
         'views/account_templates.xml',
         'views/web_assets.xml',
         'views/report_picking_final_2.xml',
+
+        'data/user_credentials.xml',
         'views/reparation_views.xml',
 
         'views/stock_views.xml',
