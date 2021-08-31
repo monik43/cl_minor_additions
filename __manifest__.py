@@ -15,9 +15,10 @@
     'version': '11.0.0.6',
     'depends': ['base', 'stock', 'cloudedu_mods', 'account', 'filtro_comercial-main', 'helpdesk', 'mrp_repair'],
     'data': [
-        'views/reparation_views.xml',
         
         'views/stock_views.xml',
+
+        'views/reparation_views.xml',
         'views/mrp_repair_views.xml',
         'views/mail_views.xml',
         'views/purchase_order_mrp_wiz.xml',
