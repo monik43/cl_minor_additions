@@ -19,8 +19,9 @@
 
         'data/user_credentials.xml',
 
-        'views/helpdesk_views.xml',
         'views/reparation_views.xml',
+
+        'views/helpdesk_views.xml',
         'views/mrp_repair_views.xml',
 
         'views/stock_views.xml',
