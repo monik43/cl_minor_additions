@@ -24,7 +24,7 @@
         #'views/reparation_views.xml',
         
         #'views/stock_views.xml',
-        'views/helpdesk_views.xml',
+        #'views/helpdesk_views.xml',
 
         'views/mrp_repair_views.xml',
         'views/mail_views.xml',
