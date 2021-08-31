@@ -17,7 +17,6 @@
     'data': [
         'wizard/create_reparation.xml',
 
-        'views/reparation_views.xml',
         'views/web_assets.xml',
         'views/account_invoice_views.xml',
         'views/account_templates.xml',
@@ -28,6 +27,8 @@
         'views/mrp_repair_views.xml',
         'views/mail_views.xml',
         'views/purchase_order_mrp_wiz.xml',
+
+        'views/reparation_views.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
