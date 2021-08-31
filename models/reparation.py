@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from cl_minor_additions.models.user_credentials import user_credentials
 from odoo import models, fields, api, _
 import datetime
 
@@ -14,7 +15,23 @@ class reparation(models.Model):
     RMA = fields.Char('RMA')
     reparation_test_basic = fields.One2many('cl.reparation.newtest','brep', 'Test básico')
     reparation_test_user = fields.One2many('cl.reparation.newtest','urep', 'Test usuario')
-    test_pasado = fields.Boolean()
+    test_pasado = fields.Boolean(compute="_get_test_pasado")
+
+    def _get_test_pasado(self):
+        self.ensure_one()
+        pasado = True
+        for testline in self.reparation_test_basic:
+            if testline.no == True:
+                pasado = False
+                break
+        
+        if self.usr_credentials != False:
+            for testline in self.reparation_test_user:
+                if testline.no == True:
+                    pasado = False
+                    break
+
+        self.test_pasado = pasado
 
 
 class reparation_test(models.Model):

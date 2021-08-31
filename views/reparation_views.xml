@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record id="reparation_form_view" model="ir.ui.view">
-            <field name="name">Reparation form view</field>
+            <field name="name">reparation.form.view</field>
             <field name="model">cl.reparation</field>
             <field name="arch" type="xml">
                 <form>
@@ -41,11 +41,29 @@
             </field>
         </record>
 
+        <record id="reparation_tree_view" model="ir.ui.view">
+            <field name="name">reparation.tree.view</field>
+            <field name="model">cl.reparation</field>
+            <field name="arch" type="xml">
+                <tree string="Tests de reparaciones">
+                    <field name="id" invisible="1"/>
+                    <field name="usr_credentials" invisible="1"/>invisible="1"
+                    <field name="origen_rep" invisible="1"/>
+                    <field name="ticket" invisible="1"/>
+                    <field name="tecnico"/>
+                    <field name="date"/>
+                    <field name="RMA"/>
+                    <field name="test_pasado"/>
+                </tree>
+            </field>
+        </record>
+
         <record model="ir.actions.act_window" id="reparation_action">
             <field name="name">Tests de reparaciones</field>
             <field name="res_model">cl.reparation</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
+            <field name="arch" type="xml">
         </record>
 
         <menuitem id="cl_reparation" name="Reparacion"/>
