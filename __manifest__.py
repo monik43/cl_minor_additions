@@ -13,8 +13,9 @@
     'website': "https://cloudaliaeducacion.com/",
     'category': 'Uncategorized',
     'version': '11.0.0.6',
-    'depends': ['base'],
+    'depends': ['base', 'stock', 'cloudedu_mods', 'account', 'filtro_comercial-main', 'helpdesk', 'mrp_repair'],
     'data': [
+        'wizard/create_reparation.xml',
 
         'views/web_assets.xml',
         'views/account_invoice_views.xml',
@@ -24,16 +25,13 @@
         'views/report_picking_final_2.xml',
         
         
+        #'data/user_credentials.xml',
         'views/reparation_views.xml',
         'views/mrp_repair_views.xml',
-
-        #'data/user_credentials.xml',
         'views/purchase_order_mrp_wiz.xml',
         'views/helpdesk_views.xml',
         'views/stock_views.xml',
         'views/mail_views.xml',
-
-        'wizard/create_reparation.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
