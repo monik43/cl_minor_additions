@@ -19,26 +19,19 @@ class reparation(models.Model):
 
     def _get_test_pasado(self):
         for rec in self:
-            rec.ensure_one()
-            print("inicio test")
             pasado = True
-            print("pasado inicial - ", pasado)
             for testline in rec.reparation_test_basic:
-                print(testline.no)
-                print(testline.yes)
-                print("----------")
                 if testline.no == True or testline.yes != True:
                     pasado = False
                     break
-            print(rec.usr_credentials)
+
             if rec.usr_credentials:
                 for testline in rec.reparation_test_user:
                     if testline.no == True or testline.yes != True:
-                        print("cred")
                         pasado = False
                         break
+                    
             rec.test_pasado = pasado
-            print("test pasado -> ", rec.test_pasado)
 
 
 class reparation_test(models.Model):
