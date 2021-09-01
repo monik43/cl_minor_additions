@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from odoo import models, fields, api, _
 import datetime
 
@@ -20,13 +21,13 @@ class reparation(models.Model):
         self.ensure_one()
         pasado = True
         for testline in self.reparation_test_basic:
-            if testline.no == True:
+            if testline.no == True or testline.yes != True:
                 pasado = False
                 break
         
         if self.usr_credentials != False:
             for testline in self.reparation_test_user:
-                if testline.no == True:
+                if testline.no == True or testline.yes != True:
                     pasado = False
                     break
 
