@@ -18,7 +18,9 @@ class reparation(models.Model):
     test_pasado = fields.Boolean(compute="_get_test_pasado")
 
     def _get_test_pasado(self):
-        self.ensure_one()
+        for rec in self:
+            print(rec)
+        """self.ensure_one()
         pasado = True
         for testline in self.reparation_test_basic:
             if testline.no == True or testline.yes != True:
@@ -31,7 +33,7 @@ class reparation(models.Model):
                     pasado = False
                     break
 
-        self.test_pasado = pasado
+        self.test_pasado = pasado"""
 
 
 class reparation_test(models.Model):
