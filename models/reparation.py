@@ -34,7 +34,7 @@ class reparation(models.Model):
                     if testline.no == True or testline.yes != True:
                         pasado = False
                         break
-
+            print("fin")
             rec.test_pasado = pasado
             pasado = True
 
