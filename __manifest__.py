@@ -20,7 +20,7 @@
         'views/account_invoice_views.xml',
         'views/account_templates.xml',
         'views/report_picking_final_2.xml',
-        ##'data/user_credentials.xml',
+        'data/user_credentials.xml',
         'views/purchase_order_mrp_wiz.xml',
         'views/mrp_repair_views.xml',
 
