@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Cloudalia Module Misc",
+    'name': "Modulo menor Cloudalia",
 
     'summary': """
         Adiciones menores a Odoo""",
