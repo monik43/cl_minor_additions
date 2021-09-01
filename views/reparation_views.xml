@@ -61,8 +61,8 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
-
+        <!--
         <menuitem id="cl_reparation" name="Reparacion"/>
-        <menuitem id="cl_reparation_tests" name="Reparaciones" parent="cl_reparation" sequence="3" action="reparation_action"/>
+        <menuitem id="cl_reparation_tests" name="Reparaciones" parent="cl_reparation" sequence="3" action="reparation_action"/>-->
     </data>
 </odoo>
