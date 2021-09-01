@@ -3,9 +3,6 @@
 import datetime
 from dateutil import relativedelta
 from odoo import api, fields, models, _
-from odoo.addons.helpdesk.models.helpdesk_ticket import TICKET_PRIORITY
-from odoo.addons.http_routing.models.ir_http import slug
-from odoo.exceptions import UserError, ValidationError
 
 
 class helpdesk_stage(models.Model):
