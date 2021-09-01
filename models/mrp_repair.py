@@ -73,7 +73,7 @@ class mrp_repair(models.Model):
         After repair else state is set to 'Ready'.
         @return: True
         """
-        self.env['create.clreparation_mrp'].action_create_cl_reparation()
+        self.env['create.clreparation_mrp'].action_create_cl_reparation(self)
 
         if self.filtered(lambda repair: repair.state != 'under_repair'):
             raise UserError(_("Repair must be under repair in order to end reparation."))
