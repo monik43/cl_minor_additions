@@ -57,6 +57,7 @@ class createclreparation_mrp(models.TransientModel):
                 'notes': data.notes,
                 'yes': data.yes,
                 'no': data.no,
+                'no_aplica': data.no_aplica,
                 'origin': origin+"_u"
             })
 
@@ -65,7 +66,7 @@ class createclreparation_mrp(models.TransientModel):
                 'name': data.name,
                 'notes': data.notes,
                 'yes': data.yes,
-                'no': data.no,
+                'no_aplica': data.no_aplica,
                 'origin': origin+"_b"
             })
         value_basic = []
@@ -122,3 +123,4 @@ class getmrpdata(models.TransientModel):
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
     no = fields.Boolean("No")
+    no_aplica = fields.Boolean("No aplica")
