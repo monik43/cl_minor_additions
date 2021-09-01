@@ -31,8 +31,7 @@ class createclreparation_mrp(models.TransientModel):
 
     @api.multi
     def action_create_cl_reparation(self):
-        self.env['mrp.repair'].action_repair_end()
-        """self.ensure_one()
+        self.ensure_one()
         res = self.env['cl.reparation'].browse(
             self._context.get('id', []))
         test = self.env['cl.reparation.newtest'].browse(
@@ -88,7 +87,9 @@ class createclreparation_mrp(models.TransientModel):
             'reparation_test_user': [(6, 0, value_user)],
             'reparation_test_basic': [(6, 0, value_basic)]
         })
-        return res"""
+
+        self.env['mrp.repair'].action_repair_end()
+        return res
 
     @api.model
     def default_get(self, fields):
