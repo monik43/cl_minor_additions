@@ -21,13 +21,13 @@ class reparation(models.Model):
         for rec in self:
             pasado = True
             for testline in rec.reparation_test_basic:
-                if testline.no == True or testline.yes != True:
+                if (testline.no == True and testline.yes == False) or (testline.no == True and testline.no_aplica == False and testline.yes == False):
                     pasado = False
                     break
 
             if rec.usr_credentials:
                 for testline in rec.reparation_test_user:
-                    if testline.no == True or testline.yes != True:
+                    if (testline.no == True and testline.yes == False) or (testline.no == True and testline.no_aplica == False and testline.yes == False):
                         pasado = False
                         break
                     

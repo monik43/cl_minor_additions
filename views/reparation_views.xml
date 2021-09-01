@@ -21,6 +21,7 @@
                                     <field name="name"/>
                                     <field name="yes"/>
                                     <field name="no"/>
+                                    <field name="no_aplica"/>
                                     <field name="notes"/>
                                 </tree>
                             </field>
@@ -32,6 +33,7 @@
                                     <field name="name"/>
                                     <field name="yes"/>
                                     <field name="no"/>
+                                    <field name="no_aplica"/>
                                     <field name="notes"/>
                                 </tree>
                             </field>
