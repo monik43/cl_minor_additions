@@ -24,7 +24,7 @@
                     <button name="%(cl_minor_additions.create_reparation_wizard)d" string="Nuevo test" type="action" class="oe_highlight" context="{'default_RMA':rma, 'default_product':product_id}" attrs="{'invisible':[('test_end','=',True)]}"/>
                 </xpath>
                 <xpath expr="//button[@name='action_repair_end']" position="attributes">
-                    <attribute name="attrs">{'invisible':[('test_end','=',False)]}</attribute>
+                    <attribute name="attrs">{'invisible':[('test_end','==',False)]}</attribute>
                 </xpath>
                 <xpath expr="//page[4]" position="after">
                     <page string="Reparaciones">
