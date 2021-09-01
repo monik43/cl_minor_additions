@@ -89,7 +89,7 @@ class createclreparation_mrp(models.TransientModel):
             'reparation_test_basic': [(6, 0, value_basic)]
         })
 
-        self.env['mrp.repair'].action_repair_end()
+        #self.env['mrp.repair'].action_repair_end()
         return res
 
     @api.model
