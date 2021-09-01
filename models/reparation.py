@@ -19,10 +19,11 @@ class reparation(models.Model):
 
     def _get_test_pasado(self):
         for rec in self:
-            print("start"*25)
+            print("start"*10)
             pasado = True
             for testline in rec.reparation_test_basic:
                 if testline.no == True or testline.yes != True:
+                    print("si - ", testline.yes, " / no - ", testline.no)
                     pasado = False
                     break
             
