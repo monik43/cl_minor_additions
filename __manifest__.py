@@ -28,6 +28,9 @@
     'website': "https://cloudaliaeducacion.com/",
     'category': 'Uncategorized',
     'version': '11.0.0.10',
+    'installable': True,
+    'auto_install': False,
+    'application': True,
     'depends': ['base', 'stock', 'mrp_repair', 'helpdesk', 'account', 'cloudedu_mods', 'filtro_comercial-main'],
     'data': [
         'views/web_assets.xml',
@@ -46,5 +49,4 @@
     'qweb': [
         'static/src/xml/account_payment.xml',
     ],
-    'application': True,
 }
