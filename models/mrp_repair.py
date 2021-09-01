@@ -2,7 +2,7 @@
 from odoo import models, fields, api, _
 from odoo.osv import orm
 from lxml import etree
-
+from odoo.exceptions import UserError
 
 class repair_line(models.Model):
     _inherit = 'mrp.repair.line'
@@ -66,4 +66,23 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.state == 'confirmed' and rec.rep_conf != True:
                 rec.rep_conf = True
+
+    @api.multi
+    def action_repair_end(self):
+        """ Writes repair order state to 'To be invoiced' if invoice method is
+        After repair else state is set to 'Ready'.
+        @return: True
+        """
+        self.env['create.clreparation_mrp'].action_create_cl_reparation()
+
+        if self.filtered(lambda repair: repair.state != 'under_repair'):
+            raise UserError(_("Repair must be under repair in order to end reparation."))
+        for repair in self:
+            repair.write({'repaired': True})
+            vals = {'state': 'done'}
+            vals['move_id'] = repair.action_repair_done().get(repair.id)
+            if not repair.invoiced and repair.invoice_method == 'after_repair':
+                vals['state'] = '2binvoiced'
+            repair.write(vals)
+        return True
 
