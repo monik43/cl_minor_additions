@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from cl_minor_additions.models.reparation import reparation
 from odoo import models, fields, api, _
 from odoo.osv import orm
 from lxml import etree
