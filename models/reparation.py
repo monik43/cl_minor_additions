@@ -19,6 +19,7 @@ class reparation(models.Model):
 
     def _get_test_pasado(self):
         for rec in self:
+            rec.ensure_one()
             print(rec)
         """self.ensure_one()
         pasado = True
