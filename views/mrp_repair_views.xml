@@ -21,7 +21,7 @@
                     <field name="rma" invisible="1"/>
                 </xpath>
                 <xpath expr="//button[@name='action_repair_end']" position="after">
-                    <button name="%(cl_minor_additions.create_reparation_wizard)d" string="Nuevo test" type="action" class="oe_highlight" context="{'default_RMA':rma, 'default_product':product_id}" attrs="{'invisible':[('test_end','=',True)]}"/>
+                    <button name="%(cl_minor_additions.create_reparation_wizard)d" string="Nuevo test" type="action" class="oe_highlight" context="{'default_RMA':rma, 'default_product':product_id}" attrs="{'invisible':['|',('test_end','=',True), ('state', 'not in',['under_repair'])]}"/>
                 </xpath>
                 <xpath expr="//button[@name='action_repair_end']" position="attributes">
                     <attribute name="states"></attribute>
