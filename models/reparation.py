@@ -21,6 +21,7 @@ class reparation(models.Model):
         for rec in self:
             rec.ensure_one()
             print(rec)
+            print("!")
         """self.ensure_one()
         pasado = True
         for testline in self.reparation_test_basic:
