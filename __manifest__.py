@@ -46,4 +46,5 @@
     'qweb': [
         'static/src/xml/account_payment.xml',
     ],
+    'application': True,
 }
