@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from cl_minor_additions.models.user_credentials import user_credentials
 from odoo import models, fields, api, _
 import datetime
 
