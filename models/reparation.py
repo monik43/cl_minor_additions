@@ -31,7 +31,7 @@ class reparation(models.Model):
                     pasado = False
                     break
             print(rec.usr_credentials)
-            if rec.usr_credentials != False:
+            if rec.usr_credentials:
                 for testline in rec.reparation_test_user:
                     if testline.no == True or testline.yes != True:
                         print("cred")
