@@ -18,20 +18,20 @@ class reparation(models.Model):
     test_pasado = fields.Boolean(compute="_get_test_pasado")
 
     def _get_test_pasado(self):
-        self.ensure_one()
-        pasado = True
-        for testline in self.reparation_test_basic:
-            if testline.no == True or testline.yes != True:
-                pasado = False
-                break
-        
-        if self.usr_credentials != False:
-            for testline in self.reparation_test_user:
+        for rec in self:
+            pasado = True
+            for testline in rec.reparation_test_basic:
                 if testline.no == True or testline.yes != True:
                     pasado = False
                     break
+            
+            if rec.usr_credentials != False:
+                for testline in rec.reparation_test_user:
+                    if testline.no == True or testline.yes != True:
+                        pasado = False
+                        break
 
-        self.test_pasado = pasado
+            rec.test_pasado = pasado
 
 
 class reparation_test(models.Model):
