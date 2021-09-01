@@ -25,7 +25,7 @@
                 </xpath>
                 <xpath expr="//button[@name='action_repair_end']" position="attributes">
                     <attribute name="states"></attribute>
-                    <attribute name="attrs">{'invisible':[('test_end','=',False), ('state', 'not in',['under_repair'])]}</attribute>
+                    <attribute name="attrs">{'invisible':['|',('test_end','=',False), ('state', 'not in',['under_repair'])]}</attribute>
                 </xpath>
                 <xpath expr="//page[4]" position="after">
                     <page string="Reparaciones">
