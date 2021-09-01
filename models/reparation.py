@@ -20,10 +20,11 @@ class reparation(models.Model):
     def _get_test_pasado(self):
         for rec in self:
             rec.ensure_one()
-            print(rec)
-            print("!!")
             pasado = True
             for testline in rec.reparation_test_basic:
+                print(testline.no)
+                print(testline.yes)
+                print("----------")
                 if testline.no == True or testline.yes != True:
                     pasado = False
                     break
