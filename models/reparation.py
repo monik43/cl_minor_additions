@@ -7,7 +7,7 @@ class reparation(models.Model):
     _name = 'cl.reparation'
     _description = 'Test de la reparación'
 
-    usr_credentials = fields.Many2one('cl.user.credentials')
+    usr_credentials = fields.Many2one('cl.user.credentials', "Credenciales del test de usuario")
     tecnico = fields.Many2one('res.users','Técnico', domain="[('share','=',False)]")
     origen_rep = fields.Many2one('mrp.repair', 'Reparación')
     ticket = fields.Many2one('helpdesk.ticket')
@@ -15,7 +15,7 @@ class reparation(models.Model):
     RMA = fields.Char('RMA')
     reparation_test_basic = fields.One2many('cl.reparation.newtest','brep', 'Test básico')
     reparation_test_user = fields.One2many('cl.reparation.newtest','urep', 'Test usuario')
-    test_pasado = fields.Boolean(compute="_get_test_pasado")
+    test_pasado = fields.Boolean("Test pasado?",compute="_get_test_pasado")
 
     def _get_test_pasado(self):
         for rec in self:
