@@ -31,7 +31,7 @@ class createclreparation_mrp(models.TransientModel):
 
     @api.multi
     def action_create_cl_reparation(self):
-        self.ensure_one()
+        #self.ensure_one()
         res = self.env['cl.reparation'].browse(
             self._context.get('id', []))
         test = self.env['cl.reparation.newtest'].browse(
