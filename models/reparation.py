@@ -43,3 +43,4 @@ class reparation_test(models.Model):
     notes = fields.Char("Observaciones")
     yes = fields.Boolean("Si")
     no = fields.Boolean("No")
+    no_aplica = fields.Boolean("No aplica")

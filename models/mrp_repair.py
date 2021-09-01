@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from cl_minor_additions.models.reparation import reparation
 from odoo import models, fields, api, _
 from odoo.osv import orm
 from lxml import etree
@@ -42,11 +43,18 @@ class mrp_repair(models.Model):
 
     po_rel = fields.Many2one(
         'purchase.order', string='Purchase relacionada', compute="_compute_po_rel")
-
+    test_end = fields.Boolean(compute="_get_test_end")
     rep_conf = fields.Boolean(default=False,compute="_get_state")
     rec = fields.Many2one('mrp.repair', compute="_get_rec")
     rma = fields.Char(compute="_get_rma")
     reparation = fields.One2many('cl.reparation','origen_rep', "Reparaciones")
+
+    def _get_test_end(self):
+        for rec in self:
+            for line in rec.reparation:
+                if line.test_pasado == True:
+                    rec.test_end = True
+                    break
 
     def _get_rec(self):
         for rec in self:
