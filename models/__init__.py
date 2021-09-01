@@ -1,11 +1,2 @@
 # -*- coding: utf-8 -*-
-from . import mrp_repair
-from . import user_credentials
-from . import stock_picking
-from . import stock_move
-from . import stock_production_lot
-from . import mail_activity
-from . import purchase
-from . import create_purchaseorder_mrp
-from . import helpdesk
-from . import reparation
+from . import reparation, mail_activity, user_credentials, mrp_repair, helpdesk, stock_move, stock_picking, stock_production_lot, purchase, create_purchaseorder_mrp

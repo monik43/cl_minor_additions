@@ -1,31 +1,47 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "cl_minor_additions",
+    'name': "Modulo menor Cloudalia",
 
     'summary': """
         Adiciones menores a Odoo""",
 
     'description': """
-        Long description of module's purpose
+        Cambios en los modelos:
+        - create_purchaseorder_mrp
+        - helpdesk
+        - mail_activity
+        - mrp_repair
+        - purchase
+        - stock_move
+        - stock_picking
+        - stock_production_lot
+
+        Nuevos modelos:
+        - cl.reparation
+        - cl.user.credentials
+
+        Wizard:
+        - cl.create.reparation
     """,
 
     'author': "Cloudalia Educacion",
     'website': "https://cloudaliaeducacion.com/",
     'category': 'Uncategorized',
-    'version': '11.0.0.6',
-    'depends': ['base', 'stock', 'cloudedu_mods', 'account', 'filtro_comercial-main', 'helpdesk','mrp_repair'],
+    'version': '11.0.0.10',
+    'depends': ['base', 'stock', 'mrp_repair', 'helpdesk', 'account', 'cloudedu_mods', 'filtro_comercial-main'],
     'data': [
-        #'data/user_credentials.xml',
-        'wizard/create_reparation.xml',
-        'views/account_invoice_views.xml',
-        'views/mail_views.xml',
-        'views/mrp_repair_views.xml',
-        'views/stock_views.xml',
-        'views/helpdesk_views.xml',
-        'views/account_templates.xml',
         'views/web_assets.xml',
-        'views/purchase_order_mrp_wiz.xml',
+        'views/account_invoice_views.xml',
+        'views/account_templates.xml',
         'views/report_picking_final_2.xml',
+        'data/user_credentials.xml',
+        'views/purchase_order_mrp_wiz.xml',
+        'views/mrp_repair_views.xml',
+        'views/mail_views.xml',
+        'views/helpdesk_views.xml',
+        'views/stock_views.xml',
+        'views/reparation_views.xml',
+        'wizard/create_reparation.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',

@@ -14,19 +14,45 @@
                 </xpath>
                 <xpath expr="//field[@name='lot_id']" position="after">
                     <field name="n_lot_id" attrs="{'invisible':[('lot_id','!=',False)]}"/>
-                    <field name="po_rel" invisible="1"/>
                 </xpath>
                 <xpath expr="//field[@name='quotation_notes']" position="after">
                     <field name="rep_conf" invisible="1" />
                     <field name="rec" invisible="1" />
                     <field name="rma" invisible="1"/>
-                    <field name="reparation" attrs="{'invisible':[('rep_conf','=',False)]}" />
                 </xpath>
-                <!--
-                <xpath expr="//header" position="inside">
-                    <button name="%(cl_minor_additions.create_reparation_wizard)d" string="Nuevo test" type="action" class="oe_highlight" context="{'default_origen_rep':rec,'default_RMA':rma, 'default_product':product_id}"/>
+                <xpath expr="//button[@name='action_repair_end']" position="after">
+                    <button name="%(cl_minor_additions.create_reparation_wizard)d" string="Nuevo test" type="action" class="oe_highlight" context="{'default_RMA':rma, 'default_product':product_id}" attrs="{'invisible':['|',('test_end','=',True), ('state', 'not in',['under_repair'])]}"/>
                 </xpath>
-                -->
+                <xpath expr="//button[@name='action_repair_end']" position="attributes">
+                    <attribute name="states"></attribute>
+                    <attribute name="attrs">{'invisible':['|',('test_end','=',False), ('state', 'not in',['under_repair'])]}</attribute>
+                </xpath>
+                <xpath expr="//page[4]" position="after">
+                    <page string="Reparaciones">
+                        <field name="reparation">
+                            <tree>
+                                <field name="tecnico"/>
+                                <field name="date"/>
+                                <field name="test_pasado"/>
+                            </tree>
+                        </field>
+                        <field name="test_end" invisible="1"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        <record id="cl_mrp_repair_order_view_invisible_attrs" model="ir.ui.view">
+            <field name="name">mrp.repair.form.invisible.attrs</field>
+            <field name="model">mrp.repair</field>
+            <field name="inherit_id" ref="cloudalia_purchase_from_repair.mrp_repair_order_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='1122']" position="attributes">
+                    <attribute name="attrs">{'invisible':['|',('state','in',['done','cancel']), ('po_rel','!=',False)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='1122']" position="after">
+                    <field name="po_rel" invisible="1"/>
+                    <button name="1122" string="Create Purchase Order" type="action" attrs="{'invisible':['|',('state','in',['done','cancel']), ('po_rel','=',False)]}"/>
+                </xpath>
             </field>
         </record>
     </data>
