@@ -15,7 +15,7 @@ class reparation(models.Model):
     RMA = fields.Char('RMA')
     reparation_test_basic = fields.One2many('cl.reparation.newtest','brep', 'Test básico')
     reparation_test_user = fields.One2many('cl.reparation.newtest','urep', 'Test usuario')
-    test_pasado = fields.Boolean("Test pasado?",compute="_get_test_pasado")
+    test_pasado = fields.Boolean("Test pasado?")#,compute="_get_test_pasado"
 
     """def _get_test_pasado(self):
         for rec in self:
