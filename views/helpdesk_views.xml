@@ -6,7 +6,7 @@
             <field name="model">helpdesk.ticket</field>
             <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//div[hasclass('oe_title')]/field[@name='priority']" position="after">
+                <xpath expr="//div[hasclass('oe_title')]//field[@name='priority']" position="after">
                     <h2>RMA: <field name="RMA"/></h2>
                 </xpath>
                 <xpath expr="//field[@name='partner_id']" position="after">
