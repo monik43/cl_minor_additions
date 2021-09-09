@@ -21,7 +21,7 @@
             <field name="name">cl_helpdesk_ticket_view_form_ordensat_fix</field>
             <field name="model">helpdesk.ticket</field>
             <field name="inherit_id" ref="cloudedu_mods.helpdesk_ticket_view_form_ordensat"/>
-            <field name="priority">15</field>
+            <!--<field name="priority">15</field>-->
             <field name="arch" type="xml">
                 <xpath expr="//div[hasclass('oe_title')]" position="replace">
                     <h1><field name="kanban_state" widget="state_selection"/> / <field name="id" class="field_name"/> - <field name="name" class="field_name" placeholder="Subject..."/></h1>
