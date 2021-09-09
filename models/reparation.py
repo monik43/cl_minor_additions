@@ -17,7 +17,7 @@ class reparation(models.Model):
     reparation_test_user = fields.One2many('cl.reparation.newtest','urep', 'Test usuario')
     test_pasado = fields.Boolean("Test pasado?",compute="_get_test_pasado")
 
-    def _get_test_pasado(self):
+    """def _get_test_pasado(self):
         for rec in self:
             pasado = True
             for testline in rec.reparation_test_basic:
@@ -31,7 +31,7 @@ class reparation(models.Model):
                         pasado = False
                         break
                     
-            rec.test_pasado = pasado
+            rec.test_pasado = pasado"""
 
 
 class reparation_test(models.Model):
@@ -41,6 +41,7 @@ class reparation_test(models.Model):
     brep = fields.Many2one('cl.reparation','reparation_test_basic')
     name = fields.Char("Test                       ", readonly="True")
     notes = fields.Char("Observaciones")
+    res = fields.Selection([('y','Si'),('n','No'),('na','No aplica'),],'Resultado')
     yes = fields.Boolean("Si")
     no = fields.Boolean("No")
     no_aplica = fields.Boolean("No aplica")

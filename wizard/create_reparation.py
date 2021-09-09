@@ -30,7 +30,7 @@ class createclreparation_mrp(models.TransientModel):
     product = fields.Many2one('product.product', 'Producto a reparar')
 
     @api.multi
-    def action_create_cl_reparation(self):
+    def action_create_cl_reparation(self):###TODO
         self.ensure_one()
         res = self.env['cl.reparation'].browse(
             self._context.get('id', []))
@@ -55,9 +55,10 @@ class createclreparation_mrp(models.TransientModel):
             test.create({
                 'name': data.name,
                 'notes': data.notes,
-                'yes': data.yes,
-                'no': data.no,
-                'no_aplica': data.no_aplica,
+                'res': data.res,
+                #'yes': data.yes,
+                #'no': data.no,
+                #'no_aplica': data.no_aplica,
                 'origin': origin+"_u"
             })
 
@@ -65,8 +66,10 @@ class createclreparation_mrp(models.TransientModel):
             test.create({
                 'name': data.name,
                 'notes': data.notes,
-                'yes': data.yes,
-                'no_aplica': data.no_aplica,
+                'res': data.res,
+                #'yes': data.yes,
+                #'no': data.no,
+                #'no_aplica': data.no_aplica,
                 'origin': origin+"_b"
             })
         value_basic = []
@@ -98,7 +101,7 @@ class createclreparation_mrp(models.TransientModel):
         data = self.env['mrp.repair'].browse(
             self._context.get('active_ids', []))
         res.update({'origen_rep': data.id})
-        if data.product_id.id in (3412, 1279, 3405, 104, 1227, 242, 3379, 19, 400, 3165, 403, 3102, 3247, 1276, 3365, 3364, 3086, 297, 324, 330):
+        """if data.product_id.id in (3412, 1279, 3405, 104, 1227, 242, 3379, 19, 400, 3165, 403, 3102, 3247, 1276, 3365, 3364, 3086, 297, 324, 330):
             res.update({'reparation_test_basic': [(0, 0, {'name': 'WIFI'}), (0, 0, {'name': 'Teclado'}), (0, 0, {'name': 'Touchpad'}), (0, 0, {'name': 'Pantalla táctil (Si lo és)'}), (0, 0, {'name': 'Prueba carga (cargador original)'}), (0, 0, {
                 'name': 'Prueba de carga (superior al 10%) 5% D 5% IZ'}), (0, 0, {'name': 'Tornillos'}), (0, 0, {'name': 'Embalaje'}), (0, 0, {'name': 'Modo tablet (Táctil y que funcione KB y TP)'}), (0, 0, {'name': 'Equipo de sustitución'})]})
         else:
@@ -106,7 +109,7 @@ class createclreparation_mrp(models.TransientModel):
                 'name': 'Prueba de carga (superior al 10%) 5% D 5% IZ'}), (0, 0, {'name': 'Tornillos'}), (0, 0, {'name': 'Embalaje'}), (0, 0, {'name': 'Equipo de sustitución'})]})
 
         res.update({'reparation_test_user': [(0, 0, {'name': 'Battery Test'}), (0, 0, {'name': 'Cámara #1 (1ª opción web: probar cámara)'}), (0, 0, {
-                   'name': 'Cámara #2'}), (0, 0, {'name': 'Micrófono (1ª opción web: probar micrófono)'}), (0, 0, {'name': 'Audio (videos YouTube etc)'})]})
+                   'name': 'Cámara #2'}), (0, 0, {'name': 'Micrófono (1ª opción web: probar micrófono)'}), (0, 0, {'name': 'Audio (videos YouTube etc)'})]})"""
 
         return res
 
@@ -121,6 +124,7 @@ class getmrpdata(models.TransientModel):
         'create.clreparation_mrp', 'reparation_test_basic')
     name = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
-    yes = fields.Boolean("Si")
-    no = fields.Boolean("No")
-    no_aplica = fields.Boolean("No aplica")
+    res = fields.Selection([('y','Si'),('n','No'),('na','No aplica'),],'Resultado')
+    #yes = fields.Boolean("Si")
+    #no = fields.Boolean("No")
+    #no_aplica = fields.Boolean("No aplica")
