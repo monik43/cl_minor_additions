@@ -33,6 +33,7 @@
     'application': True,
     'depends': ['base', 'stock', 'mrp_repair', 'helpdesk', 'account', 'cloudedu_mods', 'filtro_comercial-main'],
     'data': [
+        'wizard/create_reparation.xml',
         'views/web_assets.xml',
         'views/account_invoice_views.xml',
         'views/account_templates.xml',
@@ -44,7 +45,6 @@
         'views/helpdesk_views.xml',
         'views/stock_views.xml',
         'views/reparation_views.xml',
-        'wizard/create_reparation.xml',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
