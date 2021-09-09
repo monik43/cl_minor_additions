@@ -16,7 +16,19 @@
                     <field name="ordensat" context="{'default_x_ticket': self_cont, 'default_product_id': prod_id_context, 'default_n_lot_id': lot_id_context ,'default_name': name_rma,'default_partner_id': partner_id }" readonly="0"/>
                 </xpath>
             </field>
-        </record>        <!--
+        </record>
+        <record id="cl_helpdesk_ticket_view_form_ordensat_fix" model="ir.ui.view">
+            <field name="name">cl_helpdesk_ticket_view_form_ordensat_fix</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="cloudedu_mods.helpdesk_ticket_view_form_ordensat"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('oe_title')]" position="replace">
+                    <h1><field name="kanban_state" widget="state_selection"/> / <field name="id" class="field_name"/> - <field name="name" class="field_name" placeholder="Subject..."/></h1>
+                        <h2>Deadline: <field name="deadline" readonly="1" attrs="{'invisible': [('deadline', '=', False)]}"/> - <field name="priority" widget="priority"/></h2>
+                </xpath>
+            </field>
+        </record>
+        <!--
         <record id="cl_helpdesk_ticket_view_form_misc_changes_2" model="ir.ui.view">
             <field name="name">cl_helpdesk.ticket.form.misc.changes2</field>
             <field name="model">helpdesk.ticket</field>
