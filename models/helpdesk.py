@@ -36,7 +36,7 @@ class helpdesk_ticket(models.Model):
     
     #ordensat = fields.Many2one('mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
 
-    ordensat = fields.Many2one(
+    ordensat = fields.Many2many(
         'mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
 
     def _get_orden_sat(self):
