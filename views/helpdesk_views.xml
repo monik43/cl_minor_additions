@@ -23,8 +23,6 @@
             <field name="inherit_id" ref="cloudedu_mods.helpdesk_ticket_view_form_ordensat"/>
             <field name="arch" type="xml">
                 <xpath expr="//div[hasclass('oe_title')]" position="replace">
-                    <h1><field name="kanban_state" widget="state_selection"/> / <field name="id" class="field_name"/> - <field name="name" class="field_name" placeholder="Subject..."/></h1>
-                        <h2>Deadline: <field name="deadline" readonly="1" attrs="{'invisible': [('deadline', '=', False)]}"/> - <field name="priority" widget="priority"/></h2>
                 </xpath>
             </field>
         </record>
