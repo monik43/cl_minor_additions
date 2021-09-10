@@ -6,28 +6,16 @@
             <field name="model">helpdesk.ticket</field>
             <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
             <field name="arch" type="xml">
-                
                 <xpath expr="//field[@name='partner_id']" position="after">
                     <field name="name_rma" invisible="1"/>
                     <field name="prod_id_context" invisible="1"/>
                     <field name="lot_id_context" invisible="1"/>
                     <field name="self_cont" invisible="1"/>
                 </xpath>
-                <xpath expr="//field[@name='team_id']" position="before">
+                <xpath expr="//field[@name='x_lot_id']" position="before">
                     <field name="ordensat" context="{'default_x_ticket': self_cont, 'default_product_id': prod_id_context, 'default_n_lot_id': lot_id_context ,'default_name': name_rma,'default_partner_id': partner_id }" readonly="0"/>
                 </xpath>
             </field>
         </record>
-        <!--
-        <record id="cl_helpdesk_ticket_view_form_misc_changes_2" model="ir.ui.view">
-            <field name="name">cl_helpdesk.ticket.form.misc.changes2</field>
-            <field name="model">helpdesk.ticket</field>
-            <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='ordensat']" position="before">
-                    <field name="ordensat" context="{'default_x_ticket': self_cont, 'default_product_id': prod_id_context, 'default_n_lot_id': lot_id_context ,'default_name': name_rma,'default_partner_id': partner_id }" />attrs="{'invisible':[('ordensat','!=',False)]}"
-                </xpath>
-            </field>
-        </record>-->
     </data>
 </odoo>
