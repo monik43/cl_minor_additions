@@ -45,7 +45,7 @@ class helpdesk_ticket(models.Model):
                 rec.ordensat = rec.env['mrp.repair'].search(
                     [('x_ticket', '=', rec.id)])
             elif rec.stage_id.name == 'Asignado':
-                if rec.x_lot_id == False:
+                if rec.x_lot_id.id == False:
                     print("/()"*50)
                 print(rec.x_lot_id, " ", "-"*50)
                 print(rec.prod_id_context, " ", "-"*50)
