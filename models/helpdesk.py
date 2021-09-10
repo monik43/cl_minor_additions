@@ -44,7 +44,7 @@ class helpdesk_ticket(models.Model):
             if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
                 rec.ordensat = rec.env['mrp.repair'].search(
                     [('x_ticket', '=', rec.id)])
-            elif rec.stage_id.name == 'Asignado':
+            """elif rec.stage_id.name == 'Asignado':
                 if rec.x_lot_id.id != False:
                     vals = {
                         'x_ticket': rec.id,
@@ -62,7 +62,7 @@ class helpdesk_ticket(models.Model):
                     repar = rec.env['mrp.repair'].create(vals)
                     rec.ordensat = repar
                 else:
-                    raise Warning(_("No se ha registrado el número de serie en la base de datos. Antes de cambiar el estado, registre el nº de serie."))
+                    raise Warning(_("No se ha registrado el número de serie en la base de datos. Antes de cambiar el estado, registre el nº de serie."))"""
 
     def _get_name_rma(self):
         for rec in self:
