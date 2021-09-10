@@ -17,5 +17,15 @@
                 </xpath>
             </field>
         </record>
+        <record id="cl_helpdesk_ticket_view_form_inherit_helpdesk_timesheet" model="ir.ui.view">
+            <field name="name">cl_helpdesk.ticket.form.inherit.timesheet</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="inherit_id" ref="helpdesk_timesheet.helpdesk_ticket_view_form_inherit_helpdesk_timesheet"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="before">
+                    <field name="ordensat" context="{'default_x_ticket': self_cont, 'default_product_id': prod_id_context, 'default_n_lot_id': lot_id_context ,'default_name': name_rma,'default_partner_id': partner_id }" readonly="0"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>
