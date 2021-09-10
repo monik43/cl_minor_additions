@@ -39,6 +39,7 @@ class helpdesk_ticket(models.Model):
     ordensat = fields.Many2many(
         'mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
 
+    @api.multi
     def open_act(self):
         return {
             'name': self.display_name,
