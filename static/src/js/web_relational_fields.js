@@ -23,13 +23,30 @@ odoo.define('cl_minor_additions.confirm_stage_change', function (require) {
                     method: 'js_template_handler',
                     args: [target]
                 }).then(function (data) {
-                    if (data != false) {
+                    if (data[0] != false) {
                         console.log(data)
-                        Dialog.confirm(this, _t("La etapa a la  que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa?"), {
-                            confirm_callback: function () {
-                                self._setValue(target);
-                            },
-                        });
+                        if (data[1] == "Asignado"){
+                            _rpc.query({
+                                model: 'helpdesk.ticket',
+                                method: 'js_stage_handler',
+                                args: [target]
+                            }).then(function (data2) {
+                                if (data2 == false){
+                                    Dialog.confirm(this, _t("No se ha registrado el número de serie en la base de datos. Antes de cambiar el estado, registre el nº de serie."), {
+                                        confirm_callback: function () {
+                                            console.log(data2);
+                                        },
+                                    });
+                                }
+                            }
+                        } else {
+                            Dialog.confirm(this, _t("La etapa a la  que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa?"), {
+                                confirm_callback: function () {
+                                    self._setValue(target);
+                                },
+                            });
+                        }
+                        
                     } else {
                         self._setValue(target);
                     }

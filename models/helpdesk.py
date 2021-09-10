@@ -39,6 +39,10 @@ class helpdesk_ticket(models.Model):
     ordensat = fields.Many2many(
         'mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
 
+    @api.model
+    def js_template_handler(self, id):
+        return self.env['helpdesk.ticket'].browse(id).x_lot_id.id
+
     def _get_orden_sat(self):
         for rec in self:
             if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
