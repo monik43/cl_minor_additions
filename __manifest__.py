@@ -45,6 +45,7 @@
         'views/helpdesk_views.xml',
         'views/stock_views.xml',
         'views/reparation_views.xml',
+        'security/ir.model.access.csv',
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
