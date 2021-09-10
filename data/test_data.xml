@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!--
         <record id="l1" model="cl.reparation.newtest">
-            <field name="name">Europa suport extern</field>
-            <field name="mail">suportextern@europais.net</field>
-            <field name="password">CloudaliaTest</field>
-        </record>
-        -->
-        <record id="basic" model="cl.reparation">
             <field name="name">Europa suport extern</field>
             <field name="mail">suportextern@europais.net</field>
             <field name="password">CloudaliaTest</field>
