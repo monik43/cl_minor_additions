@@ -21,6 +21,11 @@
             <field name="arch" type="xml">
                 <xpath expr="//notebook" position="before">
                         <field name="ordensat" context="{'default_x_ticket': self_cont, 'default_product_id': prod_id_context, 'default_n_lot_id': lot_id_context ,'default_name': name_rma,'default_partner_id': partner_id }" readonly="0"/>
+                            <tree editable="bottom">
+                                <field name="name"/>
+                                <field name="product_id"/>
+                                <field name="state"/>
+                            </tree>
                 </xpath>
             </field>
         </record>
