@@ -39,17 +39,6 @@ class helpdesk_ticket(models.Model):
     ordensat = fields.Many2many(
         'mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
 
-    @api.multi
-    def open_act(self):
-        return {
-            'name': self.display_name,
-            'type': 'ir.actions.act_window',
-            'view_mode': 'form',
-            'res_model': self._name,
-            'res_id': self.id,
-            'target': 'current'
-        }
-
     def _get_orden_sat(self):
         for rec in self:
             if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):

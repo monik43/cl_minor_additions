@@ -74,3 +74,13 @@ class mrp_repair(models.Model):
             if rec.state == 'confirmed' and rec.rep_conf != True:
                 rec.rep_conf = True
 
+    @api.multi
+    def open_act(self):
+        return {
+            'name': self.display_name,
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': self._name,
+            'res_id': self.id,
+            'target': 'current'
+        }
