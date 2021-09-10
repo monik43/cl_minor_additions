@@ -47,6 +47,7 @@ class helpdesk_ticket(models.Model):
             elif rec.stage_id.name == 'Asignado':
                 print(rec.x_lot_id, " ", "-"*50)
                 print(rec.prod_id_context, " ", "-"*50)
+                print(rec.product_id, " ", "-"*50)
                 if rec.x_lot_id != False:
                     vals = {
                         'x_ticket': rec.id,
