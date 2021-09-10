@@ -45,6 +45,8 @@ class helpdesk_ticket(models.Model):
                 rec.ordensat = rec.env['mrp.repair'].search(
                     [('x_ticket', '=', rec.id)])
             elif rec.stage_id.name == 'Asignado':
+                print(rec.x_lot_id, " ", "-"*50)
+                print(rec.prod_id_context, " ", "-"*50)
                 if rec.x_lot_id != False:
                     vals = {
                         'x_ticket': rec.id,
