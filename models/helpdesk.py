@@ -41,7 +41,7 @@ class helpdesk_ticket(models.Model):
             if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
                 rec.ordensat = rec.env['mrp.repair'].search(
                     [('x_ticket', '=', rec.id)])
-            elif rec.stage_id.name == 'Asignado':
+            """elif rec.stage_id.name == 'Asignado':
                 vals = {
                     'x_ticket': rec.id,
                     'product_id': rec.prod_id_context.id,
@@ -56,7 +56,7 @@ class helpdesk_ticket(models.Model):
                     'internal_notes': "Reparación creada cuando el estado del ticket relacionado se cambió a \"Asignado\"."
                 }
                 repar = rec.env['mrp.repair'].create(vals)
-                rec.ordensat = repar
+                rec.ordensat = repar"""
 
     def _get_name_rma(self):
         for rec in self:
