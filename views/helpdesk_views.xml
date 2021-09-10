@@ -25,6 +25,7 @@
                                 <field name="name"/>
                                 <field name="product_id"/>
                                 <field name="state"/>
+                                <button name="open_act" string="Ir" type="object" class="oe_highlight"/>
                             </tree>
                         </field>
                 </xpath>
