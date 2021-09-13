@@ -45,5 +45,12 @@
         <record id="ut5" model="cl.reparation.newtest">
             <field name="name">Audio (videos YouTube etc)</field>
         </record>
+        <!-- Test type -->
+        <record id="t1" model="cl.test.type">
+            <field name="name">Básico</field>
+        </record>
+        <record id="t2" model="cl.test.type">
+            <field name="name">usuario</field>
+        </record>
     </data>
 </odoo>
