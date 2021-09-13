@@ -47,8 +47,8 @@
                 <form>
                     <sheet>
                         <group>
-                            <field name="name" />
-                            <field name="type" />
+                            <field name="name" attrs="{'required': True}"/>
+                            <field name="type" attrs="{'required': True}"/>
                         </group>
                     </sheet>
                 </form>
