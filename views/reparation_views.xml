@@ -61,9 +61,9 @@
                 </tree>
             </field>
         </record>
-        <record id="newtest_tree_view" model="ir.ui.view">
-            <field name="name">newtest.tree.view</field>
-            <field name="model">cl.reparation.newtest</field>
+        <record id="def_newtest_tree_view" model="ir.ui.view">
+            <field name="name">default.newtest.tree.view</field>
+            <field name="model">cl.default.newtest</field>
             <field name="arch" type="xml">
                 <tree string="Lineas del test de reparaciones">
                     <field name="id" invisible="1"/>
@@ -78,14 +78,14 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <record model="ir.actions.act_window" id="newtest_action">
+        <record model="ir.actions.act_window" id="def_newtest_action">
             <field name="name">Lineas del test de reparaciones</field>
-            <field name="res_model">cl.reparation.newtest</field>
+            <field name="res_model">cl.default.newtest</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
         <menuitem id="cl_reparation" name="Reparacion"/>
         <menuitem id="cl_reparation_tests" name="Reparaciones" parent="cl_reparation" sequence="3" action="reparation_action"/>
-        <menuitem id="cl_reparation_newtest" name="Lineas del test de reparaciones" parent="cl_reparation" sequence="3" action="newtest_action"/>
+        <menuitem id="cl_reparation_newtest" name="Lineas del test de reparaciones" parent="cl_reparation" sequence="3" action="def_newtest_action"/>
     </data>
 </odoo>
