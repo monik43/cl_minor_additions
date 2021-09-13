@@ -44,6 +44,11 @@ class reparation_test(models.Model):
     notes = fields.Char("Observaciones")
     res = fields.Selection([('y','Si'),('n','No'),('na','No aplica'),],'Resultado')
 
+class default_test(models.Model):
+    _name = 'cl.default.newtest'
+    type = fields.Many2one('cl.test.type')
+    name = fields.Char("Test                       ", readonly="True")
+
 class test_type(models.Model):
     _name = 'cl.test.type'
     name = fields.Char()
