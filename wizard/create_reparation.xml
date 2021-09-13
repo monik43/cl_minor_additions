@@ -15,32 +15,21 @@
                             <field name="date"/>
                             <field name="RMA"/>
                         </group>
-
                         <field name="reparation_test_basic">
-                            <tree editable="bottom">
+                            <tree>
                                 <field name="name"/>
-                                <field name="res"/>
-                                <!--
-                                <field name="yes"/>
-                                <field name="no"/>
-                                <field name="no_aplica"/>
-                                -->
-                                <field name="notes"/>
+                                <field name="res" attrs="{'required': True}"/>
+                                <field name="notes" attrs="{'required':[('res','=','na')]}"/>
                             </tree>
                         </field>
                         <group>
                             <field name="usr_credentials"/>
                         </group>
                         <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}">
-                            <tree editable="bottom">
+                            <tree>
                                 <field name="name"/>
-                                <field name="res"/>
-                                <!--
-                                <field name="yes"/>
-                                <field name="no"/>
-                                <field name="no_aplica"/>
-                                -->
-                                <field name="notes"/>
+                                <field name="res" attrs="{'required': True}"/>
+                                <field name="notes" attrs="{'required':[('res','=','na')]}"/>
                             </tree>
                         </field>
                     </group>
