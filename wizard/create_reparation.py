@@ -122,6 +122,7 @@ class getmrpdata(models.TransientModel):
         'create.clreparation_mrp', 'reparation_test_basic')
     name = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
+    type = fields.Selection([('basic','Básico'),('usr','Usuario'),],'Tipo')
     res = fields.Selection(
         [('y', 'Si'), ('n', 'No'), ('na', 'No aplica'), ], 'Resultado')
     #yes = fields.Boolean("Si")
