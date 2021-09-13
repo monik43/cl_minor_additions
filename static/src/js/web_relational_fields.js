@@ -36,11 +36,17 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                   })
                   .then(function (data2) {
                     if (data2 == false) {
-                      Dialog.confirm(this, _t("No se ha registrado el número de serie en la base de datos. Antes de cambiar el estado, registre el nº de serie."), {
-                        confirm_callback: function () {
-                          console.log(data2);
-                        },
-                      });
+                      Dialog.confirm(
+                        this,
+                        _t(
+                          "No se ha registrado el número de serie en la base de datos. Antes de cambiar el estado, registre el nº de serie."
+                        ),
+                        {
+                          confirm_callback: function () {
+                            console.log(data2);
+                          },
+                        }
+                      );
                     }
                   });
               } else {

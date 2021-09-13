@@ -40,7 +40,7 @@ class helpdesk_ticket(models.Model):
         'mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
 
     @api.model
-    def js_template_handler(self, id):
+    def js_stage_handler(self, id):
         return self.env['helpdesk.ticket'].browse(id).x_lot_id.id
 
     def _get_orden_sat(self):
