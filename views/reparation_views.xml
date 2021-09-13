@@ -42,12 +42,15 @@
         <record id="def_newtest_form_view" model="ir.ui.view">
             <field name="name">default.newtest.form.view</field>
             <field name="model">cl.default.newtest</field>
+            <field name="type">form</field>
             <field name="arch" type="xml">
                 <form>
-                    <group>
-                        <field name="name" />
-                        <field name="type" />
-                    </group>
+                    <sheet>
+                        <group>
+                            <field name="name" />
+                            <field name="type" />
+                        </group>
+                    </sheet>
                 </form>
             </field>
         </record>
