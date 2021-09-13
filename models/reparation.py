@@ -20,13 +20,18 @@ class reparation(models.Model):
     def _get_test_pasado(self):
         for rec in self:
             pasado = True
+
             for line in rec.reparation_test_basic:
+                if line.res == 'n' or (line.res == 'na' and line.notes == False):
+                    pasado = False
+                    break
+
+            for line in rec.reparation_test_user:
                 if line.res == 'n' or (line.res == 'na' and line.notes == False):
                     pasado = False
                     break
                     
             rec.test_pasado = pasado
-
 
 class reparation_test(models.Model):
     _name = 'cl.reparation.newtest'
