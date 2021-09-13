@@ -16,7 +16,7 @@
                             <field name="RMA"/>
                         </group>
                         <field name="reparation_test_basic">
-                            <tree>
+                            <tree editable="bottom">
                                 <field name="name"/>
                                 <field name="res" attrs="{'required': True}"/>
                                 <field name="notes" attrs="{'required':[('res','=','na')]}"/>
