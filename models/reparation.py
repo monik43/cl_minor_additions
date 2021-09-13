@@ -45,9 +45,5 @@ class reparation_test(models.Model):
 
 class default_test(models.Model):
     _name = 'cl.default.newtest'
-    type = fields.Many2one('cl.test.type', "Tipo")
+    type = fields.Selection([('basic','Básico'),('usr','Usuario'),],'Tipo')
     name = fields.Char("Test")
-
-class test_type(models.Model):
-    _name = 'cl.test.type'
-    name = fields.Char()
