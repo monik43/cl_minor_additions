@@ -101,19 +101,21 @@ class createclreparation_mrp(models.TransientModel):
         data = self.env['mrp.repair'].browse(
             self._context.get('active_ids', []))
         res.update({'origen_rep': data.id})
+        
         basic_test_names = []
-        for line in self.env['cl.default.newtest'].search([]):
-            print(line.name)
-        #for line in 
-        """if data.product_id.id in (3412, 1279, 3405, 104, 1227, 242, 3379, 19, 400, 3165, 403, 3102, 3247, 1276, 3365, 3364, 3086, 297, 324, 330):
-            res.update({'reparation_test_basic': [(0, 0, {'name': 'WIFI'}), (0, 0, {'name': 'Teclado'}), (0, 0, {'name': 'Touchpad'}), (0, 0, {'name': 'Pantalla táctil (Si lo és)'}), (0, 0, {'name': 'Prueba carga (cargador original)'}), (0, 0, {
-                'name': 'Prueba de carga (superior al 10%) 5% D 5% IZ'}), (0, 0, {'name': 'Tornillos'}), (0, 0, {'name': 'Embalaje'}), (0, 0, {'name': 'Modo tablet (Táctil y que funcione KB y TP)'}), (0, 0, {'name': 'Equipo de sustitución'})]})
-        else:
-            res.update({'reparation_test_basic': [(0, 0, {'name': 'WIFI'}), (0, 0, {'name': 'Teclado'}), (0, 0, {'name': 'Touchpad'}), (0, 0, {'name': 'Prueba carga (cargador original)'}), (0, 0, {
-                'name': 'Prueba de carga (superior al 10%) 5% D 5% IZ'}), (0, 0, {'name': 'Tornillos'}), (0, 0, {'name': 'Embalaje'}), (0, 0, {'name': 'Equipo de sustitución'})]})
+        usr_test_names = []
 
-        res.update({'reparation_test_user': [(0, 0, {'name': 'Battery Test'}), (0, 0, {'name': 'Cámara #1 (1ª opción web: probar cámara)'}), (0, 0, {
-                   'name': 'Cámara #2'}), (0, 0, {'name': 'Micrófono (1ª opción web: probar micrófono)'}), (0, 0, {'name': 'Audio (videos YouTube etc)'})]})"""
+        for line in self.env['cl.default.newtest'].search([]):
+            if line.type == "usr":
+                usr_test_names.append(line.name)
+            else:
+                basic_test_names.append(line.name)
+
+        for line in basic_test_names:
+            res.update({'reparation_test_basic': [(0, 0, {'name': line})]})
+
+        for line in usr_test_names:
+            res.update({'reparation_test_user': [(0, 0, {'name': line})]})
 
         return res
 
