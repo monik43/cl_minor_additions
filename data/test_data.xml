@@ -66,5 +66,9 @@
             <field name="name">Audio (videos YouTube etc)</field>
             <field name="type" ref="t2"/>
         </record>
+        <record id="ut5" model="cl.reparation.newtest">
+            <field name="name">f)</field>
+            <field name="type" ref="t2"/>
+        </record>
     </data>
 </odoo>
