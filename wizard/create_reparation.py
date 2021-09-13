@@ -22,7 +22,7 @@ class createclreparation_mrp(models.TransientModel):
         "Fecha", default=lambda self: fields.datetime.now())
     RMA = fields.Char('RMA')
     usr_credentials = fields.Many2one(
-        'cl.user.credentials', 'Credenciales test usuario')
+        'cl.user.credentials', 'Credenciales test usuario', default=lambda self: self.env['cl.user.credentials'].search([('name', '=', 'Generico')]))
     reparation_test_basic = fields.One2many(
         'getmrp.data', 'breparation', 'Test')
     reparation_test_user = fields.One2many(
@@ -30,7 +30,7 @@ class createclreparation_mrp(models.TransientModel):
     product = fields.Many2one('product.product', 'Producto a reparar')
 
     @api.multi
-    def action_create_cl_reparation(self):###TODO
+    def action_create_cl_reparation(self):  # TODO
         self.ensure_one()
         res = self.env['cl.reparation'].browse(
             self._context.get('id', []))
@@ -41,25 +41,26 @@ class createclreparation_mrp(models.TransientModel):
         origin = str(self.origen_rep.id)
 
         if self.env['cl.reparation.newtest'].search([(
-                'origin', '=', str(self.origen_rep.id)+"_b")]) != False:
+                'origin', '=', str(self.origen_rep.id))]) != False:
             for num in range(50):
                 if not self.env['cl.reparation.newtest'].search([(
-                    'origin', '=', str(self.origen_rep.id)+"_"+str(num)+"_b"
+                    'origin', '=', str(self.origen_rep.id)+"_"+str(num)
                 )]):
                     origin = str(self.origen_rep.id)+"_"+str(num)
                     break
         else:
             origin = str(self.origen_rep.id)
 
+        value_basic = []
+        value_user = []
+
         for data in self.reparation_test_user:
             test.create({
                 'name': data.name,
                 'notes': data.notes,
                 'res': data.res,
-                #'yes': data.yes,
-                #'no': data.no,
-                #'no_aplica': data.no_aplica,
-                'origin': origin+"_u"
+                'type': data.type,
+                'origin': origin,
             })
 
         for data in self.reparation_test_basic:
@@ -67,18 +68,14 @@ class createclreparation_mrp(models.TransientModel):
                 'name': data.name,
                 'notes': data.notes,
                 'res': data.res,
-                #'yes': data.yes,
-                #'no': data.no,
-                #'no_aplica': data.no_aplica,
-                'origin': origin+"_b"
+                'type': data.type,
+                'origin': origin,
             })
-        value_basic = []
-        value_user = []
 
-        for test in self.env['cl.reparation.newtest'].search([('origin', '=', origin+"_b")]):
+        for test in self.env['cl.reparation.newtest'].search(['&',('type', '=', 'basic'),('origin','=',origin)]):
             value_basic.append(test.id)
 
-        for test in self.env['cl.reparation.newtest'].search([('origin', '=', origin+"_u")]):
+        for test in self.env['cl.reparation.newtest'].search(['&',('type', '=', 'usr'),('origin','=',origin)]):
             value_user.append(test.id)
 
         res.create({
@@ -92,7 +89,7 @@ class createclreparation_mrp(models.TransientModel):
             'reparation_test_basic': [(6, 0, value_basic)]
         })
 
-        #self.env['mrp.repair'].action_repair_end()
+        # self.env['mrp.repair'].action_repair_end()
         return res
 
     @api.model
@@ -125,7 +122,8 @@ class getmrpdata(models.TransientModel):
         'create.clreparation_mrp', 'reparation_test_basic')
     name = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
-    res = fields.Selection([('y','Si'),('n','No'),('na','No aplica'),],'Resultado')
+    res = fields.Selection(
+        [('y', 'Si'), ('n', 'No'), ('na', 'No aplica'), ], 'Resultado')
     #yes = fields.Boolean("Si")
     #no = fields.Boolean("No")
     #no_aplica = fields.Boolean("No aplica")

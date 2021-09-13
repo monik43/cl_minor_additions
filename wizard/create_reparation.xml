@@ -17,7 +17,7 @@
                         </group>
                         <field name="reparation_test_basic">
                             <tree editable="bottom">
-                                <field name="name" readonly="1"/>
+                                <field name="name"/>
                                 <field name="res" attrs="{'required': True}"/>
                                 <field name="notes" attrs="{'required':[('res','=','na')]}"/>
                             </tree>

@@ -38,7 +38,7 @@ class reparation_test(models.Model):
     origin = fields.Char()
     urep = fields.Many2one('cl.reparation','reparation_test_user')
     brep = fields.Many2one('cl.reparation','reparation_test_basic')
-    type = fields.Many2one('cl.test.type')
+    type = fields.Selection([('basic','Básico'),('usr','Usuario'),],'Tipo')
     name = fields.Char("Test                       ", readonly="True")
     notes = fields.Char("Observaciones")
     res = fields.Selection([('y','Si'),('n','No'),('na','No aplica'),],'Resultado')
