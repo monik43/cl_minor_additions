@@ -17,7 +17,7 @@
                         </group>
                         <field name="reparation_test_basic">
                             <tree editable="bottom">
-                                <field name="name"/>
+                                <field name="name" readonly="1"/>
                                 <field name="res" attrs="{'required': True}"/>
                                 <field name="notes" attrs="{'required':[('res','=','na')]}"/>
                             </tree>
@@ -26,7 +26,7 @@
                             <field name="usr_credentials"/>
                         </group>
                         <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}">
-                            <tree>
+                            <tree editable="bottom">
                                 <field name="name"/>
                                 <field name="res" attrs="{'required': True}"/>
                                 <field name="notes" attrs="{'required':[('res','=','na')]}"/>
