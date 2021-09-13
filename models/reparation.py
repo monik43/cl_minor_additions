@@ -15,23 +15,17 @@ class reparation(models.Model):
     RMA = fields.Char('RMA')
     reparation_test_basic = fields.One2many('cl.reparation.newtest','brep', 'Test básico')
     reparation_test_user = fields.One2many('cl.reparation.newtest','urep', 'Test usuario')
-    test_pasado = fields.Boolean("Test pasado?")#,compute="_get_test_pasado"
+    test_pasado = fields.Boolean("Test pasado?", compute="_get_test_pasado")
 
-    """def _get_test_pasado(self):
+    def _get_test_pasado(self):
         for rec in self:
             pasado = True
-            for testline in rec.reparation_test_basic:
-                if (testline.no == True and testline.yes == False) or (testline.no == True and testline.no_aplica == False and testline.yes == False):
+            for line in rec.reparation_test_basic:
+                if line.res == 'n' or (line.res == 'na' and line.notes == False):
                     pasado = False
                     break
-
-            if rec.usr_credentials:
-                for testline in rec.reparation_test_user:
-                    if (testline.no == True and testline.yes == False) or (testline.no == True and testline.no_aplica == False and testline.yes == False):
-                        pasado = False
-                        break
                     
-            rec.test_pasado = pasado"""
+            rec.test_pasado = pasado
 
 
 class reparation_test(models.Model):
@@ -46,8 +40,8 @@ class reparation_test(models.Model):
 
 class default_test(models.Model):
     _name = 'cl.default.newtest'
-    type = fields.Many2one('cl.test.type')
-    name = fields.Char("Test                       ")
+    type = fields.Many2one('cl.test.type', "Tipo")
+    name = fields.Char("Test")
 
 class test_type(models.Model):
     _name = 'cl.test.type'
