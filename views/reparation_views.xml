@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Form -->
         <record id="reparation_form_view" model="ir.ui.view">
             <field name="name">reparation.form.view</field>
             <field name="model">cl.reparation</field>
@@ -52,6 +53,7 @@
                 </form>
             </field>
         </record>
+        <!-- Tree -->
         <record id="reparation_tree_view" model="ir.ui.view">
             <field name="name">reparation.tree.view</field>
             <field name="model">cl.reparation</field>
@@ -76,6 +78,7 @@
                 </tree>
             </field>
         </record>
+        <!-- Action -->
         <record model="ir.actions.act_window" id="reparation_action">
             <field name="name">Tests de reparaciones</field>
             <field name="res_model">cl.reparation</field>
@@ -88,6 +91,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
+        <!-- menuitems -->
         <menuitem id="cl_reparation" name="Reparacion"/>
         <menuitem id="cl_reparation_tests" name="Reparaciones" parent="cl_reparation" sequence="3" action="reparation_action"/>
         <menuitem id="cl_reparation_newtest" name="Lineas del test de reparaciones" parent="cl_reparation" sequence="3" action="def_newtest_action"/>
