@@ -43,7 +43,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                         ),
                         {
                           confirm_callback: function () {
-                            console.log(data2);
+                            console.log();
                           },
                         }
                       );

@@ -41,7 +41,6 @@ class helpdesk_ticket(models.Model):
 
     @api.model
     def js_stage_handler(self, id):
-        print(self.env['helpdesk.ticket'].browse(id).x_lot_id.id, "/"*50)
         return self.env['helpdesk.ticket'].browse(id).x_lot_id.id
 
     def _get_orden_sat(self):
