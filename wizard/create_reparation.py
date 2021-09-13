@@ -101,7 +101,7 @@ class createclreparation_mrp(models.TransientModel):
         data = self.env['mrp.repair'].browse(
             self._context.get('active_ids', []))
         res.update({'origen_rep': data.id})
-        
+
         basic_test_names = []
         usr_test_names = []
 
@@ -110,7 +110,8 @@ class createclreparation_mrp(models.TransientModel):
                 usr_test_names.append(line.name)
             else:
                 basic_test_names.append(line.name)
-
+        print(basic_test_names)
+        print(usr_test_names)
         for line in basic_test_names:
             res.update({'reparation_test_basic': [(0, 0, {'name': line})]})
 
