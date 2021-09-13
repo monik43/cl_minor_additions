@@ -26,10 +26,8 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
           })
           .then(function (data) {
             if (data[0] != false) {
-              console.log("test");
-              console.log(data[0]);
-              console.log(data[1]);
               if (data[1] != 'Asignado') {
+                console.log("test")
                 _rpc
                   .query({
                     model: "helpdesk.ticket",
