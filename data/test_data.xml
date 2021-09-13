@@ -1,56 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- Basic test -->
-        <record id="bt1" model="cl.reparation.newtest">
-            <field name="name">WIFI</field>
-        </record>
-        <record id="bt2" model="cl.reparation.newtest">
-            <field name="name">Teclado</field>
-        </record>
-        <record id="bt3" model="cl.reparation.newtest">
-            <field name="name">Touchpad</field>
-        </record>
-        <record id="bt4" model="cl.reparation.newtest">
-            <field name="name">Pantalla táctil (Si lo és)</field>
-        </record>
-        <record id="bt5" model="cl.reparation.newtest">
-            <field name="name">Prueba carga (cargador original)</field>
-        </record>
-        <record id="bt6" model="cl.reparation.newtest">
-            <field name="name">Prueba de carga (superior al 10%) 5% D 5% IZ</field>
-        </record>
-        <record id="bt7" model="cl.reparation.newtest">
-            <field name="name">Tornillos</field>
-        </record>
-        <record id="bt8" model="cl.reparation.newtest">
-            <field name="name">Modo tablet (Táctil y que funcione KB y TP)</field>
-        </record>
-        <record id="bt9" model="cl.reparation.newtest">
-            <field name="name">Equipo de sustitución</field>
-        </record>
-        <!-- User test -->
-        <record id="ut1" model="cl.reparation.newtest">
-            <field name="name">Battery Test</field>
-        </record>
-        <record id="ut2" model="cl.reparation.newtest">
-            <field name="name">Cámara #1 (1ª opción web: probar cámara)</field>
-        </record>
-        <record id="ut3" model="cl.reparation.newtest">
-            <field name="name">Cámara #2</field>
-        </record>
-        <record id="ut4" model="cl.reparation.newtest">
-            <field name="name">Micrófono (1ª opción web: probar micrófono)</field>
-        </record>
-        <record id="ut5" model="cl.reparation.newtest">
-            <field name="name">Audio (videos YouTube etc)</field>
-        </record>
         <!-- Test type -->
         <record id="t1" model="cl.test.type">
             <field name="name">Básico</field>
         </record>
         <record id="t2" model="cl.test.type">
-            <field name="name">usuario</field>
+            <field name="name">Usuario</field>
+        </record>
+        <!-- Basic test -->
+        <record id="bt1" model="cl.reparation.newtest">
+            <field name="name">WIFI</field>
+            <field name="type" ref="t1"/>
+        </record>
+        <record id="bt2" model="cl.reparation.newtest">
+            <field name="name">Teclado</field>
+            <field name="type" ref="t1"/>
+        </record>
+        <record id="bt3" model="cl.reparation.newtest">
+            <field name="name">Touchpad</field>
+            <field name="type" ref="t1"/>
+        </record>
+        <record id="bt4" model="cl.reparation.newtest">
+            <field name="name">Pantalla táctil (Si lo és)</field>
+            <field name="type" ref="t1"/>
+        </record>
+        <record id="bt5" model="cl.reparation.newtest">
+            <field name="name">Prueba carga (cargador original)</field>
+            <field name="type" ref="t1"/>
+        </record>
+        <record id="bt6" model="cl.reparation.newtest">
+            <field name="name">Prueba de carga (superior al 10%) 5% D 5% IZ</field>
+            <field name="type" ref="t1"/>
+        </record>
+        <record id="bt7" model="cl.reparation.newtest">
+            <field name="name">Tornillos</field>
+            <field name="type" ref="t1"/>
+        </record>
+        <record id="bt8" model="cl.reparation.newtest">
+            <field name="name">Modo tablet (Táctil y que funcione KB y TP)</field>
+            <field name="type" ref="t1"/>
+        </record>
+        <record id="bt9" model="cl.reparation.newtest">
+            <field name="name">Equipo de sustitución</field>
+            <field name="type" ref="t1"/>
+        </record>
+        <!-- User test -->
+        <record id="ut1" model="cl.reparation.newtest">
+            <field name="name">Battery Test</field>
+            <field name="type" ref="t2"/>
+        </record>
+        <record id="ut2" model="cl.reparation.newtest">
+            <field name="name">Cámara #1 (1ª opción web: probar cámara)</field>
+            <field name="type" ref="t2"/>
+        </record>
+        <record id="ut3" model="cl.reparation.newtest">
+            <field name="name">Cámara #2</field>
+            <field name="type" ref="t2"/>
+        </record>
+        <record id="ut4" model="cl.reparation.newtest">
+            <field name="name">Micrófono (1ª opción web: probar micrófono)</field>
+            <field name="type" ref="t2"/>
+        </record>
+        <record id="ut5" model="cl.reparation.newtest">
+            <field name="name">Audio (videos YouTube etc)</field>
+            <field name="type" ref="t2"/>
         </record>
     </data>
 </odoo>
