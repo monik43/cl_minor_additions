@@ -1,10 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="l1" model="cl.reparation.newtest">
-            <field name="name">Europa suport extern</field>
-            <field name="mail">suportextern@europais.net</field>
-            <field name="password">CloudaliaTest</field>
+        <!-- Basic test -->
+        <record id="bt1" model="cl.reparation.newtest">
+            <field name="name">WIFI</field>
+        </record>
+        <record id="bt2" model="cl.reparation.newtest">
+            <field name="name">Teclado</field>
+        </record>
+        <record id="bt3" model="cl.reparation.newtest">
+            <field name="name">Touchpad</field>
+        </record>
+        <record id="bt4" model="cl.reparation.newtest">
+            <field name="name">Pantalla táctil (Si lo és)</field>
+        </record>
+        <record id="bt5" model="cl.reparation.newtest">
+            <field name="name">Prueba carga (cargador original)</field>
+        </record>
+        <record id="bt6" model="cl.reparation.newtest">
+            <field name="name">Prueba de carga (superior al 10%) 5% D 5% IZ</field>
+        </record>
+        <record id="bt7" model="cl.reparation.newtest">
+            <field name="name">Tornillos</field>
+        </record>
+        <record id="bt8" model="cl.reparation.newtest">
+            <field name="name">Modo tablet (Táctil y que funcione KB y TP)</field>
+        </record>
+        <record id="bt9" model="cl.reparation.newtest">
+            <field name="name">Equipo de sustitución</field>
+        </record>
+        <!-- User test -->
+        <record id="ut1" model="cl.reparation.newtest">
+            <field name="name">Battery Test</field>
+        </record>
+        <record id="ut2" model="cl.reparation.newtest">
+            <field name="name">Cámara #1 (1ª opción web: probar cámara)</field>
+        </record>
+        <record id="ut3" model="cl.reparation.newtest">
+            <field name="name">Cámara #2</field>
+        </record>
+        <record id="ut4" model="cl.reparation.newtest">
+            <field name="name">Micrófono (1ª opción web: probar micrófono)</field>
+        </record>
+        <record id="ut5" model="cl.reparation.newtest">
+            <field name="name">Audio (videos YouTube etc)</field>
         </record>
     </data>
 </odoo>

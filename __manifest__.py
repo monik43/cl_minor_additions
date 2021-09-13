@@ -39,6 +39,7 @@
         'views/account_templates.xml',
         'views/report_picking_final_2.xml',
         'data/user_credentials.xml',
+        'data/test_data.xml',
         'views/purchase_order_mrp_wiz.xml',
         'views/mrp_repair_views.xml',
         'views/mail_views.xml',
