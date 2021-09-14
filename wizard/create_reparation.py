@@ -83,8 +83,6 @@ class createclreparation_mrp(models.TransientModel):
             })
 
         for data in self.reparation_test_basic:
-            print(data.name)
-            print(data.res)
             test.create({
                 'name': data.name,
                 'notes': data.notes,

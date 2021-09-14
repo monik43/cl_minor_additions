@@ -22,12 +22,12 @@ class reparation(models.Model):
             pasado = True
 
             for line in rec.reparation_test_basic:
-                if line.res == 'n' or (line.res == 'na' and line.notes == False):
+                if not line.res or line.res == 'n' or (line.res == 'na' and line.notes == False):
                     pasado = False
                     break
 
             for line in rec.reparation_test_user:
-                if line.res == 'n' or (line.res == 'na' and line.notes == False):
+                if not line.res or line.res == 'n' or (line.res == 'na' and line.notes == False):
                     pasado = False
                     break
                     
