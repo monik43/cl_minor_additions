@@ -25,6 +25,7 @@
                         </field>
                         <group>
                             <field name="usr_credentials"/>
+                            <field name="test_complete" invisible="1"/>
                         </group>
                         <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}">
                             <tree editable="bottom">
