@@ -28,12 +28,25 @@ class createclreparation_mrp(models.TransientModel):
     reparation_test_user = fields.One2many(
         'getmrp.data', 'ureparation', 'Test')
     product = fields.Many2one('product.product', 'Producto a reparar')
-    #test_complete = fields.Boolean(compute="_get_compute")
+    test_complete = fields.Boolean(compute="_get_compute")
 
-    """def _get_compute(self):
+    def _get_compute(self):
         for rec in self:
+            passed = True
             for line in rec.reparation_test_basic:
-                if line.res """
+                if not line.res:
+                    passed = False
+                    break
+            
+            if rec.usr_credentials:
+                for line in rec.reparation_test_user:
+                    if not line.res:
+                        passed = False
+                        break
+                    
+            rec.test_complete = passed
+
+                    
     @api.multi
     def action_create_cl_reparation(self):  # TODO
         self.ensure_one()
