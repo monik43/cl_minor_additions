@@ -114,9 +114,9 @@ class createclreparation_mrp(models.TransientModel):
         usr_test_names = []
         for line in self.env['cl.default.newtest'].search([]):
             if line.type == "usr":
-                usr_test_names.append((0, 0, {'name': line.name}))
+                usr_test_names.append((0, 0, {'name': line.name, 'type': line.type}))
             else:
-                basic_test_names.append((0, 0, {'name': line.name}))
+                basic_test_names.append((0, 0, {'name': line.name, 'type': line.type}))
 
         res.update({'reparation_test_basic': basic_test_names})
         res.update({'reparation_test_user': usr_test_names})
