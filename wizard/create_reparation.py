@@ -30,6 +30,7 @@ class createclreparation_mrp(models.TransientModel):
     product = fields.Many2one('product.product', 'Producto a reparar')
     test_complete = fields.Boolean(compute="_get_compute")
 
+    @api.onchange('reparation_test_user','reparation_test_basic')
     def _get_compute(self):
         for rec in self:
             passed = True
@@ -43,7 +44,7 @@ class createclreparation_mrp(models.TransientModel):
                     if not line.res:
                         passed = False
                         break
-                    
+
             rec.test_complete = passed
 
                     
