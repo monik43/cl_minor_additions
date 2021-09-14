@@ -20,7 +20,7 @@
                                 <field name="name"/>
                                 <field name="res" attrs="{'required': True}"/>
                                 <field name="notes" attrs="{'required':[('res','=','na')]}"/>
-                                <field name="type"/>
+                                <field name="type" invisible="1"/>
                             </tree>
                         </field>
                         <group>
@@ -31,7 +31,7 @@
                                 <field name="name"/>
                                 <field name="res" attrs="{'required': True}"/>
                                 <field name="notes" attrs="{'required':[('res','=','na')]}"/>
-                                <field name="type"/>
+                                <field name="type" invisible="1"/>
                             </tree>
                         </field>
                     </group>
