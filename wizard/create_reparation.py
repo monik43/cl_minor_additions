@@ -38,15 +38,8 @@ class createclreparation_mrp(models.TransientModel):
                 if not line.res:
                     passed = False
                     break
-            
-            if rec.usr_credentials:
-                for line in rec.reparation_test_user:
-                    if not line.res:
-                        passed = False
-                        break
 
             rec.test_complete = passed
-
                     
     @api.multi
     def action_create_cl_reparation(self):  # TODO
@@ -74,13 +67,14 @@ class createclreparation_mrp(models.TransientModel):
         value_user = []
 
         for data in self.reparation_test_user:
-            test.create({
-                'name': data.name,
-                'notes': data.notes,
-                'res': data.res,
-                'type': data.type,
-                'origin': origin,
-            })
+            if data.res:
+                test.create({
+                    'name': data.name,
+                    'notes': data.notes,
+                    'res': data.res,
+                    'type': data.type,
+                    'origin': origin,
+                })
 
         for data in self.reparation_test_basic:
             test.create({

@@ -25,11 +25,6 @@ class reparation(models.Model):
                 if not line.res or line.res == 'n' or (line.res == 'na' and line.notes == False):
                     pasado = False
                     break
-
-            for line in rec.reparation_test_user:
-                if not line.res or line.res == 'n' or (line.res == 'na' and line.notes == False):
-                    pasado = False
-                    break
                     
             rec.test_pasado = pasado
 
