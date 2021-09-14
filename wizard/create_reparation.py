@@ -55,6 +55,8 @@ class createclreparation_mrp(models.TransientModel):
         value_user = []
 
         for data in self.reparation_test_user:
+            print(data.name)
+            print(data.type)
             test.create({
                 'name': data.name,
                 'notes': data.notes,
@@ -79,6 +81,7 @@ class createclreparation_mrp(models.TransientModel):
             value_user.append(test.id)
         for v in self.env['cl.reparation.newtest'].search([]):
             print(v.id, v.type, v.origin)
+
         print("-"*50)
         for v in value_basic:
             print(v)
