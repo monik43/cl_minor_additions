@@ -27,7 +27,7 @@
                             <group>
                                 <field name="usr_credentials"/>
                             </group>
-                            <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}">
+                            <field name="reparation_test_user" attrs="{'invisible': ['&amp;',('usr_credentials', '=', False),('reparation_test_user','=', False)]}">
                                 <tree>
                                     <field name="name"/>
                                     <field name="res" attrs="{'required': True}"/>
