@@ -4,6 +4,7 @@ from odoo.osv import orm
 from lxml import etree
 from odoo.exceptions import UserError
 
+
 class repair_line(models.Model):
     _inherit = 'mrp.repair.line'
 
@@ -22,15 +23,20 @@ class repair_line(models.Model):
             self.location_dest_id = False
         elif self.type == 'add':
             self.onchange_product_id()
-            args = self.repair_id.company_id and [('company_id', '=', self.repair_id.company_id.id)] or []
+            args = self.repair_id.company_id and [
+                ('company_id', '=', self.repair_id.company_id.id)] or []
             warehouse = self.env['stock.warehouse'].search(args, limit=1)
             self.location_id = self.repair_id.location_id
-            self.location_dest_id = self.env['stock.location'].search([('usage', '=', 'production')], limit=1).id
+            self.location_dest_id = self.env['stock.location'].search(
+                [('usage', '=', 'production')], limit=1).id
         else:
             self.price_unit = 0.0
             self.tax_id = False
-            self.location_id = self.env['stock.location'].search([('usage', '=', 'production')], limit=1).id
-            self.location_dest_id = self.env['stock.location'].search([('scrap_location', '=', True)], limit=1).id
+            self.location_id = self.env['stock.location'].search(
+                [('usage', '=', 'production')], limit=1).id
+            self.location_dest_id = self.env['stock.location'].search(
+                [('scrap_location', '=', True)], limit=1).id
+
 
 class mrp_repair(models.Model):
     _inherit = 'mrp.repair'
@@ -43,10 +49,10 @@ class mrp_repair(models.Model):
     po_rel = fields.Many2one(
         'purchase.order', string='Purchase relacionada', compute="_compute_po_rel")
     test_end = fields.Boolean(compute="_get_test_end")
-    rep_conf = fields.Boolean(default=False,compute="_get_state")
+    rep_conf = fields.Boolean(default=False, compute="_get_state")
     rec = fields.Many2one('mrp.repair', compute="_get_rec")
     rma = fields.Char(compute="_get_rma")
-    reparation = fields.One2many('cl.reparation','origen_rep', "Reparaciones")
+    reparation = fields.One2many('cl.reparation', 'origen_rep', "Reparaciones")
 
     def _get_test_end(self):
         for rec in self:
@@ -66,11 +72,22 @@ class mrp_repair(models.Model):
 
     def _compute_po_rel(self):
         for rec in self:
-            if rec.env['purchase.order'].search([('partner_ref','like',rec.name)]) != False:
-                rec.po_rel = rec.env['purchase.order'].search([('partner_ref','=',rec.name)])
-            
+            if rec.env['purchase.order'].search([('partner_ref', 'like', rec.name)]) != False:
+                rec.po_rel = rec.env['purchase.order'].search(
+                    [('partner_ref', '=', rec.name)])
+
     def _get_state(self):
         for rec in self:
             if rec.state == 'confirmed' and rec.rep_conf != True:
                 rec.rep_conf = True
 
+    @api.multi
+    def open_act(self):
+        return {
+            'name': self.display_name,
+            'type': 'ir.actions.act_window',
+            'view_mode': 'form',
+            'res_model': self._name,
+            'res_id': self.id,
+            'target': 'current'
+        }

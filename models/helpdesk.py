@@ -3,6 +3,7 @@
 import datetime
 from dateutil import relativedelta
 from odoo import api, fields, models, _
+from odoo.exceptions import Warning
 
 
 class helpdesk_stage(models.Model):
@@ -21,7 +22,7 @@ class helpdesk_stage(models.Model):
 
     @api.model
     def js_template_handler(self, id_stage):
-        return self.env['helpdesk.stage'].browse(id_stage).template_id.id
+        return self.env['helpdesk.stage'].browse(id_stage).template_id.id, self.env['helpdesk.stage'].browse(id_stage).name
 
 
 class helpdesk_ticket(models.Model):
@@ -33,8 +34,15 @@ class helpdesk_ticket(models.Model):
     lot_id_context = fields.Many2one(
         'stock.production.lot', "Lote/Nº de serie	", compute="_get_lot_id_context")
     self_cont = fields.Many2one('helpdesk.ticket', compute="_get_self_cont")
-    ordensat = fields.Many2one(
+
+    #ordensat = fields.Many2one('mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
+
+    ordensat = fields.Many2many(
         'mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
+
+    @api.model
+    def js_stage_handler(self, id):
+        return self.env['helpdesk.ticket'].browse(id).x_lot_id.id
 
     def _get_orden_sat(self):
         for rec in self:
@@ -42,21 +50,24 @@ class helpdesk_ticket(models.Model):
                 rec.ordensat = rec.env['mrp.repair'].search(
                     [('x_ticket', '=', rec.id)])
             """elif rec.stage_id.name == 'Asignado':
-                vals = {
-                    'x_ticket': rec.id,
-                    'product_id': rec.prod_id_context.id,
-                    'n_lot_id': rec.lot_id_context.id,
-                    'name': rec.name_rma,
-                    'partner_id': rec.partner_id.id,
-                    'product_qty': 1,
-                    'product_uom': rec.prod_id_context.uom_id.id,
-                    'company_id':1,
-                    'invoice_method':'none',
-                    'pricelist_id': 1,
-                    'internal_notes': "Reparación creada cuando el estado del ticket relacionado se cambió a \"Asignado\"."
-                }
-                repar = rec.env['mrp.repair'].create(vals)
-                rec.ordensat = repar"""
+                if rec.x_lot_id.id != False:
+                    vals = {
+                        'x_ticket': rec.id,
+                        'product_id': rec.prod_id_context.id,
+                        'n_lot_id': rec.lot_id_context.id,
+                        'name': rec.name_rma,
+                        'partner_id': rec.partner_id.id,
+                        'product_qty': 1,
+                        'product_uom': rec.prod_id_context.uom_id.id,
+                        'company_id':1,
+                        'invoice_method':'none',
+                        'pricelist_id': 1,
+                        'internal_notes': "Reparación creada cuando el estado del ticket relacionado se cambió a \"Asignado\"."
+                    }
+                    repar = rec.env['mrp.repair'].create(vals)
+                    rec.ordensat = repar
+                else:
+                    raise Warning(_("No se ha registrado el número de serie en la base de datos. Antes de cambiar el estado, registre el nº de serie."))"""
 
     def _get_name_rma(self):
         for rec in self:

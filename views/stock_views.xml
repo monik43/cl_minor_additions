@@ -41,12 +41,14 @@
                         <field name="lot_name" attrs="{'readonly': [('in_entire_package', '=', True)]}" invisible="not context.get('show_lots_text')" groups="stock.group_production_lot"/>
                         <field name="package_id" attrs="{'readonly': [('in_entire_package', '=', True)]}" invisible="not context.get('show_package')" groups="stock.group_tracking_lot" domain="[('location_id', '=', location_id)]"/>
                         <field name="result_package_id" attrs="{'readonly': [('in_entire_package', '=', True)]}" groups="stock.group_tracking_lot" domain="['|', '|', ('location_id', '=', False), ('location_id', '=', location_dest_id), ('id', '=', package_id)]"/>
-                        <field name="CSN" /><!--attrs="{'invisible':[('lot_id','=',False)]}" -->
+                        <field name="CSN" />
+                        <!--attrs="{'invisible':[('lot_id','=',False)]}" -->
                         <field name="ship_order_move" string="Ship/Transport Order"/>
                         <field name="is_initial_demand_editable" invisible="1"/>
                         <field name="product_uom_qty" invisible="not context.get('show_reserved_quantity')" readonly="1"/>
                         <field name="is_locked" invisible="1"/>
                         <field name="qty_done" attrs="{'readonly': ['|','|', ('is_initial_demand_editable', '=', True), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True), ('in_entire_package', '=', True)]}"/>
+                        <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" attrs="{'readonly': ['|', ('product_uom_qty', '!=', 0.0), ('in_entire_package', '=', True)]}" string="Unit of Measure" groups="product.group_uom" invisible="1"/>
                     </tree>
                 </xpath>
             </field>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+        <!-- Form -->
         <record id="reparation_form_view" model="ir.ui.view">
             <field name="name">reparation.form.view</field>
             <field name="model">cl.reparation</field>
@@ -19,22 +20,18 @@
                             <field name="reparation_test_basic">
                                 <tree>
                                     <field name="name"/>
-                                    <field name="yes"/>
-                                    <field name="no"/>
-                                    <field name="no_aplica"/>
-                                    <field name="notes"/>
+                                    <field name="res" attrs="{'required': True}"/>
+                                    <field name="notes" attrs="{'required':[('res','=','na')]}"/>
                                 </tree>
                             </field>
                             <group>
                                 <field name="usr_credentials"/>
                             </group>
-                            <field name="reparation_test_user" attrs="{'invisible': [('usr_credentials', '=', False)]}">
-                                <tree editable="bottom">
+                            <field name="reparation_test_user" attrs="{'invisible': ['&amp;',('usr_credentials', '=', False),('reparation_test_user','=', False)]}">
+                                <tree>
                                     <field name="name"/>
-                                    <field name="yes"/>
-                                    <field name="no"/>
-                                    <field name="no_aplica"/>
-                                    <field name="notes"/>
+                                    <field name="res" attrs="{'required': True}"/>
+                                    <field name="notes" attrs="{'required':[('res','=','na')]}"/>
                                 </tree>
                             </field>
                         </group>
@@ -42,7 +39,22 @@
                 </form>
             </field>
         </record>
-
+        <record id="def_newtest_form_view" model="ir.ui.view">
+            <field name="name">default.newtest.form.view</field>
+            <field name="model">cl.default.newtest</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name" attrs="{'required': True}"/>
+                            <field name="type" attrs="{'required': True}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Tree -->
         <record id="reparation_tree_view" model="ir.ui.view">
             <field name="name">reparation.tree.view</field>
             <field name="model">cl.reparation</field>
@@ -56,15 +68,35 @@
                 </tree>
             </field>
         </record>
-
+        <record id="def_newtest_tree_view" model="ir.ui.view">
+            <field name="name">default.newtest.tree.view</field>
+            <field name="model">cl.default.newtest</field>
+            <field name="arch" type="xml">
+                <tree string="Lineas del test de reparaciones">
+                    <field name="id" invisible="1"/>
+                    <field name="type"/>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        <!-- Action -->
         <record model="ir.actions.act_window" id="reparation_action">
             <field name="name">Tests de reparaciones</field>
             <field name="res_model">cl.reparation</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
+        <record model="ir.actions.act_window" id="def_newtest_action">
+            <field name="name">Lineas del test de reparaciones</field>
+            <field name="res_model">cl.default.newtest</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- menuitems -->
         <!--
         <menuitem id="cl_reparation" name="Reparacion"/>
-        <menuitem id="cl_reparation_tests" name="Reparaciones" parent="cl_reparation" sequence="3" action="reparation_action"/>-->
+        <menuitem id="cl_reparation_tests" name="Reparaciones" parent="cl_reparation" sequence="3" action="reparation_action"/>
+        <menuitem id="cl_reparation_newtest" name="Lineas del test de reparaciones" parent="cl_reparation" sequence="3" action="def_newtest_action"/>
+        -->
     </data>
 </odoo>
