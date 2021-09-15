@@ -93,8 +93,10 @@
             <field name="view_mode">tree,form</field>
         </record>
         <!-- menuitems -->
+        <!--
         <menuitem id="cl_reparation" name="Reparacion"/>
         <menuitem id="cl_reparation_tests" name="Reparaciones" parent="cl_reparation" sequence="3" action="reparation_action"/>
         <menuitem id="cl_reparation_newtest" name="Lineas del test de reparaciones" parent="cl_reparation" sequence="3" action="def_newtest_action"/>
+        -->
     </data>
 </odoo>
