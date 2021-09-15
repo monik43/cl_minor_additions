@@ -37,9 +37,9 @@
                         </field>
                     </group>
                     <footer>
-                        <button type="action" string="Modificar tests" name="%(cl_minor_additions.def_newtest_action)d" class="oe_highlight"/>
                         <button name="action_create_cl_reparation" string="Finalizar y guardar test" type="object" class="btn-primary" attrs="{'invisible':[('test_complete','=',False)]}"/>
                         <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                        <button name="%(cl_minor_additions.def_newtest_action)d" string="Modificar tests" type="action" groups="mrp.group_mrp_manager"/>
                     </footer>
                 </form>
             </field>
