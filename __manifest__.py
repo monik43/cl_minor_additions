@@ -27,7 +27,7 @@
     'author': "Cloudalia Educacion",
     'website': "https://cloudaliaeducacion.com",
     'category': 'Uncategorized',
-    'version': '11.0.0.10',
+    'version': '11.0.0.11',
     'installable': True,
     'auto_install': False,
     'application': True,
