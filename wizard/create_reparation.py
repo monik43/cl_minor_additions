@@ -138,6 +138,3 @@ class getmrpdata(models.TransientModel):
     type = fields.Selection([('basic','Básico'),('usr','Usuario'),],'Tipo')
     res = fields.Selection(
         [('y', 'Si'), ('n', 'No'), ('na', 'No aplica'), ], 'Resultado')
-    #yes = fields.Boolean("Si")
-    #no = fields.Boolean("No")
-    #no_aplica = fields.Boolean("No aplica")
