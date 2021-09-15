@@ -3,18 +3,23 @@
 from odoo import models, fields, api, _
 import datetime
 
+
 class reparation(models.Model):
     _name = 'cl.reparation'
     _description = 'Test de la reparación'
 
-    usr_credentials = fields.Many2one('cl.user.credentials', "Credenciales del test de usuario")
-    tecnico = fields.Many2one('res.users','Técnico', domain="[('share','=',False)]")
+    usr_credentials = fields.Many2one(
+        'cl.user.credentials', "Credenciales del test de usuario")
+    tecnico = fields.Many2one('res.users', 'Técnico',
+                              domain="[('share','=',False)]")
     origen_rep = fields.Many2one('mrp.repair', 'Reparación')
     ticket = fields.Many2one('helpdesk.ticket')
     date = fields.Datetime("Fecha")
     RMA = fields.Char('RMA')
-    reparation_test_basic = fields.One2many('cl.reparation.newtest','brep', 'Test básico')
-    reparation_test_user = fields.One2many('cl.reparation.newtest','urep', 'Test usuario')
+    reparation_test_basic = fields.One2many(
+        'cl.reparation.newtest', 'brep', 'Test básico')
+    reparation_test_user = fields.One2many(
+        'cl.reparation.newtest', 'urep', 'Test usuario')
     test_pasado = fields.Boolean("Test pasado?", compute="_get_test_pasado")
 
     def _get_test_pasado(self):
@@ -25,20 +30,25 @@ class reparation(models.Model):
                 if not line.res or line.res == 'n' or (line.res == 'na' and line.notes == False):
                     pasado = False
                     break
-                    
+
             rec.test_pasado = pasado
+
 
 class reparation_test(models.Model):
     _name = 'cl.reparation.newtest'
     origin = fields.Char()
-    urep = fields.Many2one('cl.reparation','reparation_test_user')
-    brep = fields.Many2one('cl.reparation','reparation_test_basic')
-    type = fields.Selection([('basic','Básico'),('usr','Usuario'),],'Tipo')
+    urep = fields.Many2one('cl.reparation', 'reparation_test_user')
+    brep = fields.Many2one('cl.reparation', 'reparation_test_basic')
+    type = fields.Selection(
+        [('basic', 'Básico'), ('usr', 'Usuario'), ], 'Tipo')
     name = fields.Char("Test                       ", readonly="True")
     notes = fields.Char("Observaciones")
-    res = fields.Selection([('y','Si'),('n','No'),('na','No aplica'),],'Resultado')
+    res = fields.Selection(
+        [('y', 'Si'), ('n', 'No'), ('na', 'No aplica'), ], 'Resultado')
+
 
 class default_test(models.Model):
     _name = 'cl.default.newtest'
-    type = fields.Selection([('basic','Básico'),('usr','Usuario'),],'Tipo')
+    type = fields.Selection(
+        [('basic', 'Básico'), ('usr', 'Usuario'), ], 'Tipo')
     name = fields.Char("Test")

@@ -17,26 +17,27 @@ class createpurchaseordermrp(models.TransientModel):
             for s in p.product_id.seller_ids:
                 if s.name.id not in s_ids:
                     s_ids.append(str(s.name.id))
-        res['domain'] = {'partner_id': [('id','in', s_ids)]}
+        res['domain'] = {'partner_id': [('id', 'in', s_ids)]}
         return res
 
     @api.model
     def default_get(self,  default_fields):
         res = super(createpurchaseordermrp, self).default_get(default_fields)
-        data = self.env['mrp.repair'].browse(self._context.get('active_ids',[]))
+        data = self.env['mrp.repair'].browse(
+            self._context.get('active_ids', []))
         update = []
         for record in data.operations:
             if record.product_id.default_code != "COMPENSACION":
-                update.append((0,0,{
-                                'product_id' : record.product_id.id,
-                                'product_uom' : record.product_uom.id,
-                                'order_id': record.repair_id.id,
-                                'name' : record.name,
-                                'product_qty' : record.product_uom_qty,
-                                'price_unit' : record.price_unit,
-                                'product_subtotal' : record.price_subtotal,
-                                }))
-        res.update({'new_order_line_ids':update})
+                update.append((0, 0, {
+                    'product_id': record.product_id.id,
+                    'product_uom': record.product_uom.id,
+                    'order_id': record.repair_id.id,
+                    'name': record.name,
+                    'product_qty': record.product_uom_qty,
+                    'price_unit': record.price_unit,
+                    'product_subtotal': record.price_subtotal,
+                }))
+        res.update({'new_order_line_ids': update})
         return res
 
     @api.multi
@@ -45,7 +46,7 @@ class createpurchaseordermrp(models.TransientModel):
         res = self.env['purchase.order'].browse(self._context.get('id', []))
         value = []
         partner_pricelist = self.partner_id.property_product_pricelist
-        
+
         mrp_repair_name = ""
         for data in self.new_order_line_ids:
             final_price = 00.0
@@ -79,5 +80,3 @@ class createpurchaseordermrp(models.TransientModel):
         })
 
         return res
-
-    

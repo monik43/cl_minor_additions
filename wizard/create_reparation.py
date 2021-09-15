@@ -40,7 +40,7 @@ class createclreparation_mrp(models.TransientModel):
                     break
 
             rec.test_complete = passed
-                    
+
     @api.multi
     def action_create_cl_reparation(self):  # TODO
         self.ensure_one()
@@ -85,10 +85,10 @@ class createclreparation_mrp(models.TransientModel):
                 'origin': origin,
             })
 
-        for test in self.env['cl.reparation.newtest'].search(['&',('type', '=', 'basic'),('origin','=',origin)]):
+        for test in self.env['cl.reparation.newtest'].search(['&', ('type', '=', 'basic'), ('origin', '=', origin)]):
             value_basic.append(test.id)
 
-        for test in self.env['cl.reparation.newtest'].search(['&',('type', '=', 'usr'),('origin','=',origin)]):
+        for test in self.env['cl.reparation.newtest'].search(['&', ('type', '=', 'usr'), ('origin', '=', origin)]):
             value_user.append(test.id)
 
         res.create({
@@ -102,7 +102,6 @@ class createclreparation_mrp(models.TransientModel):
             'reparation_test_basic': [(6, 0, value_basic)]
         })
 
-        # self.env['mrp.repair'].action_repair_end()
         return res
 
     @api.model
@@ -115,9 +114,11 @@ class createclreparation_mrp(models.TransientModel):
         usr_test_names = []
         for line in self.env['cl.default.newtest'].search([]):
             if line.type == "usr":
-                usr_test_names.append((0, 0, {'name': line.name, 'type': line.type}))
+                usr_test_names.append(
+                    (0, 0, {'name': line.name, 'type': line.type}))
             else:
-                basic_test_names.append((0, 0, {'name': line.name, 'type': line.type}))
+                basic_test_names.append(
+                    (0, 0, {'name': line.name, 'type': line.type}))
 
         res.update({'reparation_test_basic': basic_test_names})
         res.update({'reparation_test_user': usr_test_names})
@@ -135,6 +136,7 @@ class getmrpdata(models.TransientModel):
         'create.clreparation_mrp', 'reparation_test_basic')
     name = fields.Char("Test                       ")
     notes = fields.Char("Observaciones")
-    type = fields.Selection([('basic','Básico'),('usr','Usuario'),],'Tipo')
+    type = fields.Selection(
+        [('basic', 'Básico'), ('usr', 'Usuario'), ], 'Tipo')
     res = fields.Selection(
         [('y', 'Si'), ('n', 'No'), ('na', 'No aplica'), ], 'Resultado')

@@ -5,6 +5,7 @@ from dateutil import relativedelta
 from odoo import api, fields, models, _
 from odoo.exceptions import Warning
 
+
 class helpdesk_stage(models.Model):
     _inherit = "helpdesk.stage"
 
@@ -33,7 +34,7 @@ class helpdesk_ticket(models.Model):
     lot_id_context = fields.Many2one(
         'stock.production.lot', "Lote/Nº de serie	", compute="_get_lot_id_context")
     self_cont = fields.Many2one('helpdesk.ticket', compute="_get_self_cont")
-    
+
     #ordensat = fields.Many2one('mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
 
     ordensat = fields.Many2many(
@@ -79,7 +80,6 @@ class helpdesk_ticket(models.Model):
         for rec in self:
             if rec.x_lot_id != False:
                 rec.prod_id_context = rec.x_lot_id.product_id
-
 
     def _get_lot_id_context(self):
         for rec in self:

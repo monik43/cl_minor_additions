@@ -41,7 +41,8 @@
                         <field name="lot_name" attrs="{'readonly': [('in_entire_package', '=', True)]}" invisible="not context.get('show_lots_text')" groups="stock.group_production_lot"/>
                         <field name="package_id" attrs="{'readonly': [('in_entire_package', '=', True)]}" invisible="not context.get('show_package')" groups="stock.group_tracking_lot" domain="[('location_id', '=', location_id)]"/>
                         <field name="result_package_id" attrs="{'readonly': [('in_entire_package', '=', True)]}" groups="stock.group_tracking_lot" domain="['|', '|', ('location_id', '=', False), ('location_id', '=', location_dest_id), ('id', '=', package_id)]"/>
-                        <field name="CSN" /><!--attrs="{'invisible':[('lot_id','=',False)]}" -->
+                        <field name="CSN" />
+                        <!--attrs="{'invisible':[('lot_id','=',False)]}" -->
                         <field name="ship_order_move" string="Ship/Transport Order"/>
                         <field name="is_initial_demand_editable" invisible="1"/>
                         <field name="product_uom_qty" invisible="not context.get('show_reserved_quantity')" readonly="1"/>
