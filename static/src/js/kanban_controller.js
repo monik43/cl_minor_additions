@@ -38,7 +38,7 @@ odoo.define(
                   .query({
                     model: "helpdesk.ticket",
                     method: "js_stage_handler",
-                    args: [target],
+                    args: [column.id],
                   })
                   .then(function (data2) {
                     if (data2 == false) {
