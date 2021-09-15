@@ -36,6 +36,7 @@ class helpdesk_ticket(models.Model):
     self_cont = fields.Many2one('helpdesk.ticket', compute="_get_self_cont")
 
     #ordensat = fields.Many2one('mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
+    sla_active = fields.Boolean(string='SLA active', compute='_compute_sla_fail', store=True, default=True)
 
     ordensat = fields.Many2many(
         'mrp.repair', string='Orden SAT', compute="_get_orden_sat", ondelete='set null')
@@ -43,6 +44,32 @@ class helpdesk_ticket(models.Model):
     @api.model
     def js_stage_handler(self, id):
         return self.env['helpdesk.ticket'].browse(id).x_lot_id.id
+
+    @api.depends('deadline', 'stage_id.sequence', 'sla_id.stage_id.sequence')
+    def _compute_sla_fail(self):
+        if not self.user_has_groups("helpdesk.group_use_sla"):
+            return
+        for ticket in self:
+            ticket.sla_active = True
+            if not ticket.deadline:
+                ticket.sla_active = False
+                ticket.sla_fail = False
+            elif ticket.sla_id.stage_id.sequence <= ticket.stage_id.sequence:
+                ticket.sla_active = False
+                prev_stage_ids = self.env['helpdesk.stage'].search([('sequence', '<', ticket.sla_id.stage_id.sequence)])
+                next_stage_ids = self.env['helpdesk.stage'].search([('sequence', '>=', ticket.sla_id.stage_id.sequence)])
+                stage_id_tracking_value = self.env['mail.tracking.value'].sudo().search([('field', '=', 'stage_id'),
+                                                                                  ('old_value_integer', 'in', prev_stage_ids.ids),
+                                                                                  ('new_value_integer', 'in', next_stage_ids.ids),
+                                                                                  ('mail_message_id.model', '=', 'helpdesk.ticket'),
+                                                                                  ('mail_message_id.res_id', '=', ticket.id)], order='create_date ASC', limit=1)
+
+                if stage_id_tracking_value:
+                    if stage_id_tracking_value.create_date > ticket.deadline:
+                        ticket.sla_fail = True
+                # If there are no tracking messages, it means we *just* (now!) changed the state
+                elif fields.Datetime.now() > ticket.deadline:
+                    ticket.sla_fail = True
 
     def _get_orden_sat(self):
         for rec in self:
