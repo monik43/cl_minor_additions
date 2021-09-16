@@ -31,7 +31,7 @@
     'installable': True,
     'auto_install': False,
     'application': True,
-    'depends': ['base', 'stock', 'mrp_repair', 'helpdesk', 'account', 'cloudedu_mods', 'filtro_comercial-main'],
+    'depends': ['base', 'stock', 'mrp_repair', 'helpdesk', 'account', 'cloudedu_mods', 'filtro_comercial-main', 'mail'],
     'data': [
         'views/reparation_views.xml',
         'wizard/create_reparation.xml',
