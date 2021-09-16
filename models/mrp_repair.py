@@ -85,5 +85,5 @@ class mrp_repair(models.Model):
             'view_mode': 'form',
             'res_model': self._name,
             'res_id': self.id,
-            'target': 'current'
+            'target': 'new'
         }
