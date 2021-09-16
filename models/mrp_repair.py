@@ -72,6 +72,7 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.env['purchase.order'].search([('partner_ref', 'like', rec.name)]) != False:
                 rec.po_rel = True
+
     def _get_state(self):
         for rec in self:
             if rec.state == 'confirmed' and rec.rep_conf != True:
@@ -80,26 +81,15 @@ class mrp_repair(models.Model):
     @api.multi
     def open_act(self):
         for rec in self:
-            base_url = self.env['ir.config_parameter'].get_param('web.base.url')
-            record_url = base_url + "/web#id=" + str(self.id) + "&view_type=form&model=mrp.repair"
+            url = self.env['ir.config_parameter'].get_param(
+                'web.base.url')
+            rec_url = url + "/web#id=" + \
+                str(self.id) + "&view_type=form&model=mrp.repair"
             client_action = {
-
-                        'type': 'ir.actions.act_url',
-
-                        'name': self.display_name,
-
-                        'target': 'new',
-
-                        'url': record_url,
-
-                }
+                'type': 'ir.actions.act_url',
+                'name': self.display_name,
+                'target': 'new',
+                'url': rec_url,
+            }
 
             return client_action
-        """return {
-            'name': self.display_name,
-            'type': 'ir.actions.act_window',
-            'view_mode': 'form',
-            'res_model': self._name,
-            'res_id': self.id,
-            'target': 'current'
-        }"""
