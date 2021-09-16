@@ -34,6 +34,7 @@
     'depends': ['base', 'stock', 'mrp_repair', 'helpdesk', 'account', 'cloudedu_mods', 'filtro_comercial-main'],
     'data': [
         'wizard/create_reparation.xml',
+        'views/reparation_views.xml',
         'views/mail_thread.xml',
         'views/web_assets.xml',
         'views/account_invoice_views.xml',
@@ -46,7 +47,6 @@
         'views/mail_views.xml',
         'views/helpdesk_views.xml',
         'views/stock_views.xml',
-        'views/reparation_views.xml',
         'views/user_credentials_views.xml',
         'security/ir.model.access.csv',
     ],
