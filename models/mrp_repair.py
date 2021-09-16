@@ -45,9 +45,7 @@ class mrp_repair(models.Model):
         'stock.production.lot', 'Lote/Nº de serie',
         domain="[('product_id','=', product_id)]",
         help="Los productos reparados pertenecen todos a este lote")
-
-    po_rel = fields.Many2one(
-        'purchase.order', string='Purchase relacionada', compute="_compute_po_rel")
+    po_rel = fields.Boolean(compute="_compute_po_rel")
     test_end = fields.Boolean(compute="_get_test_end")
     rep_conf = fields.Boolean(default=False, compute="_get_state")
     rec = fields.Many2one('mrp.repair', compute="_get_rec")
@@ -73,9 +71,7 @@ class mrp_repair(models.Model):
     def _compute_po_rel(self):
         for rec in self:
             if rec.env['purchase.order'].search([('partner_ref', 'like', rec.name)]) != False:
-                rec.po_rel = rec.env['purchase.order'].search(
-                    [('partner_ref', '=', rec.name)])
-
+                rec.po_rel = True
     def _get_state(self):
         for rec in self:
             if rec.state == 'confirmed' and rec.rep_conf != True:
