@@ -86,7 +86,7 @@ class mrp_repair(models.Model):
 
                         'type': 'ir.actions.act_url',
 
-                        'name': "ZZZ",
+                        'name': self.display_name,
 
                         'target': 'new',
 
