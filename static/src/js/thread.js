@@ -14,7 +14,7 @@ odoo.define("cl_minor_additions.change_update_date", function (require) {
             if (isAtBottom && !this.is_at_bottom()) {
                 this.scroll_to();
             }
-        */
+      */
     },
   });
 });
