@@ -51,5 +51,6 @@
     ],
     'qweb': [
         'static/src/xml/account_payment.xml',
+        'static/src/xml/mail_thread.xml',
     ],
 }
