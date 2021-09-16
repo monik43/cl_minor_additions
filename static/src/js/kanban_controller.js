@@ -41,9 +41,6 @@ odoo.define(
                     args: [column.id],
                   })
                   .then(function (data2) {
-                    console.log("test")
-                    console.log(record)
-                    /*
                     if (data2 == false) {
                       Dialog.confirm(
                         this,
@@ -56,7 +53,7 @@ odoo.define(
                           },
                         }
                       );
-                    }*/
+                    }
                   });
                   } else {
                     Dialog.confirm(
