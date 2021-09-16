@@ -81,7 +81,7 @@ class mrp_repair(models.Model):
     def open_act(self):
         for rec in self:
             base_url = self.env['ir.config_parameter'].get_param('web.base.url')
-            record_url = base_url + "/web#id=" + str(self.id) + "&view_type=form&model=mrp.repair&active_id=" + str(self.id)
+            record_url = base_url + "/web#id=" + str(self.id) + "&view_type=form&model=mrp.repair"
             client_action = {
 
                         'type': 'ir.actions.act_url',
