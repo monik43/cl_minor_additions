@@ -42,7 +42,7 @@
                         <t t-esc="message.displayed_author"/>
                     </strong>
 
-                    - <small class="o_mail_timestamp" t-att-title="message.date.format(date_format)"><t t-esc="message.date.format(date_format)"/></small>
+                    - <small class="o_mail_timestamp" t-att-title="message.hour"><t t-esc="message.date.format(date_format)"/></small>
                     <t t-if="message.model and (message.model != 'mail.channel') and options.display_document_link">
                         on <a t-att-href="message.url" t-att-data-oe-model="message.model" t-att-data-oe-id="message.res_id" class="o_document_link"><t t-esc="message.record_name"/></a>
                     </t>
