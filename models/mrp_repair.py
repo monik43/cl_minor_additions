@@ -51,7 +51,7 @@ class mrp_repair(models.Model):
     rec = fields.Many2one('mrp.repair', compute="_get_rec")
     rma = fields.Char(compute="_get_rma")
     reparation = fields.One2many('cl.reparation', 'origen_rep', "Reparaciones")
-¡
+
     def _get_test_end(self):
         for rec in self:
             for line in rec.reparation:
