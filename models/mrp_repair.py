@@ -79,9 +79,9 @@ class mrp_repair(models.Model):
                 rec.rep_conf = True
 
     @api.model
-    def default_get(self,  default_fields):
-        res = super(mrp_repair, self).default_get(default_fields)
-        print("TEST"*10)
+    def default_get(self,  fields):
+        res = super(mrp_repair, self).default_get(fields)
+        print(res)
         return res
 
     @api.multi
