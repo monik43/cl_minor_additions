@@ -86,10 +86,7 @@ class mrp_repair(models.Model):
     @api.model
     def default_get(self,  default_fields):
         res = super(mrp_repair, self).default_get(default_fields)
-        data = self.env['mrp.repair'].browse(
-            self._context.get('active_ids', []))
         print("TEST"*10)
-        print(data)
         return res
 
     @api.multi
