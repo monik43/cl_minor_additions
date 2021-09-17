@@ -40,6 +40,7 @@
                         <field name="test_end" invisible="1"/>
                     </page>
                     <page string="Purchase Orders">
+                        <field name="purchase_orders"/>
                     </page>
                 </xpath>
             </field>
