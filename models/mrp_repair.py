@@ -83,6 +83,13 @@ class mrp_repair(models.Model):
             if rec.state == 'confirmed' and rec.rep_conf != True:
                 rec.rep_conf = True
 
+    @api.model
+    def default_get(self,  default_fields):
+        res = super(mrp_repair, self).default_get(default_fields)
+        data = self.env['mrp.repair'].browse(
+            self._context.get('active_ids', []))
+        print(data)
+
     @api.multi
     def open_act(self):
         for rec in self:
