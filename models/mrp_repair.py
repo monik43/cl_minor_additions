@@ -41,6 +41,7 @@ class repair_line(models.Model):
 class mrp_repair(models.Model):
     _inherit = 'mrp.repair'
 
+    lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial', compute="")
     n_lot_id = fields.Many2one(
         'stock.production.lot', 'Lote/Nº de serie',
         domain="[('product_id','=', product_id)]",
@@ -52,6 +53,11 @@ class mrp_repair(models.Model):
     rma = fields.Char(compute="_get_rma")
     reparation = fields.One2many('cl.reparation', 'origen_rep', "Reparaciones")
 
+
+    def _get_lot_id(self):
+        for rec in self:
+            if rec.n_lot_id:
+                print("test"*25)
     def _get_test_end(self):
         for rec in self:
             for line in rec.reparation:
