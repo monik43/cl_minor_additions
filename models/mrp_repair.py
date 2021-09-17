@@ -52,13 +52,20 @@ class mrp_repair(models.Model):
     rec = fields.Many2one('mrp.repair', compute="_get_rec")
     rma = fields.Char(compute="_get_rma")
     reparation = fields.One2many('cl.reparation', 'origen_rep', "Reparaciones")
+    purchase_orders = fields.Many2many('purchase.order', compute="_get_purchase_orders", ondelete='set null')
 
+    def _get_purchase_orders(self):
+        for rec in self:
+            recs = []
+            for line in rec.env['purchase.order'].search([('partner_ref', 'like', rec.name)]):
+                recs.append(line)
+            print(recs)
+                
 
     def _get_lot_id(self):
         for rec in self:
             if rec.n_lot_id != False:
                 rec.lot_id = rec.n_lot_id
-                
 
     def _get_test_end(self):
         for rec in self:

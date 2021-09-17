@@ -39,6 +39,8 @@
                         </field>
                         <field name="test_end" invisible="1"/>
                     </page>
+                    <page string="Purchase Orders">
+                    </page>
                 </xpath>
             </field>
         </record>
