@@ -44,13 +44,18 @@ class mrp_repair(models.Model):
     n_lot_id = fields.Many2one(
         'stock.production.lot', 'Lote/Nº de serie',
         domain="[('product_id','=', product_id)]",
-        help="Los productos reparados pertenecen todos a este lote")
+        help="Los productos reparados pertenecen todos a este lote", compute="_get_n_lot_id")
     po_rel = fields.Boolean(compute="_compute_po_rel")
     test_end = fields.Boolean(compute="_get_test_end")
     rep_conf = fields.Boolean(default=False, compute="_get_state")
     rec = fields.Many2one('mrp.repair', compute="_get_rec")
     rma = fields.Char(compute="_get_rma")
     reparation = fields.One2many('cl.reparation', 'origen_rep', "Reparaciones")
+
+    def _get_n_lot_id(self):
+        for rec in self:
+            if rec.n_lot_id:
+                rec.x_lot_id = rec.n_lot_id
 
     def _get_test_end(self):
         for rec in self:
