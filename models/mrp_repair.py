@@ -89,6 +89,7 @@ class mrp_repair(models.Model):
         data = self.env['mrp.repair'].browse(
             self._context.get('active_ids', []))
         print(data)
+        return res
 
     @api.multi
     def open_act(self):
