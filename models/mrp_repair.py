@@ -81,7 +81,7 @@ class mrp_repair(models.Model):
     @api.model
     def default_get(self,  default_fields):
         res = super(mrp_repair, self).default_get(default_fields)
-        print("TEST"*10)
+        print("236347283647824"*10)
         return res
 
     @api.multi
