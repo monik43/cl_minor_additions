@@ -57,7 +57,7 @@ class mrp_repair(models.Model):
     def _get_purchase_orders(self):
         for rec in self:
             for line in rec.env['purchase.order'].search([('hd_id', '=', rec.x_ticket.id)]):
-                print(line)
+                print(line, " ", line.hd_id)
                 #rec.update({'purchase_orders':[(4, line.id)]})
                 
 
