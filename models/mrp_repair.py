@@ -58,7 +58,7 @@ class mrp_repair(models.Model):
         for rec in self:
             recs = []
             for line in rec.env['purchase.order'].search([('partner_ref', 'like', rec.name)]):
-                rec.purchase_orders.create([4, line.id])
+                rec.purchase_orders.update([4, line.id])
                 
 
     def _get_lot_id(self):
