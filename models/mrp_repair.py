@@ -57,7 +57,7 @@ class mrp_repair(models.Model):
     def _get_lot_id(self):
         for rec in self:
             if rec.n_lot_id != False:
-                print("test"*25)
+                rec.lot_id = rec.n_lot_id
                 
 
     def _get_test_end(self):
