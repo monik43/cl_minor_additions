@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo>
     <data>
-        <record id="cl_purchase.order.form.pid" model="ir.ui.view">
+        <record id="cl_purchase_order_form_pid" model="ir.ui.view">
             <field name="name">cl_purchase.order.form</field>
             <field name="model">purchase.order</field>
             <field name="inherit_id" ref="purchase.purchase_order_form"/>
