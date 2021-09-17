@@ -9,7 +9,7 @@ class purchase_order(models.Model):
 
     def _get_pid(self):
         for rec in self:
-            rec.pid = rec.origin[4:]
+            rec.pid = rec.origin[:4]
             print(rec.pid)
 
     @api.onchange('order_line')
