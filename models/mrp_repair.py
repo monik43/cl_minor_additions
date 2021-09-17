@@ -59,7 +59,7 @@ class mrp_repair(models.Model):
             recs = []
             for line in rec.env['purchase.order'].search([('partner_ref', 'like', rec.name)]):
                 recs.append(line)
-            print(recs)
+            print(recs, "/"*50)
                 
 
     def _get_lot_id(self):
