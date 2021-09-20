@@ -100,7 +100,7 @@ class mrp_repair(models.Model):
     @api.multi
     def open_act(self):
         for rec in self:
-            url = self.env['ir.config_parameter'].get_param(
+            url = self.env['ir.config_parameter'].sudo().get_param(
                 'web.base.url')
             rec_url = url + "/web#id=" + \
                 str(self.id) + "&view_type=form&model=mrp.repair"
