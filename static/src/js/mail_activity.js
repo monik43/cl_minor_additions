@@ -25,7 +25,7 @@ odoo.define("cl_minor_additions.created_by_user", function (require) {
       if (activities.length) {
         var nbActivities = _.countBy(activities, "state");
         this.$el.html(
-          QWeb.render("create_uid_activity_items_ext", {
+          QWeb.render("mail.activity_items", {
             activities: activities,
             nbPlannedActivities: nbActivities.planned,
             nbTodayActivities: nbActivities.today,
