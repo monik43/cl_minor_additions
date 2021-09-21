@@ -36,6 +36,7 @@
         'views/reparation_views.xml',
         'wizard/create_reparation.xml',
         'views/mail_thread.xml',
+        'views/mail_activity.xml',
         'views/purchase_order.xml',
         'views/web_assets.xml',
         'views/account_invoice_views.xml',
