@@ -5,6 +5,7 @@
         <template id="assets_backend_ext_cl_uid" name="mail_cl_create_uid" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
                 <script type="text/javascript" src="/cl_minor_additions/static/src/js/mail_activity.js"></script>
+                <script type="text/javascript" src="/cl_minor_additions/static/src/js/mail_activity.js"></script>
             </xpath>
         </template>
     </data>
