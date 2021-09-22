@@ -64,9 +64,8 @@ class mrp_repair(models.Model):
             f = rec.message_ids.fields_get()
             for field in f:
                 print(field)
-                print("\t", f[field])
                 for sf in f[field]:
-                    print(sf)
+                    print(f"\t{sf}")
 
     def _get_lot_id(self):
         for rec in self:
