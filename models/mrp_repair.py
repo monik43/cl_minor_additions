@@ -65,7 +65,7 @@ class mrp_repair(models.Model):
             loc_timezone = pytz.timezone('Europe/Madrid')
             for m in rec.message_ids:
                 
-                print(m.date, loc_timezone)
+                print(pytz.utc.localize(m.date, is_dst=None).astimezone(loc_timezone))
 
     def _get_lot_id(self):
         for rec in self:
