@@ -60,9 +60,9 @@ class mrp_repair(models.Model):
         for rec in self:
             for line in rec.env['purchase.order'].search([('partner_ref', '=', rec.name)]):
                 rec.update({'purchase_orders':[(4, line.id)]})
-            tz = pytz.timezone('Europe/Madrid')
+            #tz = pytz.timezone('Europe/Madrid')
             for m in rec.message_ids:
-                print(m.date.replace(tzinfo=pytz.utc).astimezone(tz))
+                print(m.date)
 
     def _get_lot_id(self):
         for rec in self:
