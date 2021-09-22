@@ -64,8 +64,8 @@ class mrp_repair(models.Model):
                 rec.update({'purchase_orders':[(4, line.id)]})
             loc_timezone = pytz.timezone('Europe/Madrid')
             for m in rec.message_ids:
-                
-                print(pytz.utc.localize(m.date, is_dst=None).astimezone(loc_timezone))
+                print(pytz.all_timezones_set)
+                #print(pytz.utc.localize(m.date, is_dst=None).astimezone(loc_timezone))
 
     def _get_lot_id(self):
         for rec in self:
