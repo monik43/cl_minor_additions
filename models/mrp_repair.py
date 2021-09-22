@@ -65,7 +65,7 @@ class mrp_repair(models.Model):
             for field in f:
                 print(field)
                 for sf in f[field]:
-                    print(f"\t{sf}")
+                    print(f"\t{sf}, {sf[1]}")
 
     def _get_lot_id(self):
         for rec in self:
