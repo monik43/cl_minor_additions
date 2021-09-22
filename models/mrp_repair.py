@@ -3,6 +3,8 @@ from odoo import models, fields, api, _
 from odoo.osv import orm
 from lxml import etree
 from odoo.exceptions import UserError
+from datetime import datetime
+import pytz
 
 
 class repair_line(models.Model):
@@ -60,8 +62,10 @@ class mrp_repair(models.Model):
         for rec in self:
             for line in rec.env['purchase.order'].search([('partner_ref', '=', rec.name)]):
                 rec.update({'purchase_orders':[(4, line.id)]})
+            loc_timezone = pytz.timezone('Europe/Madrid')
             for m in rec.message_ids:
-                print(m)
+                
+                print(m.hour)
 
     def _get_lot_id(self):
         for rec in self:
