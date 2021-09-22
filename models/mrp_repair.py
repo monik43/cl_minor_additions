@@ -63,7 +63,7 @@ class mrp_repair(models.Model):
             #tz = pytz.timezone('Europe/Madrid')
             f = rec.message_ids.fields_get()
             for field in f:
-                print(f"{field}: {f['field']}")
+                print(f"{field}: {f[field]}")
             print(f)
 
     def _get_lot_id(self):
