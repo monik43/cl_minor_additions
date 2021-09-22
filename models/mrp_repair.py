@@ -60,7 +60,7 @@ class mrp_repair(models.Model):
         for rec in self:
             for line in rec.env['purchase.order'].search([('partner_ref', '=', rec.name)]):
                 rec.update({'purchase_orders':[(4, line.id)]})
-            loc_timezone = pytz.timezone()
+            #loc_timezone = pytz.timezone()
             for tz in pytz.all_timezones_set:
                 print(tz)
             #for m in rec.message_ids:
