@@ -56,15 +56,15 @@ class mrp_repair(models.Model):
     reparation = fields.One2many('cl.reparation', 'origen_rep', "Reparaciones")
     purchase_orders = fields.Many2many('purchase.order', compute="_get_purchase_orders", ondelete='set null')
 
-    
-
     def _get_purchase_orders(self):
         for rec in self:
             for line in rec.env['purchase.order'].search([('partner_ref', '=', rec.name)]):
                 rec.update({'purchase_orders':[(4, line.id)]})
-            loc_timezone = pytz.timezone('Europe/Madrid')
-            for m in rec.message_ids:
-                print(pytz.all_timezones_set)
+            loc_timezone = pytz.timezone()
+            for tz in pytz.all_timezones_set:
+                print(tz)
+            #for m in rec.message_ids:
+                
                 #print(pytz.utc.localize(m.date, is_dst=None).astimezone(loc_timezone))
 
     def _get_lot_id(self):
