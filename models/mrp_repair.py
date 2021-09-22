@@ -62,6 +62,9 @@ class mrp_repair(models.Model):
                 rec.update({'purchase_orders':[(4, line.id)]})
             #tz = pytz.timezone('Europe/Madrid')
             f = rec.message_ids.fields_get()
+            for field in f:
+                for fi in field:
+                    print(f"{field}: {fi}")
             print(f)
 
     def _get_lot_id(self):
