@@ -54,11 +54,14 @@ class mrp_repair(models.Model):
     reparation = fields.One2many('cl.reparation', 'origen_rep', "Reparaciones")
     purchase_orders = fields.Many2many('purchase.order', compute="_get_purchase_orders", ondelete='set null')
 
+    
+
     def _get_purchase_orders(self):
         for rec in self:
             for line in rec.env['purchase.order'].search([('partner_ref', '=', rec.name)]):
                 rec.update({'purchase_orders':[(4, line.id)]})
-                
+            for m in rec.message:
+                print(m.date)
 
     def _get_lot_id(self):
         for rec in self:
