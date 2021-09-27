@@ -54,10 +54,7 @@ class mrp_repair(models.Model):
     def _get_ticket_x(self):
         for rec in self:
             if rec.name.startswith('#') and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:])]):
-                print("ticket_x", "//"*25)
-                print(self.env['helpdesk.ticket'].search([('id','=', rec.name[1:])]))
                 rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:])])
-                rec.x_ticket = rec.ticket_x
 
     def _get_lot_id(self):
         for rec in self:
@@ -68,7 +65,7 @@ class mrp_repair(models.Model):
                     rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper())])
                 if rec.ticket_x:
                     print(rec.ticket_x)
-                    print(rec.x_ticket)
+                    print("test"*25)
 
     def _get_purchase_orders(self):
         for rec in self:
