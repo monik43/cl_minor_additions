@@ -53,10 +53,9 @@ class mrp_repair(models.Model):
 
     def _get_ticket_x(self):
         for rec in self:
-            nid = rec.name[1:]
-            print(nid)
-            #ticket = self.env['helpdesk.ticket'].search([('name','=',rec.x_ticket.x_sn.upper())])
-            #if rec.namenot rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', )]):
+            if rec.name.startswith('#') and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:])]):
+                rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:])])
+                rec.x_ticket = rec.ticket_x
 
 
     def _get_lot_id(self):
