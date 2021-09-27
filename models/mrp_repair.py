@@ -53,21 +53,21 @@ class mrp_repair(models.Model):
 
     def _get_ticket_x(self):
         for rec in self:
-            if rec.name.startswith('#') and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:])]):
-                rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:])])
+            if rec.name.startswith('#') and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:4])]):
+                rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:4])])
 
     def _get_lot_id(self):
         for rec in self:
             if not rec.lot_id and rec.x_ticket:
                 if rec.x_ticket.x_lot_id:
                     rec.lot_id = rec.x_ticket.x_lot_id
-                elif rec.x_ticket.x_sn and self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn[:4].upper())]):
-                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn[:4].upper())])
+                elif rec.x_ticket.x_sn and self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper())]):
+                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper())])
             elif not rec.lot_id and rec.ticket_x:
                 if rec.ticket_x.x_lot_id:
                     rec.lot_id = rec.ticket_x.x_lot_id
                 elif rec.ticket_x.x_sn and self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn[:4].upper())]):
-                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn[:4].upper())])
+                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper())])
 
     def _get_purchase_orders(self):
         for rec in self:
