@@ -41,6 +41,7 @@ class repair_line(models.Model):
 class mrp_repair(models.Model):
     _inherit = 'mrp.repair'
 
+    ticket_x = fields.Many2one('helpdesk.ticket', compute="_get_ticket_x")
     lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial', compute="_get_lot_id")
     po_rel = fields.Boolean(compute="_compute_po_rel")
     test_end = fields.Boolean(compute="_get_test_end")
@@ -50,6 +51,14 @@ class mrp_repair(models.Model):
     reparation = fields.One2many('cl.reparation', 'origen_rep', "Reparaciones")
     purchase_orders = fields.Many2many('purchase.order', compute="_get_purchase_orders", ondelete='set null')
 
+    def _get_ticket_x(self):
+        for rec in self:
+            nid = rec.name[1:]
+            print(nid)
+            #ticket = self.env['helpdesk.ticket'].search([('name','=',rec.x_ticket.x_sn.upper())])
+            #if rec.namenot rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', )]):
+
+
     def _get_lot_id(self):
         for rec in self:
             if not rec.lot_id and rec.x_ticket:
@@ -57,7 +66,6 @@ class mrp_repair(models.Model):
                     rec.lot_id = rec.x_ticket.x_lot_id
                 elif rec.x_ticket.x_sn and self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper())]):
                     rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper())])
-
 
     def _get_purchase_orders(self):
         for rec in self:
