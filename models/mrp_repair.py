@@ -63,7 +63,7 @@ class mrp_repair(models.Model):
                     rec.lot_id = rec.x_ticket.x_lot_id
                 elif rec.x_ticket.x_sn and self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper())]):
                     rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper())])
-                if rec.ticket_x:
+            if rec.ticket_x:
                     print(rec.ticket_x)
                     print("test"*25)
 
