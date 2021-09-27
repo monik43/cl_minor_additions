@@ -41,7 +41,7 @@ class repair_line(models.Model):
 class mrp_repair(models.Model):
     _inherit = 'mrp.repair'
 
-    lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial')
+    lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial', compute="_get_lot_id")
     po_rel = fields.Boolean(compute="_compute_po_rel")
     test_end = fields.Boolean(compute="_get_test_end")
     rep_conf = fields.Boolean(default=False, compute="_get_state")
@@ -49,6 +49,15 @@ class mrp_repair(models.Model):
     rma = fields.Char(compute="_get_rma")
     reparation = fields.One2many('cl.reparation', 'origen_rep', "Reparaciones")
     purchase_orders = fields.Many2many('purchase.order', compute="_get_purchase_orders", ondelete='set null')
+
+    def _get_lot_id(self):
+        for rec in self:
+            if not rec.lot_id and rec.x_ticket:
+                if rec.x_ticket.x_lot_id:
+                    rec.lot_id = rec.x_ticket.x_lot_id
+                elif rec.x_ticket.x_sn and self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn)]):
+                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn)])
+
 
     def _get_purchase_orders(self):
         for rec in self:
@@ -84,7 +93,6 @@ class mrp_repair(models.Model):
     @api.model
     def default_get(self,  fields):
         res = super(mrp_repair, self).default_get(fields)
-        print(res)
         return res
 
     @api.multi
