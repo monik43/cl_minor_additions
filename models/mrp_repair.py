@@ -55,6 +55,7 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.name.startswith('#') and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:])]):
                 print("ticket_x", "//"*25)
+                print(self.env['helpdesk.ticket'].search([('id','=', rec.name[1:])]))
                 rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:])])
                 rec.x_ticket = rec.ticket_x
 
