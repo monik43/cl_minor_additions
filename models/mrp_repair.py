@@ -42,10 +42,6 @@ class mrp_repair(models.Model):
     _inherit = 'mrp.repair'
 
     lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial', compute="_get_lot_id")
-    n_lot_id = fields.Many2one(
-        'stock.production.lot', 'Lote/Nº de serie',
-        domain="[('product_id','=', product_id)]",
-        help="Los productos reparados pertenecen todos a este lote")
     po_rel = fields.Boolean(compute="_compute_po_rel")
     test_end = fields.Boolean(compute="_get_test_end")
     rep_conf = fields.Boolean(default=False, compute="_get_state")
@@ -59,12 +55,6 @@ class mrp_repair(models.Model):
             for line in rec.env['purchase.order'].search([('partner_ref', '=', rec.name)]):
                 rec.update({'purchase_orders':[(4, line.id)]})
                 
-
-    def _get_lot_id(self):
-        for rec in self:
-            if rec.n_lot_id != False:
-                rec.lot_id = rec.n_lot_id
-
     def _get_test_end(self):
         for rec in self:
             for line in rec.reparation:
