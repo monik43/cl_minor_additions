@@ -10,6 +10,7 @@
                     <field name="pieza_anyadida"/>
                 </xpath>
                 <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="sn_x" invisible="1"/>
                     <field name="ticket_x" invisible="1"/>
                     <field name="po_rel" invisible="1"/>
                 </xpath>
@@ -52,6 +53,16 @@
                 </xpath>
                 <xpath expr="//button[@name='1122']" position="after">
                     <button name="1122" string="Create Purchase Order" type="action" attrs="{'invisible':['|',('state','in',['done','cancel']), ('po_rel','=',False)]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="cl_mrp_repair_view_repair_order_form_filter_sn_x" model="ir.ui.view">
+            <field name="name">mrp.repair.select</field>
+            <field name="model">mrp.repair</field>
+            <field name="inherit_id" ref="mrp_repair.view_repair_order_form_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="sn_x" string="Lote"/>
                 </xpath>
             </field>
         </record>
