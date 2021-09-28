@@ -50,6 +50,12 @@ class mrp_repair(models.Model):
     rma = fields.Char(compute="_get_rma")
     reparation = fields.One2many('cl.reparation', 'origen_rep', "Reparaciones")
     purchase_orders = fields.Many2many('purchase.order', compute="_get_purchase_orders", ondelete='set null')
+    sn_x = fields.Char(compute="_get_sn_x")
+
+    def _get_sn_x(self):
+        for rec in self:
+            if rec.lot_id:
+                rec.sn_x = rec.lot_id.name
 
     def _get_ticket_x(self):
         for rec in self:
