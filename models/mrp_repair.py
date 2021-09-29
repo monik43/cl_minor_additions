@@ -59,7 +59,8 @@ class mrp_repair(models.Model):
 
     def _get_ticket_x(self):
         for rec in self:
-            nid = tuple([c for c in rec.name if c.isdigit()][:4])
+            nid = str([c for c in rec.name if c.isdigit()][:4])
+            nid = ''.join(str(c) for c in nid)
             if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', nid)]):
                 rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', nid)])
 
