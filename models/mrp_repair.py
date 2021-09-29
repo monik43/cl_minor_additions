@@ -84,7 +84,7 @@ class mrp_repair(models.Model):
                     print("ticket_x tiene x_lot_id")
                     rec.lot_id = rec.ticket_x.x_lot_id
                 elif not rec.ticket_x.x_lot_id and rec.ticket_x.x_sn:
-                    print(rec.ticket_x.x_sn[:4].upper())
+                    print(rec.ticket_x.x_sn.upper())
                     print(rec.product_id.id)
                     print(self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn[:4].upper()),('product_id', '=', rec.product_id.id)]))
                     #rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id', '=', rec.product_id.id)])
