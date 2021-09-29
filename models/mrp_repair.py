@@ -61,8 +61,9 @@ class mrp_repair(models.Model):
         for rec in self:
             nid = [c for c in rec.name if c.isdigit()][:4]
             sid = ''.join(str(c) for c in nid)
-            if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', sid)]):
-                rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', sid)])
+            if len(sid):
+                if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', sid)]):
+                    rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', sid)])
 
     def _get_lot_id(self):
         for rec in self:
