@@ -61,8 +61,8 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.name.startswith(('#',' ')) and rec.name[1:5].isdigit() and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])]):
                 rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])])
-            elif rec.name.startswith('# ') and rec.name[2:6].isdigit() and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])]):
-                rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])])
+            elif rec.name.startswith('# ') and rec.name[2:6].isdigit() and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[2:6])]):
+                rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[2:6])])
             elif not rec.x_ticket and rec.name[:4].isdigit() and self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])]):
                 tic = self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])])
 
