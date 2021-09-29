@@ -61,6 +61,10 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.name.startswith(('#',' ')) and isinstance(rec.name[1:5],int) and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])]):
                 rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])])
+            elif not rec.x_ticket and isinstance(rec.rec.name[:4],int) and self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])]):
+                tic = self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])])
+                print(f"Ticket - {tic.name}, SN - {tic.x_lot_id}")
+                print("")
 
     def _get_lot_id(self):
         for rec in self:
