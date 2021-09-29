@@ -60,6 +60,8 @@ class mrp_repair(models.Model):
     def _get_ticket_x(self):
         for rec in self:
             if rec.name.startswith(('#',' ')) and isinstance(rec.name[1:5],int) and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])]):
+                print(f"Reparacion 1:5 - {rec.name[1:5]}")
+                print("")
                 rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])])
             elif not rec.x_ticket and isinstance(rec.rec.name[:4],int) and self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])]):
                 tic = self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])])
