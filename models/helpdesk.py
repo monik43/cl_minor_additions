@@ -28,6 +28,8 @@ class helpdesk_stage(models.Model):
 class helpdesk_ticket(models.Model):
     _inherit = "helpdesk.ticket"
 
+    active = fields.Boolean(default=True, website_form_blacklisted=False) ###
+
     name_rma = fields.Char(compute="_get_name_rma")
     prod_id_context = fields.Many2one(
         'product.product', "Producto a reparar", compute="_get_prod_id_context")
