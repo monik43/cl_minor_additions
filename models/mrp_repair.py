@@ -59,17 +59,10 @@ class mrp_repair(models.Model):
 
     def _get_ticket_x(self):
         for rec in self:
-            
             if rec.name.startswith(('#',' ')) and rec.name[1:5].isdigit() and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])]):
-                print("")
-                print(f"Reparacion 1:5,{rec.name[1:5]}")
-                print(self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])]))
-                print("")
                 rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])])
             elif not rec.x_ticket and rec.name[:4].isdigit() and self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])]):
                 tic = self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])])
-                print(f"Ticket - {tic.name}, SN - {tic.x_lot_id}")
-                print("")
 
     def _get_lot_id(self):
         for rec in self:
@@ -79,15 +72,10 @@ class mrp_repair(models.Model):
                 elif rec.x_ticket.x_sn and self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper()),('product_id', '=', rec.product_id.id)]):
                     rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper()),('product_id', '=', rec.product_id.id)])
             elif not rec.lot_id and rec.ticket_x:
-                print("tiene ticket_x")
                 if rec.ticket_x.x_lot_id:
-                    print("ticket_x tiene x_lot_id")
                     rec.lot_id = rec.ticket_x.x_lot_id
-                elif not rec.ticket_x.x_lot_id and rec.ticket_x.x_sn:
-                    print(rec.ticket_x.x_sn.upper())
-                    print(rec.product_id.id)
-                    print(self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)]))
-                    #rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id', '=', rec.product_id.id)])
+                elif not rec.ticket_x.x_lot_id and rec.ticket_x.x_sn and self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)]):
+                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)])
 
     def _get_purchase_orders(self):
         for rec in self:
