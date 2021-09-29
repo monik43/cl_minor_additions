@@ -83,9 +83,9 @@ class mrp_repair(models.Model):
                 if rec.ticket_x.x_lot_id:
                     print("ticket_x tiene x_lot_id")
                     rec.lot_id = rec.ticket_x.x_lot_id
-                elif not rec.ticket_x.x_lot_id and rec.ticket_x.x_sn and self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn[:4].upper()),('product_id', '=', rec.product_id.id)]):
-                    print("ticket_x no tiene x_lot_id pero lo ha encontrado")
-                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id', '=', rec.product_id.id)])
+                elif not rec.ticket_x.x_lot_id and rec.ticket_x.x_sn:
+                    print(self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn[:4].upper()),('product_id', '=', rec.product_id.id)]))
+                    #rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id', '=', rec.product_id.id)])
 
     def _get_purchase_orders(self):
         for rec in self:
