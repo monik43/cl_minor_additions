@@ -59,12 +59,12 @@ class mrp_repair(models.Model):
 
     def _get_ticket_x(self):
         for rec in self:
-            print(f"Reparacion 1:5,{rec.name[1:5]},{isinstance(rec.name[1:5],int)} ")
-            print("")
-            if rec.name.startswith(('#',' ')) and isinstance(rec.name[1:5],int) and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])]):
-                
+            
+            if rec.name.startswith(('#',' ')) and str.isdigit(rec.name[1:5]) and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])]):
+                print(f"Reparacion 1:5,{rec.name[1:5]}")
+                print("")
                 rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', rec.name[1:5])])
-            elif not rec.x_ticket and isinstance(rec.rec.name[:4],int) and self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])]):
+            elif not rec.x_ticket and str.isdigit(rec.rec.name[:4],int) and self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])]):
                 tic = self.env['helpdesk.ticket'].search([('id','=', rec.name[:4])])
                 print(f"Ticket - {tic.name}, SN - {tic.x_lot_id}")
                 print("")
