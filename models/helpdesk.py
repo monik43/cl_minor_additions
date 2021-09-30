@@ -28,8 +28,6 @@ class helpdesk_stage(models.Model):
 class helpdesk_ticket(models.Model):
     _inherit = "helpdesk.ticket"
 
-    active = fields.Boolean(default=True, website_form_blacklisted=False) ###
-
     name_rma = fields.Char(compute="_get_name_rma")
     prod_id_context = fields.Many2one(
         'product.product', "Producto a reparar", compute="_get_prod_id_context")
@@ -44,6 +42,7 @@ class helpdesk_ticket(models.Model):
 
     @api.model
     def js_stage_handler(self, id):
+        print(f"{self.env['helpdesk.ticket'].browse(id).x_lot_id.id}, {self.env['helpdesk.ticket'].browse(id).x_lot_id.name}")
         return self.env['helpdesk.ticket'].browse(id).x_lot_id.id
 
     @api.depends('deadline', 'stage_id.sequence', 'sla_id.stage_id.sequence')
