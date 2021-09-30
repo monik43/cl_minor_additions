@@ -31,7 +31,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                   .query({
                     model: "helpdesk.ticket",
                     method: "js_stage_handler",
-                    args: [target],
+                    args: [self],
                   })
                   .then(function (data2) {
                     if (data2 == false) {
@@ -42,7 +42,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                         ),
                         {
                           confirm_callback: function () {
-                            console.log(target);
+                            console.log(self);
                           },
                         }
                       );
