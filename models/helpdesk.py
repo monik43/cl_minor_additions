@@ -42,7 +42,7 @@ class helpdesk_ticket(models.Model):
 
     @api.model
     def js_stage_handler(self, id):
-        print(f"{self.env['helpdesk.ticket'].browse(id).x_lot_id.id}, {self.env['helpdesk.ticket'].browse(id).x_lot_id.name}")
+        print(f"{id}")
         return self.env['helpdesk.ticket'].browse(id).x_lot_id.id
 
     @api.depends('deadline', 'stage_id.sequence', 'sla_id.stage_id.sequence')
