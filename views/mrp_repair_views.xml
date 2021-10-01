@@ -10,7 +10,7 @@
                     <field name="pieza_anyadida"/>
                 </xpath>
                 <xpath expr="//field[@name='fees_lines']/tree" position="inside">
-                    <field name="create_uid"/>
+                    <field name="create_uid" readonly="1"/>
                 </xpath>
                 <xpath expr="//field[@name='lot_id']" position="after">
                     <field name="sn_x" invisible="1"/>
