@@ -1,11 +1,10 @@
 odoo.define("cl_minor_additions.created_by_user", function (require) {
   "use strict";
   var mail_activity = require("mail.Activity");
-  var AbstractField = require("web.AbstractField");
-  var AbstractActivityField = require("mail.AbstractActivityField");
-  var BasicModel = require("web.BasicModel");
+  //var AbstractField = require("web.AbstractField");
+  //var BasicModel = require("web.BasicModel");
   var core = require("web.core");
-  var field_registry = require("web.field_registry");
+  //var field_registry = require("web.field_registry");
   var time = require("web.time");
   var utils = require("mail.utils");
 
