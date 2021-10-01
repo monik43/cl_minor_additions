@@ -4,7 +4,7 @@
         <div class="o_thread_date_separator o_border_dashed" data-toggle="collapse" data-target="#o_chatter_planned_activities">
             <span class="o_thread_date btn">
                 <i class="fa fa-fw fa-caret-down"/>
-                Planned activities
+                !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Planned activities
                 <small class="o_chatter_planned_activities_summary ml8">
                     <span class="label img-circle label-danger"><t t-esc="nbOverdueActivities"/></span>
                     <span class="label img-circle label-warning"><t t-esc="nbTodayActivities"/></span>
