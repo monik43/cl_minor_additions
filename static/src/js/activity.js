@@ -1,4 +1,4 @@
-odoo.define("cl_minor_additions.created_by_user", function (require) {
+odoo.define("cl_minor_additions.newtemplate", function (require) {
   "use strict";
   var mail_activity = require("mail.Activity");
   //var AbstractField = require("web.AbstractField");
