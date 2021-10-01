@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="ActivityItems">
+    <t t-name="ActivityItemsCl">
         <div class="o_thread_date_separator o_border_dashed" data-toggle="collapse" data-target="#o_chatter_planned_activities">
             <span class="o_thread_date btn">
                 <i class="fa fa-fw fa-caret-down"/>

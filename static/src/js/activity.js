@@ -26,7 +26,7 @@ odoo.define("cl_minor_additions.created_by_user", function (require) {
         var nbActivities = _.countBy(activities, "state");
         console.log("TEST")
         this.$el.html(
-          QWeb.render("ActivityItems", {
+          QWeb.render("ActivityItemsCl", {
             activities: activities,
             nbPlannedActivities: nbActivities.planned,
             nbTodayActivities: nbActivities.today,
