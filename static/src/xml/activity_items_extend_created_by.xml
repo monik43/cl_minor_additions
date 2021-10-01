@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
-    <t t-name="cl_module_misc.activity_items_extend_created_by" t-extend="mail.activity_items">
-        <t t-jquery='.o_thread_message_collapse' t-operation='replace'>
+    <t t-extend="mail.activity_items">
+        <t t-jquery='div.o_thread_message_collapse' t-operation='replace'>
             <dl class="dl-horizontal well">
                 <dt>Activity type</dt>
                 <dd class="mb8">
