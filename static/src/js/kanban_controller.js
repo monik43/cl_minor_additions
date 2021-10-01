@@ -33,60 +33,59 @@ odoo.define(
             })
             .then(function (data) {
               if (data[0] != false) {
-                  if (data[1] == 'Asignado'){
-                    _rpc
-                  .query({
-                    model: "helpdesk.ticket",
-                    method: "js_stage_handler",
-                    args: [column.id],
-                  })
-                  .then(function (data2) {
-                    if (data2 == false) {
-                      Dialog.confirm(
-                        this,
-                        _t(
-                          "No se ha registrado el número de serie en la base de datos. Antes de cambiar el estado, registre el nº de serie."
-                        ),
-                        {
-                          confirm_callback: function () {
-                            console.log();
-                          },
-                        }
-                      );
+                if (data[1] == "Asignado") {
+                  _rpc
+                    .query({
+                      model: "helpdesk.ticket",
+                      method: "js_stage_handler",
+                      args: [column.id],
+                    })
+                    .then(function (data2) {
+                      if (data2 == false) {
+                        Dialog.confirm(
+                          this,
+                          _t(
+                            "No se ha registrado el número de serie en la base de datos. Antes de cambiar el estado, registre el nº de serie."
+                          ),
+                          {
+                            confirm_callback: function () {
+                              console.log();
+                            },
+                          }
+                        );
+                      }
+                    });
+                } else {
+                  Dialog.confirm(
+                    this,
+                    _t(
+                      "La etapa a la  que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa?"
+                    ),
+                    {
+                      confirm_callback: function () {
+                        self
+                          .alive(
+                            self.model.moveRecord(
+                              record.db_id,
+                              column.db_id,
+                              self.handle
+                            )
+                          )
+                          .then(function (column_db_ids) {
+                            return self
+                              ._resequenceRecords(column.db_id, event.data.ids)
+                              .then(function () {
+                                _.each(column_db_ids, function (db_id) {
+                                  var data = self.model.get(db_id);
+                                  self.renderer.updateColumn(db_id, data);
+                                });
+                              });
+                          })
+                          .fail(self.reload.bind(self));
+                      },
                     }
-                  });
-                  } else {
-                    Dialog.confirm(
-                        this,
-                        _t(
-                          "La etapa a la  que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa?"
-                        ),
-                        {
-                          confirm_callback: function () {
-                            self
-                              .alive(
-                                self.model.moveRecord(
-                                  record.db_id,
-                                  column.db_id,
-                                  self.handle
-                                )
-                              )
-                              .then(function (column_db_ids) {
-                                return self
-                                  ._resequenceRecords(column.db_id, event.data.ids)
-                                  .then(function () {
-                                    _.each(column_db_ids, function (db_id) {
-                                      var data = self.model.get(db_id);
-                                      self.renderer.updateColumn(db_id, data);
-                                    });
-                                  });
-                              })
-                              .fail(self.reload.bind(self));
-                          },
-                        }
-                      );
-                  }
-                
+                  );
+                }
               } else {
                 self
                   .alive(
