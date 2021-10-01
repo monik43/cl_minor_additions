@@ -12,8 +12,6 @@ odoo.define("cl_minor_additions.created_by_user", function (require) {
   var _t = core._t;
 
   mail_activity.AbstractActivityField.include({
-    /*
-    
     _render: function () {
       _.each(this.activities, function (activity) {
         if (activity.note) {
@@ -27,7 +25,7 @@ odoo.define("cl_minor_additions.created_by_user", function (require) {
       if (activities.length) {
         var nbActivities = _.countBy(activities, "state");
         this.$el.html(
-          QWeb.render("mail.activity_items", {
+          QWeb.render("activity_items", {
             activities: activities,
             nbPlannedActivities: nbActivities.planned,
             nbTodayActivities: nbActivities.today,
@@ -40,6 +38,5 @@ odoo.define("cl_minor_additions.created_by_user", function (require) {
         this.$el.empty();
       }
     },
-    */
   });
 });
