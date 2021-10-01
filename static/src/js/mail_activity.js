@@ -12,6 +12,8 @@ odoo.define("cl_minor_additions.created_by_user", function (require) {
   var _t = core._t;
 
   mail_activity.AbstractActivityField.include({
+    /*
+    
     _render: function () {
       _.each(this.activities, function (activity) {
         if (activity.note) {
@@ -38,5 +40,6 @@ odoo.define("cl_minor_additions.created_by_user", function (require) {
         this.$el.empty();
       }
     },
+    */
   });
 });
