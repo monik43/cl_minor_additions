@@ -11,7 +11,7 @@ odoo.define("cl_minor_additions.created_by_user", function (require) {
   var QWeb = core.qweb;
   var _t = core._t;
 
-  mail_activity.AbstractActivityField.include({
+  mail_activity.AbstractActivityField.extend({
     className: "o_mail_activity",
     events: {
       "click .o_activity_edit": "_onEditActivity",
