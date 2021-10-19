@@ -78,11 +78,13 @@ class mrp_repair(models.Model):
 
             if name.find("/") > 0:
                 i = name.find("/")
-                print(f"{name[:i]}")
+                name = name[:i]
 
             if name.find("-") > 0:
                 i = name.find("-")
-                print(f"{name[:i]}")
+                name[:i]
+                
+            print(name)
 
             if len(sid):
                 if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', sid)]):
