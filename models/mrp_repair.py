@@ -62,9 +62,8 @@ class mrp_repair(models.Model):
             nid = [c for c in rec.name if c.isdigit()][:4]
             test = [c for c in rec.name if c.isdigit()]
             sid = ''.join(str(c) for c in nid)
-            print(test)
+            print(len(test))
             if len(sid):
-                print(test)
                 if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', sid)]):
                     rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', sid)])
 
