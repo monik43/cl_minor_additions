@@ -80,12 +80,12 @@ class mrp_repair(models.Model):
             if name.find("/") > 0:
                 i = name.find("/")
                 name = name[:i]
-                print(f"name hasta / {name}")
+                print(f"{i} name hasta / {name}")
 
             if name.find("-") > 0:
                 i = name.find("-")
                 name[:i]
-                print(f"name hasta / {name}")
+                print(f"{i} name hasta / {name}")
             #print(name)
             while s in range(len(name)):
                 if not name[s].isdigit():
