@@ -102,7 +102,8 @@ class mrp_repair(models.Model):
 
     def _get_lot_id(self):
         for rec in self:
-            rec.lot_id = rec.lot_id
+            print("holi")
+            #rec.lot_id = rec.lot_id
 
     """
     if not rec.lot_id and rec.x_ticket:
