@@ -86,7 +86,8 @@ class mrp_repair(models.Model):
                 name[:i]
             
             while s in range(len(name)):
-                print(name[s])
+                if name[s].isdigit():
+                    print(name[s])
                 s=s+1
 
             if len(sid):
