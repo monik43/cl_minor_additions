@@ -85,7 +85,7 @@ class mrp_repair(models.Model):
                 i = name.find("-")
                 name[:i]
             
-            while s in len(name):
+            while s in range(len(name)):
                 print(s)
 
             if len(sid):
