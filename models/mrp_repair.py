@@ -64,17 +64,26 @@ class mrp_repair(models.Model):
             test = [c for c in rec.name[:10] if c.isdigit()]
             sid = ''.join(str(c) for c in nid)
             """
-            / or - in name :10 -> 2491 - 
-            / or - in name :10 -> # 2491 - E
-            / or - in name :10 -> 2382 - ESB
-            / or - in name :10 -> 2494 - 
+            / or - in name :10 -> #2491-E
+            / or - in name :10 -> 2382-ESB
+            / or - in name :10 -> 2494-
+
             / or - in name :10 -> 10503/mal
             / or - in name :10 -> S134/mal
             / or - in name :10 -> 10523-ANUL
             / or - in name :10 -> 10559/2
             """
-            if name.find("/") > 0 or name.find("-") > 0:
-                print(f"/ or - in name :10 -> {name}")
+            if name.startswith("#"):
+                name = name[1:]
+
+            if name.find("/") > 0:
+                i = name.find("/")
+                print(f"{name[:i]}")
+
+            if name.find("-") > 0:
+                i = name.find("-")
+                print(f"{name[:i]}")
+
             if len(sid):
                 if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', sid)]):
                     rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', sid)])
