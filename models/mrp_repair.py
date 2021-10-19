@@ -87,6 +87,7 @@ class mrp_repair(models.Model):
             
             while s in range(len(name)):
                 print(s)
+                s=s+1
 
             if len(sid):
                 if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', sid)]):
