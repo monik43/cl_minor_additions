@@ -42,7 +42,7 @@ class mrp_repair(models.Model):
     _inherit = 'mrp.repair'
 
     ticket_x = fields.Many2one('helpdesk.ticket', compute="_get_ticket_x")
-    #lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial', domain="[('product_id','=', product_id)]", help="Products repaired are all belonging to this lot", oldname="prodlot_id", compute="_get_lot_id")
+    lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial', domain="[('product_id','=', product_id)]", help="Products repaired are all belonging to this lot", oldname="prodlot_id", compute="_get_lot_id")
     po_rel = fields.Boolean(compute="_compute_po_rel")
     test_end = fields.Boolean(compute="_get_test_end")
     rep_conf = fields.Boolean(default=False, compute="_get_state")
@@ -101,7 +101,22 @@ class mrp_repair(models.Model):
             print(rec.lot_id)
 
     def _get_lot_id(self):
-        print("a")
+        for rec in self:
+            if not rec.lot_id and rec.x_ticket:
+                print("A"*25)
+                if rec.x_ticket.x_lot_id:
+                    rec.lot_id = rec.x_ticket.x_lot_id
+                elif rec.x_ticket.x_sn and self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper()),('product_id', '=', rec.product_id.id)]):
+                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper()),('product_id', '=', rec.product_id.id)])
+            elif not rec.lot_id and rec.ticket_x:
+                print("b"*25)
+                if rec.ticket_x.x_lot_id:
+                    rec.lot_id = rec.ticket_x.x_lot_id
+                elif not rec.ticket_x.x_lot_id and rec.ticket_x.x_sn and self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)]):
+                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)])
+            else:
+                print("c"*25)
+                rec.lot_id = rec.lot_id
 
     """
     if not rec.lot_id and rec.x_ticket:
