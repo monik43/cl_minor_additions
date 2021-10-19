@@ -84,7 +84,7 @@ class mrp_repair(models.Model):
 
             if name.find("-") > 0:
                 i = name.find("-")
-                name[:i]
+                name = name[:i]
                 print(f"{i} name hasta - {name}")
             #print(name)
             while s in range(len(name)):
