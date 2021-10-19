@@ -61,6 +61,7 @@ class mrp_repair(models.Model):
         for rec in self:
             name = rec.name[:10].replace(" ","")
             s = 0
+            chars = False
             nid = [c for c in rec.name if c.isdigit()][:4]
             test = [c for c in rec.name[:10] if c.isdigit()]
             sid = ''.join(str(c) for c in nid)
@@ -80,23 +81,20 @@ class mrp_repair(models.Model):
             if name.find("/") > 0:
                 i = name.find("/")
                 name = name[:i]
-                print(f"{i} name hasta / {name}")
 
             if name.find("-") > 0:
                 i = name.find("-")
                 name = name[:i]
-                print(f"{i} name hasta - {name}")
-            #print(name)
+
             while s in range(len(name)):
                 if not name[s].isdigit():
-                    print()
-                    #print(name[s])
+                    chars = True
                 s=s+1
 
 
-            if len(sid):
-                if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', sid)]):
-                    rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', sid)])
+            if not chars:
+                if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', name)]):
+                    rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', name)])
 
     def _get_lot_id(self):
         for rec in self:
