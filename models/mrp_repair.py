@@ -60,8 +60,11 @@ class mrp_repair(models.Model):
     def _get_ticket_x(self):
         for rec in self:
             nid = [c for c in rec.name if c.isdigit()][:4]
+            test = [c for c in rec.name if c.isdigit()]
             sid = ''.join(str(c) for c in nid)
+            print(test)
             if len(sid):
+                print(test)
                 if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', sid)]):
                     rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', sid)])
 
@@ -77,7 +80,8 @@ class mrp_repair(models.Model):
                     rec.lot_id = rec.ticket_x.x_lot_id
                 elif not rec.ticket_x.x_lot_id and rec.ticket_x.x_sn and self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)]):
                     rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)])
-
+            else:
+                rec.lot_id = rec.lot_id
     def _get_purchase_orders(self):
         for rec in self:
             for line in rec.env['purchase.order'].search([('partner_ref', '=', rec.name)]):
