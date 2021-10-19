@@ -59,10 +59,20 @@ class mrp_repair(models.Model):
 
     def _get_ticket_x(self):
         for rec in self:
-            name = rec.name[:10]
+            name = rec.name[:10].replace(" ","")
             nid = [c for c in rec.name if c.isdigit()][:4]
             test = [c for c in rec.name[:10] if c.isdigit()]
             sid = ''.join(str(c) for c in nid)
+            """
+            / or - in name :10 -> 2491 - 
+            / or - in name :10 -> # 2491 - E
+            / or - in name :10 -> 2382 - ESB
+            / or - in name :10 -> 2494 - 
+            / or - in name :10 -> 10503/mal
+            / or - in name :10 -> S134/mal
+            / or - in name :10 -> 10523-ANUL
+            / or - in name :10 -> 10559/2
+            """
             if name.find("/") > 0 or name.find("-") > 0:
                 print(f"/ or - in name :10 -> {name}")
             if len(sid):
