@@ -94,7 +94,6 @@ class mrp_repair(models.Model):
             if not chars:
                 if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', name)]):
                     rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', name)])
-            print(f"ticket_x . {rec.ticket_x.name}")
 
     @api.onchange('lot_id')
     def testuwu(self):
