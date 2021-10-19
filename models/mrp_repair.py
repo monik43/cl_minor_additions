@@ -91,10 +91,10 @@ class mrp_repair(models.Model):
                     chars = True
                 s=s+1
 
-
             if not chars:
                 if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', name)]):
                     rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', name)])
+            print(rec.ticket_x)
 
     def _get_lot_id(self):
         for rec in self:
