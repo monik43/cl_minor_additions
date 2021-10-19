@@ -60,7 +60,7 @@ class mrp_repair(models.Model):
     def _get_ticket_x(self):
         for rec in self:
             nid = [c for c in rec.name if c.isdigit()][:4]
-            test = [c for c in rec.name if c.isdigit()]
+            test = [c for c in rec.name[:10] if c.isdigit()]
             sid = ''.join(str(c) for c in nid)
             print(len(test))
             if len(sid):
