@@ -60,6 +60,7 @@ class mrp_repair(models.Model):
     def _get_ticket_x(self):
         for rec in self:
             name = rec.name[:10].replace(" ","")
+            s = 0
             nid = [c for c in rec.name if c.isdigit()][:4]
             test = [c for c in rec.name[:10] if c.isdigit()]
             sid = ''.join(str(c) for c in nid)
@@ -83,8 +84,9 @@ class mrp_repair(models.Model):
             if name.find("-") > 0:
                 i = name.find("-")
                 name[:i]
-                
-            print(name)
+            
+            while s in len(name):
+                print(s)
 
             if len(sid):
                 if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', sid)]):
