@@ -63,7 +63,7 @@ class mrp_repair(models.Model):
             nid = [c for c in rec.name if c.isdigit()][:4]
             test = [c for c in rec.name[:10] if c.isdigit()]
             sid = ''.join(str(c) for c in nid)
-            if name.find("/") or name.find("-"):
+            if name.find("/") > 0 or name.find("-") > 0:
                 print(f"/ or - in name :10 -> {name}")
             if len(sid):
                 if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', sid)]):
