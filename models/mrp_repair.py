@@ -95,12 +95,8 @@ class mrp_repair(models.Model):
                 if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', name)]):
                     rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', name)])
 
-    @api.onchange('lot_id')
-    def testuwu(self):
-        for rec in self:
-            print(rec.lot_id)
-
     def _get_lot_id(self):
+        print(self.lot_id)
         for rec in self:
             if not rec.lot_id and rec.x_ticket:
                 print("A"*25)
