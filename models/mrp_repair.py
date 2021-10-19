@@ -86,7 +86,7 @@ class mrp_repair(models.Model):
                 name[:i]
             
             while s in range(len(name)):
-                print(s)
+                print(name[s])
                 s=s+1
 
             if len(sid):
