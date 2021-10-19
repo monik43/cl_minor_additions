@@ -84,7 +84,7 @@ class mrp_repair(models.Model):
             if name.find("-") > 0:
                 i = name.find("-")
                 name[:i]
-            
+            print(name)
             while s in range(len(name)):
                 if not name[s].isdigit():
                     print(name[s])
