@@ -42,7 +42,7 @@ class mrp_repair(models.Model):
     _inherit = 'mrp.repair'
 
     ticket_x = fields.Many2one('helpdesk.ticket', compute="_get_ticket_x")
-    lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial', domain="[('product_id','=', product_id)]", help="Products repaired are all belonging to this lot", oldname="prodlot_id", compute="_get_lot_id")
+    #lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial', domain="[('product_id','=', product_id)]", help="Products repaired are all belonging to this lot", oldname="prodlot_id", compute="_get_lot_id")
     po_rel = fields.Boolean(compute="_compute_po_rel")
     test_end = fields.Boolean(compute="_get_test_end")
     rep_conf = fields.Boolean(default=False, compute="_get_state")
