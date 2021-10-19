@@ -102,7 +102,7 @@ class mrp_repair(models.Model):
 
     def _get_lot_id(self):
         for rec in self:
-            print("holi")
+            print(f"holi{rec.lot_id}")
             #rec.lot_id = rec.lot_id
 
     """
