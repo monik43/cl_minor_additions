@@ -42,7 +42,7 @@ class mrp_repair(models.Model):
     _inherit = 'mrp.repair'
 
     ticket_x = fields.Many2one('helpdesk.ticket', compute="_get_ticket_x")
-    lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial', domain="[('product_id','=', product_id)]", help="Products repaired are all belonging to this lot", oldname="prodlot_id", compute="_get_lot_id")
+    lot_id = fields.Many2one('stock.production.lot', 'Lot/Serial', domain="[('product_id','=', product_id)]", help="Products repaired are all belonging to this lot", oldname="prodlot_id")
     po_rel = fields.Boolean(compute="_compute_po_rel")
     test_end = fields.Boolean(compute="_get_test_end")
     rep_conf = fields.Boolean(default=False, compute="_get_state")
@@ -62,26 +62,12 @@ class mrp_repair(models.Model):
             name = rec.name[:10].replace(" ","")
             s = 0
             chars = False
-            nid = [c for c in rec.name if c.isdigit()][:4]
-            test = [c for c in rec.name[:10] if c.isdigit()]
-            sid = ''.join(str(c) for c in nid)
-            """
-            / or - in name :10 -> #2491-E
-            / or - in name :10 -> 2382-ESB
-            / or - in name :10 -> 2494-
 
-            / or - in name :10 -> 10503/mal
-            / or - in name :10 -> S134/mal
-            / or - in name :10 -> 10523-ANUL
-            / or - in name :10 -> 10559/2
-            """
             if name.startswith("#"):
                 name = name[1:]
-
             if name.find("/") > 0:
                 i = name.find("/")
                 name = name[:i]
-
             if name.find("-") > 0:
                 i = name.find("-")
                 name = name[:i]
@@ -91,42 +77,10 @@ class mrp_repair(models.Model):
                     chars = True
                 s=s+1
 
-            if not chars:
-                if not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', name)]):
-                    rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', name)])
-
-    def _get_lot_id(self):
-        print(self.lot_id)
-        for rec in self:
-            if not rec.lot_id and rec.x_ticket:
-                print("A"*25)
-                if rec.x_ticket.x_lot_id:
-                    rec.lot_id = rec.x_ticket.x_lot_id
-                elif rec.x_ticket.x_sn and self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper()),('product_id', '=', rec.product_id.id)]):
-                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper()),('product_id', '=', rec.product_id.id)])
-            elif not rec.lot_id and rec.ticket_x:
-                print("b"*25)
-                if rec.ticket_x.x_lot_id:
+            if not chars and not rec.x_ticket and self.env['helpdesk.ticket'].search([('id','=', name)]):
+                rec.ticket_x = self.env['helpdesk.ticket'].search([('id','=', name)])
+                if rec.ticket_x.x_lot_id and not rec.lot_id:
                     rec.lot_id = rec.ticket_x.x_lot_id
-                elif not rec.ticket_x.x_lot_id and rec.ticket_x.x_sn and self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)]):
-                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)])
-            else:
-                print(f"{rec.lot_id} test")
-                rec.lot_id = rec.lot_id
-
-    """
-    if not rec.lot_id and rec.x_ticket:
-                if rec.x_ticket.x_lot_id:
-                    rec.lot_id = rec.x_ticket.x_lot_id
-                elif rec.x_ticket.x_sn and self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper()),('product_id', '=', rec.product_id.id)]):
-                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.x_ticket.x_sn.upper()),('product_id', '=', rec.product_id.id)])
-            elif not rec.lot_id and rec.ticket_x:
-                if rec.ticket_x.x_lot_id:
-                    rec.lot_id = rec.ticket_x.x_lot_id
-                elif not rec.ticket_x.x_lot_id and rec.ticket_x.x_sn and self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)]):
-                    rec.lot_id = self.env['stock.production.lot'].search([('name','=',rec.ticket_x.x_sn.upper()),('product_id.id', '=', rec.product_id.id)])
-            else:
-    """
 
     def _get_purchase_orders(self):
         for rec in self:
