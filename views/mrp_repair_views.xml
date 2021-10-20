@@ -10,7 +10,7 @@
                     <field name="pieza_anyadida"/>
                 </xpath>
                 <xpath expr="//field[@name='lot_id']" position="attributes">
-                    <attribute name="attrs">{'readonly': [('state', '=', 'done')]}</attribute>
+                    <attribute name="attrs"></attribute>
                 </xpath>
                 <xpath expr="//field[@name='x_ticket']" position="attributes">
                     <attribute name="readonly">0</attribute>
