@@ -101,8 +101,6 @@ class mrp_repair(models.Model):
                     chars = True
                 s = s + 1
 
-            self.env.cr.execute(f"SELECT lot_id FROM mrp_repair WHERE id = {rec.id};")
-            print("TEST"*25, self.env.cr.fetchone()[0])
             if not chars and self.env["helpdesk.ticket"].search([("id", "=", name)]):
                 rec.ticket_x = self.env["helpdesk.ticket"].search([("id", "=", name)])
                 rec.onchange_ticket_x()
@@ -119,7 +117,11 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.lot_id_x:
                 rec.lot_id = rec.lot_id_x
-            #elif self.env.cr.execute(f"SELECT lot_id FROM mrp_repair WHERE id = {rec.id}"):
+            else:
+                self.env.cr.execute(f"SELECT lot_id FROM mrp_repair WHERE id = {rec.id};")
+                ret = self.env.cr.fetchone()[0]
+                if ret.isdigit():
+                    print("TEST"*25, ret)
 
     @api.onchange("ticket_x")
     def onchange_ticket_x(self):
