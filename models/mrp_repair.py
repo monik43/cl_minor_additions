@@ -100,11 +100,19 @@ class mrp_repair(models.Model):
                 f"chars: {chars}, hd search: {self.env['helpdesk.ticket'].search([('id','=', name)])}, hd search lot: {self.env['helpdesk.ticket'].search([('id','=', name)]).x_lot_id}"
             )
             if not chars and self.env["helpdesk.ticket"].search([("id", "=", name)]):
-                print("A"*10)
                 rec.ticket_x = self.env["helpdesk.ticket"].search([("id", "=", name)])
                 if rec.ticket_x.x_lot_id and not rec.lot_id:
-                    print("B"*10)
                     rec.lot_id = rec.ticket_x.x_lot_id
+
+    @api.onchange('ticket_x')
+    def onchange_ticket_x(self):
+        if self.ticket_x and not self.x_ticket:
+            self.lot_id = self.ticket_x.lot_id
+
+    @api.onchange('x_ticket')
+    def onchange_x_ticket(self):
+        if self.x_ticket:
+            self.lot_id = self.x_ticket.lot_id
 
     def _get_purchase_orders(self):
         for rec in self:
