@@ -99,6 +99,7 @@ class mrp_repair(models.Model):
             
             if not chars and self.env["helpdesk.ticket"].search([("id", "=", name)]):
                 rec.ticket_x = self.env["helpdesk.ticket"].search([("id", "=", name)])
+                self.onchange_ticket_x(rec)
 
     @api.onchange('ticket_x')
     def onchange_ticket_x(self):
