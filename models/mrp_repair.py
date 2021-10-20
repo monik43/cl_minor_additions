@@ -103,12 +103,12 @@ class mrp_repair(models.Model):
     @api.onchange('ticket_x')
     def onchange_ticket_x(self):
         if self.ticket_x and not self.x_ticket:
-            self.lot_id = self.ticket_x.lot_id
+            self.lot_id = self.ticket_x.x_lot_id
 
     @api.onchange('x_ticket')
     def onchange_x_ticket(self):
         if self.x_ticket:
-            self.lot_id = self.x_ticket.lot_id
+            self.lot_id = self.x_ticket.x_lot_id
 
     def _get_purchase_orders(self):
         for rec in self:
