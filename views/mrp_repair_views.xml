@@ -10,7 +10,7 @@
                     <field name="pieza_anyadida"/>
                 </xpath>
                 <xpath expr="//field[@name='lot_id']" position="attributes">
-                    <attribute name="attrs">{'readonly': False}</attribute>
+                    <attribute name="attrs">{'readonly': False, 'invisible': True}</attribute>
                 </xpath>
                 <xpath expr="//field[@name='product_id']" position="after">
                     <field name="lot_id_x" invisible="0"/>
