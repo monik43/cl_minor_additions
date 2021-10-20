@@ -100,7 +100,7 @@ class mrp_repair(models.Model):
                 if not name[s].isdigit():
                     chars = True
                 s = s + 1
-            print("TEST"*25, self.env.cr.execute(f"SELECT lot_id FROM mrp_repair WHERE id = " + rec.id + ";"))
+            print("TEST"*25, self.env.cr.execute(f"SELECT lot_id FROM mrp_repair WHERE id = " + str(rec.id) + ";"))
             if not chars and self.env["helpdesk.ticket"].search([("id", "=", name)]):
                 rec.ticket_x = self.env["helpdesk.ticket"].search([("id", "=", name)])
                 rec.onchange_ticket_x()
