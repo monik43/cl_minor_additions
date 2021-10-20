@@ -106,6 +106,7 @@ class mrp_repair(models.Model):
     def onchange_ticket_x(self):
         if self.ticket_x:
             print("en onchange_ticket_x")
+            print(self.ticket_x.x_lot_id)
             self.lot_id = self.ticket_x.x_lot_id
 
     @api.onchange('x_ticket')
