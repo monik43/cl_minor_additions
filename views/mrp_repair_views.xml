@@ -12,6 +12,9 @@
                 <xpath expr="//field[@name='lot_id']" position="attributes">
                     <attribute name="attrs"></attribute>
                 </xpath>
+                <xpath expr="//field[@name='lot_id']" position="after">
+                    <field name="lot_id_x"/>
+                </xpath>
                 <xpath expr="//field[@name='x_ticket']" position="attributes">
                     <attribute name="readonly">0</attribute>
                 </xpath>
