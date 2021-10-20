@@ -96,13 +96,9 @@ class mrp_repair(models.Model):
                 if not name[s].isdigit():
                     chars = True
                 s = s + 1
-            print(
-                f"chars: {chars}, hd search: {self.env['helpdesk.ticket'].search([('id','=', name)])}, hd search lot: {self.env['helpdesk.ticket'].search([('id','=', name)]).x_lot_id}"
-            )
+            
             if not chars and self.env["helpdesk.ticket"].search([("id", "=", name)]):
                 rec.ticket_x = self.env["helpdesk.ticket"].search([("id", "=", name)])
-                if rec.ticket_x.x_lot_id and not rec.lot_id:
-                    rec.lot_id = rec.ticket_x.x_lot_id
 
     @api.onchange('ticket_x')
     def onchange_ticket_x(self):
