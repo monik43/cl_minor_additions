@@ -102,7 +102,7 @@ class mrp_repair(models.Model):
                 s = s + 1
 
             self.env.cr.execute(f"SELECT lot_id FROM mrp_repair WHERE id = {rec.id};")
-            print("TEST"*25, self.env.cr.fetchone())
+            print("TEST"*25, self.env.cr.fetchone()[0])
             if not chars and self.env["helpdesk.ticket"].search([("id", "=", name)]):
                 rec.ticket_x = self.env["helpdesk.ticket"].search([("id", "=", name)])
                 rec.onchange_ticket_x()
