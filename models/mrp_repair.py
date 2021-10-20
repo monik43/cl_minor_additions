@@ -110,10 +110,12 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.ticket_x:
                 rec.lot_id_x = rec.ticket_x.x_lot_id
+            if rec.x_ticket:
+                rec.lot_id_x = rec.x_ticket.x_lot_id
 
     def _compute_lot_id(self):
         for rec in self:
-            if rec.ticket_x:
+            if rec.lot_id_x:
                 rec.lot_id = rec.lot_id_x
 
     @api.onchange("ticket_x")
