@@ -106,15 +106,17 @@ class mrp_repair(models.Model):
     def onchange_ticket_x(self):
         if self.ticket_x:
             print("en onchange_ticket_x")
-            print(self.ticket_x.x_lot_id)
             self.lot_id = self.ticket_x.x_lot_id
-            print(self.lot_id)
 
     @api.onchange('x_ticket')
     def onchange_x_ticket(self):
         if self.x_ticket:
             print("en onchange_x_ticket")
             self.lot_id = self.x_ticket.x_lot_id
+
+    @api.onchange('lot_id')
+    def onchange_lot_id(self):
+        self.lot_id = self.lot_id
 
     def _get_purchase_orders(self):
         for rec in self:
