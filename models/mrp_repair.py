@@ -117,6 +117,7 @@ class mrp_repair(models.Model):
         for rec in self:
             if rec.lot_id_x:
                 rec.lot_id = rec.lot_id_x
+            elif self.env.cr.execute(f"SELECT lot_id FROM mrp_repair WHERE id = {rec.id}"):
 
     @api.onchange("ticket_x")
     def onchange_ticket_x(self):
