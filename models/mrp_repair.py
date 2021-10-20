@@ -61,6 +61,10 @@ class mrp_repair(models.Model):
         help="Products repaired are all belonging to this lot",
         oldname="prodlot_id",
     )
+    lot_id_x = fields.Many2one(
+        "stock.production.lot",
+        "Lot/Serial x", compute="_compute_lot_id_x"
+    )
     po_rel = fields.Boolean(compute="_compute_po_rel")
     test_end = fields.Boolean(compute="_get_test_end")
     rep_conf = fields.Boolean(default=False, compute="_get_state")
@@ -101,7 +105,10 @@ class mrp_repair(models.Model):
                 rec.ticket_x = self.env["helpdesk.ticket"].search([("id", "=", name)])
                 rec.onchange_ticket_x()
                 rec.onchange_x_ticket()
-
+    def _compute_lot_id_x(self):
+        for rec in self:
+            if rec.ticket_x:
+                rec.lot_id_x = rec.ticket_x.x_lot_id
     @api.onchange('ticket_x')
     def onchange_ticket_x(self):
         if self.ticket_x:
