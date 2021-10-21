@@ -54,6 +54,8 @@ class helpdesk_ticket(models.Model):
                 ticket.sla_active = False
                 ticket.sla_fail = False
             elif ticket.sla_id.stage_id.sequence <= ticket.stage_id.sequence:
+                if not ticket.sla_active:
+                    ticket.sla_active = True
                 prev_stage_ids = self.env['helpdesk.stage'].search([('sequence', '<', ticket.sla_id.stage_id.sequence)])
                 next_stage_ids = self.env['helpdesk.stage'].search([('sequence', '>=', ticket.sla_id.stage_id.sequence)])
                 stage_id_tracking_value = self.env['mail.tracking.value'].sudo().search([('field', '=', 'stage_id'),
