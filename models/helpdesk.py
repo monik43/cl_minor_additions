@@ -54,7 +54,6 @@ class helpdesk_ticket(models.Model):
                 ticket.sla_active = False
                 ticket.sla_fail = False
             elif ticket.sla_id.stage_id.sequence <= ticket.stage_id.sequence:
-                ticket.sla_active = False
                 prev_stage_ids = self.env['helpdesk.stage'].search([('sequence', '<', ticket.sla_id.stage_id.sequence)])
                 next_stage_ids = self.env['helpdesk.stage'].search([('sequence', '>=', ticket.sla_id.stage_id.sequence)])
                 stage_id_tracking_value = self.env['mail.tracking.value'].sudo().search([('field', '=', 'stage_id'),
@@ -72,7 +71,7 @@ class helpdesk_ticket(models.Model):
 
     def _get_orden_sat(self):
         for rec in self:
-            print(rec.stage_id.name, "/"*25)
+            
             if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
                 rec.update({"ordensat": [(4, rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]).id)]})
             elif rec.stage_id.name == 'Diagnóstico':
