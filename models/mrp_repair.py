@@ -118,10 +118,14 @@ class mrp_repair(models.Model):
             if rec.lot_id_x:
                 rec.lot_id = rec.lot_id_x
             else:
-                self.env.cr.execute(f"SELECT lot_id FROM mrp_repair WHERE id = {rec.id};")
+                self.env.cr.execute(
+                    f"""SELECT lot_id
+                        FROM mrp_repair 
+                        WHERE id = {rec.id};"""
+                )
                 ret = self.env.cr.fetchone()[0]
                 if isinstance(ret, int):
-                    rec.lot_id = self.env['stock.production.lot'].browse(ret)
+                    rec.lot_id = self.env["stock.production.lot"].browse(ret)
 
     @api.onchange("ticket_x")
     def onchange_ticket_x(self):

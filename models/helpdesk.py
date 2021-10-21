@@ -75,8 +75,8 @@ class helpdesk_ticket(models.Model):
             if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
                 rec.ordensat = rec.env['mrp.repair'].search(
                     [('x_ticket', '=', rec.id)])
-            elif rec.stage_id.name == 'Asignado':
-                if rec.x_lot_id.id != False:
+            elif rec.stage_id.name == 'Diagnóstico':
+                if rec.x_lot_id.id:
                     vals = {
                         'x_ticket': rec.id,
                         'product_id': rec.prod_id_context.id,
@@ -95,7 +95,7 @@ class helpdesk_ticket(models.Model):
 
     def _get_name_rma(self):
         for rec in self:
-            if rec.RMA != False:
+            if rec.RMA:
                 rec.name_rma = str(rec.id) + " - " + str(rec.RMA)
             else:
                 rec.name_rma = str(rec.id) + " - "
