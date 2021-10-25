@@ -51,6 +51,19 @@
                     </page>
                     <page string="Purchase Orders">
                         <field name="purchase_orders"/>
+                        <tree>
+                            <field name="name"/>
+                            <field name="partner_ref"/>
+                            <field name="RMA"/>
+                            <field name="date_order"/>
+                            <field name="partner_id"/>
+                            <field name="date_planned"/>
+                            <field name="amount_untaxed"/>
+                            <field name="amount_total"/>
+                            <field name="state"/>
+                            <field name="invoice_status"/>
+                            <button name="open_purchase" string="Ir" type="object" class="oe_highlight"/>
+                        </tree>
                     </page>
                 </xpath>
             </field>
