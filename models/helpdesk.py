@@ -64,6 +64,12 @@ class helpdesk_ticket(models.Model):
                                                                                   ('mail_message_id.model', '=', 'helpdesk.ticket'),
                                                                                   ('mail_message_id.res_id', '=', ticket.id)], order='create_date ASC', limit=1)
 
+                if ticket.sla_id.id == 3 and ticket.stage_id.sla_id:
+                    ticket.sla_id = ticket.stage_id.sla_id
+                    if not ticket.sla_active:
+                        ticket.sla_active = True
+                        ticket.sla_fail = False
+
                 if stage_id_tracking_value:
                     if stage_id_tracking_value.create_date > ticket.deadline:
                         ticket.sla_fail = True
