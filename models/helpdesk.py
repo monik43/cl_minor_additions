@@ -81,7 +81,7 @@ class helpdesk_ticket(models.Model):
                 # If there are no tracking messages, it means we *just* (now!) changed the state
                 elif fields.Datetime.now() > ticket.deadline:
                     ticket.sla_fail = True
-
+    
     def _get_orden_sat(self):
         for rec in self:
             if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]) and len(rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)])) == 1:
