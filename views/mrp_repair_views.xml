@@ -64,7 +64,7 @@
                             <field name="invoice_status"/>
                             <button name="open_purchase" string="Ir" type="object" class="oe_highlight"/>
                         </tree>
-                        <field/>
+                        </field>
                     </page>
                 </xpath>
             </field>
