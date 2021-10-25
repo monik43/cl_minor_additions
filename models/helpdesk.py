@@ -46,6 +46,7 @@ class helpdesk_ticket(models.Model):
 
     @api.depends('deadline', 'stage_id.sequence', 'sla_id.stage_id.sequence')
     def _compute_sla_fail(self):
+        print("start"*25)
         if not self.user_has_groups("helpdesk.group_use_sla"):
             print('not self.user_has_groups("helpdesk.group_use_sla")')
             return
