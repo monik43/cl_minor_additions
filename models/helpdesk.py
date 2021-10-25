@@ -73,9 +73,11 @@ class helpdesk_ticket(models.Model):
 
     def _get_orden_sat(self):
         for rec in self:
-            if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
-                print(len(rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)])), "/"*25)
+            if rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]) and len(rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)])) == 1:
                 rec.update({"ordensat": [(4, rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]).id)]})
+            elif rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]) and len(rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)])) > 1:
+                for rep in rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
+                    rec.update({"ordensat": [(4, rep.env['mrp.repair'].search([('x_ticket', '=', rec.id)]).id)]})
             elif rec.stage_id.name == 'Diagnóstico':
                 if rec.x_lot_id.id:
                     vals = {
