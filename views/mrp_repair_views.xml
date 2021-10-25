@@ -50,7 +50,7 @@
                         <field name="test_end" invisible="1"/>
                     </page>
                     <page string="Purchase Orders">
-                        <field name="purchase_orders"/>
+                        <field name="purchase_orders">
                         <tree>
                             <field name="name"/>
                             <field name="partner_ref"/>
@@ -64,6 +64,7 @@
                             <field name="invoice_status"/>
                             <button name="open_purchase" string="Ir" type="object" class="oe_highlight"/>
                         </tree>
+                        <field/>
                     </page>
                 </xpath>
             </field>
