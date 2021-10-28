@@ -46,19 +46,14 @@ class helpdesk_ticket(models.Model):
 
     @api.depends('deadline', 'stage_id.sequence', 'sla_id.stage_id.sequence')
     def _compute_sla_fail(self):
-        print("start"*25)
         if not self.user_has_groups("helpdesk.group_use_sla"):
-            print('not self.user_has_groups("helpdesk.group_use_sla")')
             return
         for ticket in self:
-            print("1"*25)
             ticket.sla_active = True
             if not ticket.deadline:
-                print("2"*25)
                 ticket.sla_active = False
                 ticket.sla_fail = False
             elif ticket.sla_id.stage_id.sequence <= ticket.stage_id.sequence:
-                print("3"*25)
                 if not ticket.sla_active:
                     ticket.sla_active = True
                 prev_stage_ids = self.env['helpdesk.stage'].search([('sequence', '<', ticket.sla_id.stage_id.sequence)])
@@ -88,7 +83,7 @@ class helpdesk_ticket(models.Model):
                 rec.update({"ordensat": [(4, rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]).id)]})
             elif rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]) and len(rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)])) > 1:
                 for rep in rec.env['mrp.repair'].search([('x_ticket', '=', rec.id)]):
-                    rec.update({"ordensat": [(4, rep.env['mrp.repair'].search([('x_ticket', '=', rec.id)]).id)]})
+                    rec.update({"ordensat": [(4, rep.id)]})
             elif rec.stage_id.name == 'Diagnóstico':
                 if rec.x_lot_id.id:
                     vals = {
