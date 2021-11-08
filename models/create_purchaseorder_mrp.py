@@ -10,7 +10,8 @@ class createpurchaseordermrp(models.TransientModel):
 
     @api.depends('new_order_line_ids')
     def _compute_warehouse(self):
-        iw, oow = 0
+        iw = 0
+        oow = 0
         for rec in self:
             for line in rec.new_order_line_ids:
                 print(f"""
