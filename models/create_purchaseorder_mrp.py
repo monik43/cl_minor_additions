@@ -14,11 +14,13 @@ class createpurchaseordermrp(models.TransientModel):
         oow = 0
         for rec in self:
             for line in rec.new_order_line_ids:
-                print(f"""
-                prod -> {line.product_id.name}
-                warranty -> {line.warranty}
-                """)
-
+                if line.warranty == 'iw':
+                    print(self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','=','IW')]))
+                elif line.warranty == 'oow':
+                    print(self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','=','OOW')]))
+                else:
+                    print("test"*10)
+                    
     warehouse = fields.Many2one('stock.picking.type', string='Recepción', required=True, compute="_compute_warehouse")
 
     @api.onchange("new_order_line_ids")
