@@ -8,6 +8,7 @@ import odoo.addons.decimal_precision as dp
 class createpurchaseordermrp(models.TransientModel):
     _inherit = 'create.purchaseorder_mrp'
 
+    @api.depends('new_order_line_ids')
     def _compute_warehouse(self):
         iw, oow = 0
         for rec in self:
