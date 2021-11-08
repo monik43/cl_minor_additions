@@ -15,9 +15,9 @@ class createpurchaseordermrp(models.TransientModel):
         for rec in self:
             for line in rec.new_order_line_ids:
                 if line.warranty == 'iw':
-                    print(self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','=','IW')]).name)
+                    rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','=','IW')])
                 elif line.warranty == 'oow':
-                    print(self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','=','OOW')]).name)
+                    rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','=','OOW')])
                 else:
                     print("test"*10)
 
