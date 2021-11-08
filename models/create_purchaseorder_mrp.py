@@ -21,7 +21,7 @@ class createpurchaseordermrp(models.TransientModel):
                 else:
                     print("test"*10)
 
-    warehouse = fields.Many2one('stock.picking.type', string='Recepción', required=True, compute="_compute_warehouse")
+    warehouse = fields.Many2one('stock.picking.type', string='Recepción',readonly=False, required=True, compute="_compute_warehouse")
 
     @api.onchange("new_order_line_ids")
     def _onchange_new_order_line_ids(self):
