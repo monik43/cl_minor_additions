@@ -24,6 +24,7 @@ class createpurchaseordermrp(models.TransientModel):
             elif oow > iw:
                 rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','ilike','OOW')])
 
+    @api.depends('date_order')
     def _compute_partner_id(self):
         for rec in self:
             print("_compute_partner_id", "/"*50)
