@@ -55,6 +55,10 @@ class createpurchaseordermrp(models.TransientModel):
         update = []
         for record in data.operations:
             if record.product_id.default_code != "COMPENSACION":
+                for line in record.product_id.seller_ids:
+                    print("AAAAAAA"*10)
+                    print(line.name.name)
+
                 update.append((0, 0, {
                     'product_id': record.product_id.id,
                     'product_uom': record.product_uom.id,
@@ -114,11 +118,3 @@ class getsale_mrpdata(models.TransientModel):
 
     seller_ids = fields.Many2one('res.partner', required=True, readonly=False, compute="_compute_seller_ids")
     seller_id = fields.Many2one('res.partner', required=True, readonly=False, compute="_compute_seller_ids")
-
-    @api.depends("name")
-    def _compute_seller_ids(self):
-        for rec in self:
-            for line in rec.new_order_line_ids:
-                print(f"""
-                    #seller_id -> {line.product_id.seller_ids}
-                """)
