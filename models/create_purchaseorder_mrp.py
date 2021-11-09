@@ -112,10 +112,10 @@ class createpurchaseordermrp(models.TransientModel):
 class getsale_mrpdata(models.TransientModel):
     _inherit = "getsale.mrpdata"
 
-    seller_id = fields.Many2one('res.partner', required=True, readonly=False, compute="_compute_seller_id")
+    seller_ids = fields.Many2one('res.partner', required=True, readonly=False, compute="_compute_seller_ids")
 
     @api.depends("product_id")
-    def _compute_seller_id(self):
+    def _compute_seller_ids(self):
         for rec in self:
             for line in rec.new_order_line_ids:
                 print(f"""
