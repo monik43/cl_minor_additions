@@ -28,9 +28,9 @@ class createpurchaseordermrp(models.TransientModel):
     def _compute_partner_id(self):
         for rec in self:
             for line in rec.new_order_line_ids:
-                print(f"""
-                    seller_id -> {line.product_id.seller_ids}
-                """)
+                """print(f"""
+                    #seller_id -> {line.product_id.seller_ids}
+                """)"""
 
     warehouse = fields.Many2one('stock.picking.type', string='Recepción',readonly=False, required=True, compute="_compute_warehouse")
     partner_id = fields.Many2one("res.partner", string="Vendor", readonly=False, required=True, compute="_compute_partner_id")
@@ -108,3 +108,15 @@ class createpurchaseordermrp(models.TransientModel):
         })
 
         return res
+
+class getsale_mrpdata(models.TransientModel):
+    _inherit = "getsale.mrpdata"
+
+    seller_id = fields.Many2one('res.partner', required=True, readonly=False, compute="_compute_seller_id")
+
+    def _compute_seller_id(self):
+        for rec in self:
+            for line in rec.new_order_line_ids:
+                print(f"""
+                    #seller_id -> {line.product_id.seller_ids}
+                """)
