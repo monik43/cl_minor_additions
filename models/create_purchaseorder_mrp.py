@@ -9,38 +9,39 @@ class createpurchaseordermrp(models.TransientModel):
     _inherit = 'create.purchaseorder_mrp'
 
     @api.depends('new_order_line_ids')
-    def _compute_warehouse(self):
-        iw = 0
-        oow = 0
+    def _compute_warehouse_and_partner_id(self):
+        asus_iw = 0
+        asus_oow = 0
+        hp_iw = 0
+        hp_oow = 0
         for rec in self:
             for line in rec.new_order_line_ids:
-                if line.warranty == 'iw':
-                    iw += 1
-                elif line.warranty == 'oow':
-                    oow += 1
+                if line.seller_id.id == 12300 and line.warranty == 'iw':
+                    asus_iw += 1
+                elif line.seller_id.id == 12300 and line.warranty == 'oow':
+                    asus_oow += 1
+                elif line.seller_id.id == 10198 and line.warranty == 'iw':
+                    hp_iw += 1
+                elif line.seller_id.id == 10198 and line.warranty == 'oow':
+                    hp_oow += 1
+            
+            print(f"""
+                asus - iw  -> {asus_iw}
+                       oow -> {asus_oow}
 
-            if iw > oow:
+                hp - iw  -> {hp_iw}
+                   - oow -> {hp_oow}
+            """)
+            
+
+
+            """if iw > oow:
                 rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','ilike','IW')])
             elif oow > iw:
-                rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','ilike','OOW')])
+                rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','ilike','OOW')])"""
 
-    @api.depends("date_order")
-    def _compute_partner_id(self):
-        hp = 0
-        asus = 0
-        for rec in self:
-            for line in rec.new_order_line_ids:
-                if line.seller_id.id == 10198:
-                    hp += 1
-                elif line.seller_id.id == 12300:
-                    asus += 1
-            print(f"""
-                hp -> {hp}
-                asus -> {asus}
-                """)
-
-    warehouse = fields.Many2one('stock.picking.type', string='Recepción',readonly=False, required=True, compute="_compute_warehouse")
-    partner_id = fields.Many2one("res.partner", string="Vendor", readonly=False, required=True, compute="_compute_partner_id")
+    warehouse = fields.Many2one('stock.picking.type', string='Recepción',readonly=False, required=True, compute="_compute_warehouse_and_partner_id")
+    partner_id = fields.Many2one("res.partner", string="Vendor", readonly=False, required=True, compute="_compute_warehouse_and_partner_id")
 
     @api.onchange("new_order_line_ids")
     def _onchange_new_order_line_ids(self):
