@@ -114,6 +114,7 @@ class getsale_mrpdata(models.TransientModel):
 
     seller_id = fields.Many2one('res.partner', required=True, readonly=False, compute="_compute_seller_id")
 
+    @api.depends("product_id")
     def _compute_seller_id(self):
         for rec in self:
             for line in rec.new_order_line_ids:
