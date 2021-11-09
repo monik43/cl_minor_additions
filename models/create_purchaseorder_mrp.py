@@ -113,6 +113,7 @@ class getsale_mrpdata(models.TransientModel):
     _inherit = "getsale.mrpdata"
 
     seller_ids = fields.Many2one('res.partner', required=True, readonly=False, compute="_compute_seller_ids")
+    seller_id = fields.Many2one('res.partner', required=True, readonly=False, compute="_compute_seller_ids")
 
     @api.depends("product_id")
     def _compute_seller_ids(self):
