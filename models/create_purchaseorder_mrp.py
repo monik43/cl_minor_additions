@@ -26,11 +26,18 @@ class createpurchaseordermrp(models.TransientModel):
 
     @api.depends("date_order")
     def _compute_partner_id(self):
+        hp = 0
+        asus = 0
         for rec in self:
             for line in rec.new_order_line_ids:
-                """print(f"""
-                    #seller_id -> {line.product_id.seller_ids}
-                """)"""
+                if line.seller_id.id == 10198:
+                    hp += 1
+                elif line.seller_id.id == 12300:
+                    asus += 1
+            print(f"""
+                hp -> {hp}
+                asus -> {asus}
+                """)
 
     warehouse = fields.Many2one('stock.picking.type', string='Recepción',readonly=False, required=True, compute="_compute_warehouse")
     partner_id = fields.Many2one("res.partner", string="Vendor", readonly=False, required=True, compute="_compute_partner_id")
