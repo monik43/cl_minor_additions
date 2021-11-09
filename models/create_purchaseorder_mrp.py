@@ -56,8 +56,8 @@ class createpurchaseordermrp(models.TransientModel):
         for record in data.operations:
             if record.product_id.default_code != "COMPENSACION":
                 for line in record.product_id.seller_ids:
-                    print("AAAAAAA"*10)
-                    print(line.name.name, " ", line.name.id)
+                    if line.name.id in (12300,10198):
+                        print(line.name.name, " ", "aaa"*10)
 
                 update.append((0, 0, {
                     'product_id': record.product_id.id,
