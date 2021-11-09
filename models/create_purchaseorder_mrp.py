@@ -32,7 +32,7 @@ class createpurchaseordermrp(models.TransientModel):
                 """)
 
     warehouse = fields.Many2one('stock.picking.type', string='Recepción',readonly=False, required=True, compute="_compute_warehouse")
-    partner_id = fields.Many2one("res.partner", string="Vendor", required=True, compute="_compute_partner_id")
+    partner_id = fields.Many2one("res.partner", readonly=False, string="Vendor", required=True, compute="_compute_partner_id")
 
     @api.onchange("new_order_line_ids")
     def _onchange_new_order_line_ids(self):
