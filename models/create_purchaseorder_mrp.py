@@ -56,8 +56,9 @@ class createpurchaseordermrp(models.TransientModel):
         for record in data.operations:
             if record.product_id.default_code != "COMPENSACION":
                 for line in record.product_id.seller_ids:
+                    seller_id = None
                     if line.name.id in (12300,10198):
-                        print(line.name.name, " ", "aaa"*10)
+                        seller_id = line.name.id
 
                 update.append((0, 0, {
                     'product_id': record.product_id.id,
@@ -68,6 +69,7 @@ class createpurchaseordermrp(models.TransientModel):
                     'price_unit': record.price_unit,
                     'product_subtotal': record.price_subtotal,
                     "warranty": record.warranty,
+                    "seller_id": seller_id,
                 }))
         res.update({'new_order_line_ids': update})
         return res
@@ -116,5 +118,4 @@ class createpurchaseordermrp(models.TransientModel):
 class getsale_mrpdata(models.TransientModel):
     _inherit = "getsale.mrpdata"
 
-    seller_ids = fields.Many2one('res.partner', required=True, readonly=False, compute="_compute_seller_ids")
-    seller_id = fields.Many2one('res.partner', required=True, readonly=False, compute="_compute_seller_ids")
+    seller_id = fields.Many2one('res.partner', required=True, readonly=False)
