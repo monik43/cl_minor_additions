@@ -118,4 +118,5 @@ class createpurchaseordermrp(models.TransientModel):
 class getsale_mrpdata(models.TransientModel):
     _inherit = "getsale.mrpdata"
 
+    seller_ids = fields.Many2one('res.partner', required=True, readonly=False)
     seller_id = fields.Many2one('res.partner', required=True, readonly=False)
