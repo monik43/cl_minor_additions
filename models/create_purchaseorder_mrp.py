@@ -24,8 +24,18 @@ class createpurchaseordermrp(models.TransientModel):
             elif oow > iw:
                 rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','ilike','OOW')])
 
+    @api.depends('product_id')
+    def _compute_seller_id(self):
+        for rec in self:
+            for line in rec.product_id.seller_ids:
+                if line.name.id in (12300,10198):
+                    print(f"""
+                    seller_id id ->{line.name.id}
+                    seller_id name ->{line.name.name}
+                    """)
 
     warehouse = fields.Many2one('stock.picking.type', string='Recepción',readonly=False, required=True, compute="_compute_warehouse")
+    seller_id = fields.Many2one('res.partner', compute="_compute_seller_id")
 
     @api.onchange("new_order_line_ids")
     def _onchange_new_order_line_ids(self):

@@ -9,6 +9,9 @@
                 <xpath expr="//button[@name='action_create_purchase_order_mrp_inherit']" position="replace">
                     <button name="action_create_purchase_order_mrp_fix" string="Create Purchase Order" type="object" class="btn-primary"/>
                 </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="seller_id"/>
+                </xpath>
             </field>
         </record>
     </data>
