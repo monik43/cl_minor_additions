@@ -26,6 +26,7 @@ class createpurchaseordermrp(models.TransientModel):
 
     def _compute_partner_id(self):
         for rec in self:
+            print("_compute_partner_id", "/"*50)
             for line in rec.new_order_line_ids:
                 print(f"""
                     seller_id -> {line.product_id.seller_ids}
