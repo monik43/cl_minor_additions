@@ -10,31 +10,52 @@ class createpurchaseordermrp(models.TransientModel):
 
     @api.depends('new_order_line_ids')
     def _compute_warehouse_and_partner_id(self):
-        asus_iw = 0
-        asus_oow = 0
-        hp_iw = 0
-        hp_oow = 0
+        ASUS_ID = 12300
+        HP_ID = 10198
+        war_dict = {
+            'asus_iw': 0,
+            'asus_oow': 0,
+            'hp_iw': 0,
+            'hp_oow': 0,
+        }
+
+        def check_wp(c_id, c_w, dict):
+            if c_id == ASUS_ID:
+                if c_w == 'iw':
+                    dict['asus_iw'] += 1
+                elif c_w == 'oow':
+                    dict['asus_oow'] += 1
+            elif c_id == HP_ID:
+                if c_w == 'iw':
+                    dict['hp_iw'] += 1
+                elif c_w == 'oow':
+                    dict['hp_oow'] += 1
+        
+        def bigger(dict):
+            asus_iw = dict['asus_iw']
+            asus_oow = dict['asus_oow']
+            hp_iw = dict['hp_iw']
+            hp_oow = dict['hp_oow']
+            if asus_iw >= asus_oow and asus_iw >= hp_iw and asus_iw >= hp_oow:
+                wh_id = 20
+                p_id = ASUS_ID
+            elif hp_iw >= asus_iw and hp_iw >= asus_oow and hp_iw >= hp_oow:
+                wh_id = 26
+                p_id = HP_ID
+            elif asus_oow >= asus_iw and asus_oow >= hp_iw and asus_oow >= hp_oow:
+                wh_id = 32
+                p_id = ASUS_ID
+            elif hp_oow >= asus_iw and hp_oow >= asus_oow and hp_oow >= hp_iw:
+                wh_id = 32
+                p_id = HP_ID
+
+            return wh_id, p_id
+
         for rec in self:
             for line in rec.new_order_line_ids:
-                if line.seller_id.id == 12300 and line.warranty == 'iw':
-                    asus_iw += 1
-                elif line.seller_id.id == 12300 and line.warranty == 'oow':
-                    asus_oow += 1
-                elif line.seller_id.id == 10198 and line.warranty == 'iw':
-                    hp_iw += 1
-                elif line.seller_id.id == 10198 and line.warranty == 'oow':
-                    hp_oow += 1
-            
-            print(f"""
-                asus - iw  -> {asus_iw}
-                       oow -> {asus_oow}
+                check_wp(line.seller_id.id, line.warranty, war_dict)
 
-                hp - iw  -> {hp_iw}
-                   - oow -> {hp_oow}
-            """)
-            
-
-
+            print(bigger(war_dict))
             """if iw > oow:
                 rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','ilike','IW')])
             elif oow > iw:
