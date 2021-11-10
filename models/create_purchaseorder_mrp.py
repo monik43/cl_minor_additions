@@ -55,12 +55,10 @@ class createpurchaseordermrp(models.TransientModel):
             for line in rec.new_order_line_ids:
                 check_wp(line.seller_id.id, line.warranty, war_dict)
 
-            print(war_dict)
-            """if iw > oow:
-                rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','ilike','IW')])
-            elif oow > iw:
-                rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','ilike','OOW')])"""
-
+            wh_id, p_id = bigger(war_dict)
+            rec.warehouse = self.env['stock.picking.type'].browse(wh_id)
+            rec.partner_id = self.env['res.partner'].browse(p_id)
+            
     warehouse = fields.Many2one('stock.picking.type', string='Recepción',readonly=False, required=True, compute="_compute_warehouse_and_partner_id")
     partner_id = fields.Many2one("res.partner", string="Vendor", readonly=False, required=True, compute="_compute_warehouse_and_partner_id")
 
