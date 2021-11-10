@@ -55,7 +55,7 @@ class createpurchaseordermrp(models.TransientModel):
             for line in rec.new_order_line_ids:
                 check_wp(line.seller_id.id, line.warranty, war_dict)
 
-            print(bigger(war_dict))
+            print(war_dict)
             """if iw > oow:
                 rec.warehouse = self.env['stock.picking.type'].search([('&'),('code','=','incoming'), ('warranty','ilike','IW')])
             elif oow > iw:
