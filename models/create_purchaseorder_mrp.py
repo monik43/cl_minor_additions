@@ -8,6 +8,60 @@ import odoo.addons.decimal_precision as dp
 class createpurchaseordermrp(models.TransientModel):
     _inherit = 'create.purchaseorder_mrp'
 
+    @api.depends('new_order_line_ids')
+    def _compute_warehouse_and_partner_id(self):
+        ASUS_ID = 12300
+        HP_ID = 10198
+        war_dict = {
+            'asus_iw': 0,
+            'asus_oow': 0,
+            'hp_iw': 0,
+            'hp_oow': 0,
+        }
+
+        def check_wp(c_id, c_w, dict):
+            if c_id == ASUS_ID:
+                if c_w == 'iw':
+                    dict['asus_iw'] += 1
+                elif c_w == 'oow':
+                    dict['asus_oow'] += 1
+            elif c_id == HP_ID:
+                if c_w == 'iw':
+                    dict['hp_iw'] += 1
+                elif c_w == 'oow':
+                    dict['hp_oow'] += 1
+        
+        def bigger(dict):
+            asus_iw = dict['asus_iw']
+            asus_oow = dict['asus_oow']
+            hp_iw = dict['hp_iw']
+            hp_oow = dict['hp_oow']
+            if asus_iw >= asus_oow and asus_iw >= hp_iw and asus_iw >= hp_oow:
+                wh_id = 20
+                p_id = ASUS_ID
+            elif hp_iw >= asus_iw and hp_iw >= asus_oow and hp_iw >= hp_oow:
+                wh_id = 26
+                p_id = HP_ID
+            elif asus_oow >= asus_iw and asus_oow >= hp_iw and asus_oow >= hp_oow:
+                wh_id = 32
+                p_id = ASUS_ID
+            elif hp_oow >= asus_iw and hp_oow >= asus_oow and hp_oow >= hp_iw:
+                wh_id = 32
+                p_id = HP_ID
+
+            return wh_id, p_id
+
+        for rec in self:
+            for line in rec.new_order_line_ids:
+                check_wp(line.seller_id.id, line.warranty, war_dict)
+
+            wh_id, p_id = bigger(war_dict)
+            rec.warehouse = self.env['stock.picking.type'].browse(wh_id)
+            rec.partner_id = self.env['res.partner'].browse(p_id)
+            
+    warehouse = fields.Many2one('stock.picking.type', string='Recepción',readonly=False, required=True, compute="_compute_warehouse_and_partner_id")
+    partner_id = fields.Many2one("res.partner", string="Vendor", readonly=False, required=True, compute="_compute_warehouse_and_partner_id")
+
     @api.onchange("new_order_line_ids")
     def _onchange_new_order_line_ids(self):
         res = {}
@@ -28,6 +82,11 @@ class createpurchaseordermrp(models.TransientModel):
         update = []
         for record in data.operations:
             if record.product_id.default_code != "COMPENSACION":
+                seller_id = None
+                for line in record.product_id.seller_ids:
+                    if line.name.id in (12300,10198):
+                        seller_id = line.name.id
+
                 update.append((0, 0, {
                     'product_id': record.product_id.id,
                     'product_uom': record.product_uom.id,
@@ -37,6 +96,7 @@ class createpurchaseordermrp(models.TransientModel):
                     'price_unit': record.price_unit,
                     'product_subtotal': record.price_subtotal,
                     "warranty": record.warranty,
+                    "seller_id": seller_id,
                 }))
         res.update({'new_order_line_ids': update})
         return res
@@ -81,3 +141,9 @@ class createpurchaseordermrp(models.TransientModel):
         })
 
         return res
+
+class getsale_mrpdata(models.TransientModel):
+    _inherit = "getsale.mrpdata"
+
+    seller_ids = fields.Many2one('res.partner', required=True, readonly=False)
+    seller_id = fields.Many2one('res.partner', required=True, readonly=False)

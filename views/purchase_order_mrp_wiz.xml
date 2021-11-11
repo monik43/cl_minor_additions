@@ -11,5 +11,15 @@
                 </xpath>
             </field>
         </record>
+        <record id="cl_transient_form_inherit_sale_id" model="ir.ui.view">
+            <field name="name">cl_transient.form.inherit.sale.id</field>
+            <field name="model">create.purchaseorder_mrp</field>
+            <field name="inherit_id" ref="cloudalia_purchase_from_repair.view_transientmodel_wizard_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='new_order_line_ids']/tree" position="inside">
+                    <field name="seller_id" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo> 
