@@ -49,6 +49,13 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                     }
                   });
               } else {
+                /*
+                */
+                _rpc.query({model: "helpdesk.stage",
+                method: "js_get_template_sequence",
+                args: [target],}).then(function (data3) {
+                  console.log(data3)
+                });
                 Dialog.confirm(
                   this,
                   _t(
