@@ -25,6 +25,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
             args: [target],
           })
           .then(function (data) {
+            console.log(data)
             if (data[0] != false) {
               if (data[1] == "Asignado") {
                 _rpc
