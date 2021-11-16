@@ -57,8 +57,8 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                     args: [self.value.data.id, target],
                   })
                   .then(function (data3) {
-                    self_seq = data3[0]
-                    target_seq = data3[1]
+                    var self_seq = data3[0]
+                    var target_seq = data3[1]
                     console.log("current: ", self_seq, "target_seq: ", target_seq)
                   });
                 Dialog.confirm(
