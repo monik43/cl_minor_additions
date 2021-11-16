@@ -58,7 +58,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                   })
                   .then(function (current_seq, target_seq) {
                     if (current_seq > target_seq){
-                      console.log(current_seq, target_seq)
+                      console.log("current_seq > target_se"q)
                     }
                   });
                 Dialog.confirm(
