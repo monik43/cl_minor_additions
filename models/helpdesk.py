@@ -22,7 +22,7 @@ class helpdesk_stage(models.Model):
 
     @api.model
     def js_get_template_sequence(self, rec_id, target):
-        return self.env['helpdesk.stage'].browse(rec_id).name, self.env['helpdesk.stage'].browse(target).name
+        return self.env['helpdesk.stage'].browse(rec_id).sequence, self.env['helpdesk.stage'].browse(target).sequence
 
     @api.model
     def js_template_handler(self, id_stage):
