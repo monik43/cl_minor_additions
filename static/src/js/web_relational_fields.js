@@ -81,19 +81,20 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                           },
                         }
                       );
+                    } else {
+                      Dialog.confirm(
+                        this,
+                        _t(
+                          "La etapa a la que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa?"
+                        ),
+                        {
+                          confirm_callback: function () {
+                            self._setValue(target);
+                          },
+                        }
+                      );
                     }
                   });
-                Dialog.confirm(
-                  this,
-                  _t(
-                    "La etapa a la que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa?"
-                  ),
-                  {
-                    confirm_callback: function () {
-                      self._setValue(target);
-                    },
-                  }
-                );
               }
             } else {
               self._setValue(target);
