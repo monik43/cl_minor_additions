@@ -60,9 +60,6 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                     self_seq = data3[0]
                     target_seq = data3[1]
                     console.log("current: ", self_seq, "target_seq: ", target_seq)
-                    if (self_seq > target_seq){
-                      console.log("current_seq > target_seq")
-                    }
                   });
                 Dialog.confirm(
                   this,
