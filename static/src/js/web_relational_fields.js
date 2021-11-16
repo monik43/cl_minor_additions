@@ -54,7 +54,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                 */
                 _rpc.query({model: "helpdesk.stage",
                 method: "js_get_template_sequence",
-                args: [[],[target]],}).then(function (data3) {
+                args: [[target],[self]],}).then(function (data3) {
                   console.log(data3)
                 });
                 Dialog.confirm(
