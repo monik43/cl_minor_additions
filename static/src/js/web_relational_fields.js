@@ -57,7 +57,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                     args: [self.value.data.id, target],
                   })
                   .then(function (data3) {
-                    console.log(data3)
+                    console.log("target: ", target, "data3: ", data3)
                   });
                 Dialog.confirm(
                   this,
