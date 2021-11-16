@@ -54,7 +54,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                   .query({
                     model: "helpdesk.stage",
                     method: "js_get_template_sequence",
-                    args: [self.value.data.id],
+                    args: [self.value.data.id, target],
                   })
                   .then(function (data3) {
                     console.log(data3)
