@@ -61,7 +61,17 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                     var target_seq = data3[1]
                     console.log("current: ", self_seq, "target_seq: ", target_seq)
                     if (self_seq > target_seq){
-                      console.log("self_seq > target_seq")
+                      Dialog.confirm(
+                        this,
+                        _t(
+                          "La etapa a la que estás intentando cambiar tiene una plantilla de mail. Quieres volver a enviar el mail?"
+                        ),
+                        {
+                          confirm_callback: function () {
+                            self._setValue(target);
+                          },
+                        }
+                      );
                     }
                     
                   });
@@ -73,6 +83,9 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                   {
                     confirm_callback: function () {
                       self._setValue(target);
+                    },
+                    cancel_callback: function(){
+                      console.log("cancel_callback")
                     },
                   }
                 );
