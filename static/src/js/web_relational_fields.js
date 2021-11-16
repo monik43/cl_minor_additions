@@ -56,9 +56,11 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                     method: "js_get_template_sequence",
                     args: [self.value.data.id, target],
                   })
-                  .then(function (current_seq, target_seq) {
-                    console.log("current: ", current_seq, "target_seq: ", target_seq)
-                    if (current_seq > target_seq){
+                  .then(function (data3) {
+                    self_seq = data3[0]
+                    target_seq = data3[1]
+                    console.log("current: ", self_seq, "target_seq: ", target_seq)
+                    if (self_seq > target_seq){
                       console.log("current_seq > target_seq")
                     }
                   });
