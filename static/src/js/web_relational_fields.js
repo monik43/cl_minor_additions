@@ -50,7 +50,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                     }
                   });
               } else {
-                console.log(self)
+                console.log(self.value.data.id)
                 Dialog.confirm(
                   this,
                   _t(
