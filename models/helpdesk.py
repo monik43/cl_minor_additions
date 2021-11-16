@@ -21,8 +21,8 @@ class helpdesk_stage(models.Model):
                 rec.fold = False
 
     @api.model
-    def js_get_template_sequence(dict):
-        return dict
+    def js_get_template_sequence(self,target):
+        return self, target
 
     @api.model
     def js_template_handler(self, id_stage):
