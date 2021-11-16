@@ -25,7 +25,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
             args: [target],
           })
           .then(function (data) {
-            console.log(data)
+            console.log(data);
             if (data[0] != false) {
               if (data[1] == "Asignado") {
                 _rpc
@@ -57,10 +57,15 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                     args: [self.value.data.id, target],
                   })
                   .then(function (data3) {
-                    var self_seq = data3[0]
-                    var target_seq = data3[1]
-                    console.log("current: ", self_seq, "target_seq: ", target_seq)
-                    if (self_seq > target_seq){
+                    var self_seq = data3[0];
+                    var target_seq = data3[1];
+                    console.log(
+                      "current: ",
+                      self_seq,
+                      "target_seq: ",
+                      target_seq
+                    );
+                    if (self_seq > target_seq) {
                       Dialog.confirm(
                         this,
                         _t(
@@ -70,10 +75,13 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                           confirm_callback: function () {
                             self._setValue(target);
                           },
+
+                          cancel_callback: function () {
+                            console.log("cancel_callback");
+                          },
                         }
                       );
                     }
-                    
                   });
                 Dialog.confirm(
                   this,
@@ -83,9 +91,6 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                   {
                     confirm_callback: function () {
                       self._setValue(target);
-                    },
-                    cancel_callback: function(){
-                      console.log("cancel_callback")
                     },
                   }
                 );
