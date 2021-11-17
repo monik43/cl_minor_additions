@@ -133,7 +133,7 @@ class helpdesk_ticket(models.Model):
                     if stage_id_tracking_value.create_date > ticket.deadline:
                         ticket.sla_fail = True
                 # If there are no tracking messages, it means we *just* (now!) changed the state
-                elif fields.Datetime.now() > ticket.deadline:
+                elif ticket.deadline and fields.Datetime.now() > ticket.deadline:
                     ticket.sla_fail = True
 
     def _get_orden_sat(self):
