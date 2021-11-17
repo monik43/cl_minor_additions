@@ -13,7 +13,7 @@ class helpdesk_stage(models.Model):
         "Folded", help="Folded in kanban view", compute="_compute_fold"
     )
     template_backup = fields.Many2one(
-        "mail.template", compute="_compute_template_backup"
+        "mail.template"#, compute="_compute_template_backup"
     )
     template_id = fields.Many2one(
         "mail.template",
@@ -21,7 +21,7 @@ class helpdesk_stage(models.Model):
         domain="[('model', '=', 'helpdesk.ticket')]",
         help="Automated email sent to the ticket's customer when the ticket reaches this stage.",
         readonly=False,
-        compute="",
+        #compute="",
     )
 
     def _compute_template_backup(self):
