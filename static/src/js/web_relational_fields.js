@@ -71,7 +71,15 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                           },
 
                           cancel_callback: function () {
-                            
+                            _rpc
+                              .query({
+                                model: "helpdesk.stage",
+                                method: "js_mail_template_disabler",
+                                args: [self.value.data.id],
+                              })
+                              .then(function (data4) {
+                                console.log("mail template disabler")
+                              });
                           },
                         }
                       );
