@@ -33,11 +33,15 @@ class helpdesk_stage(models.Model):
     #@api.model
     @api.onchange('template_id')
     def onchange_template_id(self):
-        if self.template_backup:
-            print("start\n")
-            time.sleep(10.5)
-            print("end\n")
-            self.template_id = self.template_backup
+        print(f"""
+            template -> {self.template_id}
+            backup   -> {self.template_backup}
+        """)
+            #if self.template_backup:
+            #print("start\n")
+            #time.sleep(10.5)
+            #print("end\n")
+            #self.template_id = self.template_backup
 
     @api.model
     def js_mail_template_disabler(self, rec_id):
