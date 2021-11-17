@@ -17,9 +17,9 @@ class helpdesk_stage(models.Model):
     )
     
     def _compute_template_backup(self):
-        for rec in self:
-            if rec.template_id:
-                rec.template_backup = rec.template_id
+        print("\n_compute_template_backup\n")
+        if self.template_id:
+            self.template_backup = self.template_id
 
     def _compute_fold(self):
         for rec in self:
