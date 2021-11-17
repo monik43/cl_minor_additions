@@ -81,6 +81,14 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                                 console.log("mail template disabler")
                               });
                             self._setValue(target);
+                            _rpc
+                              .query({
+                                model: "helpdesk.stage",
+                                method: "onchange_template_id"
+                              })
+                              .then(function (data4) {
+                                console.log("mail template disabler")
+                              });
                           },
                         }
                       );
