@@ -36,7 +36,8 @@ class helpdesk_stage(models.Model):
     @api.model
     def js_mail_template_enabler(self, rec_id):
         record = self.env["helpdesk.stage"].browse(rec_id)
-        record.template_id = record.template_backup
+        if not record.template_id:
+            record.template_id = record.template_backup
         return True
 
     @api.model
