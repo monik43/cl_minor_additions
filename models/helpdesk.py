@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+import datetime, time
 from dateutil import relativedelta
 from odoo import api, fields, models, _
 from odoo.exceptions import Warning
@@ -30,16 +30,12 @@ class helpdesk_stage(models.Model):
                 len(rec.env["helpdesk.ticket"].search([("stage_id", "=", rec.id)])) > 0
             ):
                 rec.fold = False
-
-    @api.model
-    def js_mail_template_enabler(self, rec_id):
-        record = self.env["helpdesk.stage"].browse(rec_id)
-        record.template_id = record.template_backup
-        print(f"""
-            template_id ------> {record.template_id}
-            template_backup --> {record.template_backup}
-        """)
-        return True
+    #@api.model
+    @api.onchange('template_id')
+    def onchange_template_id(self):
+        if self.template_backup:
+            time.sleep(10.5)
+            self.template_id = self.template_backup
 
     @api.model
     def js_mail_template_disabler(self, rec_id):
