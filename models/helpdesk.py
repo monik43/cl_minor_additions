@@ -11,6 +11,12 @@ class helpdesk_stage(models.Model):
 
     fold = fields.Boolean(
         'Folded', help='Folded in kanban view', compute="_compute_fold")
+    template_backup = fields.Many2one("mail.template", compute="_compute_template_backup")
+
+    def _compute_template_backup(self):
+        for rec in self:
+            if rec.template_id:
+                rec.template_backup = rec.template_id
 
     def _compute_fold(self):
         for rec in self:
@@ -19,6 +25,7 @@ class helpdesk_stage(models.Model):
                 rec.fold = True
             elif len(rec.env['helpdesk.ticket'].search([('stage_id', '=', rec.id)])) > 0:
                 rec.fold = False
+
 
     @api.model
     def js_get_template_sequence(self, rec_id, target):

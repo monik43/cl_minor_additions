@@ -59,12 +59,6 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                   .then(function (data3) {
                     var self_seq = data3[0];
                     var target_seq = data3[1];
-                    console.log(
-                      "current: ",
-                      self_seq,
-                      "target_seq: ",
-                      target_seq
-                    );
                     if (self_seq > target_seq) {
                       Dialog.confirm(
                         this,
@@ -77,7 +71,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                           },
 
                           cancel_callback: function () {
-                            console.log("cancel_callback");
+                            
                           },
                         }
                       );

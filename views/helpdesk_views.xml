@@ -31,5 +31,18 @@
                 </xpath>
             </field>
         </record>
+        <record id="cl_helpdesk_stage_form_new_fields" model="ir.ui.view">
+            <field name="name">cl_helpdesk.stage.form.new.fields</field>
+            <field name="model">helpdesk.stage</field>
+            <field name="inherit_id" ref="helpdesk.helpdesk_stage_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='fold']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='fold']" position="before">
+                    <field name="template_backup"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>
