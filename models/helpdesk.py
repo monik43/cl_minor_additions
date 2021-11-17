@@ -17,6 +17,7 @@ class helpdesk_stage(models.Model):
     )
     
     def _compute_template_backup(self):
+        time.sleep(5)
         print("\n_compute_template_backup\n")
         if self.template_id != False:
             print("self.template_id != False, ", self.template_id)
