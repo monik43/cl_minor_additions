@@ -13,7 +13,7 @@ class helpdesk_stage(models.Model):
         "Folded", help="Folded in kanban view", compute="_compute_fold"
     )
     template_backup = fields.Many2one(
-        "mail.template", compute="_compute_template_backup"
+        "mail.template", compute="js_mail_template_disabler"
     )
     
     def _compute_template_backup(self):
@@ -43,13 +43,14 @@ class helpdesk_stage(models.Model):
             self.template_id = self.template_backup
 
     @api.model
-    def js_mail_template_disabler(self, rec_id):
-        record = self.env["helpdesk.stage"].browse(rec_id)
-        record.template_id = None
-        print(f"""
-            template_id ------> {record.template_id}
-            template_backup --> {record.template_backup}
-        """)
+    def js_mail_template_disabler(self, rec_id=None):
+        if rec_id:
+            record = self.env["helpdesk.stage"].browse(rec_id)
+            record.template_backup = record.template_id
+            record.template_id = None
+        else:
+            self.template_backup = self.template_id
+            self.template_id = None
         return True
 
     @api.model
