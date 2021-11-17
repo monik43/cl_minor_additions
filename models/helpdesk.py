@@ -24,11 +24,6 @@ class helpdesk_stage(models.Model):
         #compute="",
     )
 
-    def _compute_template_backup(self):
-        if str(self.template_id) != "mail.template()":
-            print("self.template_id != False, ", self.template_id)
-            self.template_backup = self.template_id
-
     def _compute_fold(self):
         for rec in self:
             prev_fold = rec.fold
@@ -46,6 +41,7 @@ class helpdesk_stage(models.Model):
             f"""
             template_id ------> {record.template_id}
             template_backup --> {record.template_backup}
+            enabler
         """
         )
         record.template_id = record.template_backup
@@ -58,6 +54,7 @@ class helpdesk_stage(models.Model):
             f"""
             template_id ------> {record.template_id}
             template_backup --> {record.template_backup}
+            disabler
         """
         )
         record.template_id = None
