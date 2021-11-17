@@ -82,13 +82,6 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                           },
                         }
                       );
-                      _rpc
-                        .query({
-                          model: "helpdesk.stage",
-                          method: "js_mail_template_enabler",
-                          args: [target],
-                        })
-                        .then(function (data4) {});
                     } else {
                       Dialog.confirm(
                         this,
@@ -103,6 +96,13 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                       );
                     }
                   });
+                _rpc
+                  .query({
+                    model: "helpdesk.stage",
+                    method: "js_mail_template_enabler",
+                    args: [target],
+                  })
+                  .then(function (data4) {});
               }
             } else {
               self._setValue(target);
