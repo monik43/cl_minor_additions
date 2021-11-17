@@ -15,11 +15,7 @@ class helpdesk_stage(models.Model):
     template_backup = fields.Many2one(
         "mail.template", compute="_compute_template_backup"
     )
-    template_id = fields.Many2one(
-        'mail.template', 'Automated Answer Email Template',
-        domain="[('model', '=', 'helpdesk.ticket')]", readonly=False,
-        help="Automated email sent to the ticket's customer when the ticket reaches this stage.", compute="js_mail_template_enabler")
-
+    
     def _compute_template_backup(self):
         for rec in self:
             if rec.template_id:
@@ -36,16 +32,23 @@ class helpdesk_stage(models.Model):
                 rec.fold = False
 
     @api.model
-    def js_mail_template_enabler(self):
-        #record = self.env["helpdesk.stage"].browse(rec_id)
-        if self.template_backup:
-            self.template_id = self.template_backup
+    def js_mail_template_enabler(self, rec_id):
+        record = self.env["helpdesk.stage"].browse(rec_id)
+        record.template_id = record.template_backup
+        print(f"""
+            template_id ------> {record.template_id}
+            template_backup --> {record.template_backup}
+        """)
         return True
 
     @api.model
     def js_mail_template_disabler(self, rec_id):
         record = self.env["helpdesk.stage"].browse(rec_id)
         record.template_id = None
+        print(f"""
+            template_id ------> {record.template_id}
+            template_backup --> {record.template_backup}
+        """)
         return True
 
     @api.model
