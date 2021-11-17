@@ -32,6 +32,16 @@ class helpdesk_stage(models.Model):
                 rec.fold = False
 
     @api.model
+    def js_mail_template_enabler(self, rec_id):
+        record = self.env["helpdesk.stage"].browse(rec_id)
+        record.template_id = record.template_backup
+        print(f"""
+            template_id ------> {record.template_id}
+            template_backup --> {record.template_backup}
+        """)
+        return True
+
+    @api.model
     def js_mail_template_disabler(self, rec_id):
         record = self.env["helpdesk.stage"].browse(rec_id)
         record.template_id = None
