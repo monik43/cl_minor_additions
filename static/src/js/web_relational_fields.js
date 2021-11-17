@@ -78,7 +78,6 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                                 args: [target],
                               })
                               .then(function (data4) {
-                                console.log("mail template disabler")
                               });
                             self._setValue(target);
                             _rpc
@@ -88,7 +87,6 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                                 args: [target],
                               })
                               .then(function (data4) {
-                                console.log("mail template disabler")
                               });
                           },
                         }
