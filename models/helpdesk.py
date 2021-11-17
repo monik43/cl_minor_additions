@@ -37,6 +37,7 @@ class helpdesk_stage(models.Model):
     def js_mail_template_enabler(self, rec_id):
         record = self.env["helpdesk.stage"].browse(rec_id)
         if not record.template_id:
+            time.sleep(5)
             record.template_id = record.template_backup
         return True
 
