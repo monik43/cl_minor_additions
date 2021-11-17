@@ -17,7 +17,7 @@ class helpdesk_stage(models.Model):
     )
     
     def _compute_template_backup(self):
-        if str(self.template_id) == "mail.template()":
+        if str(self.template_id) != "mail.template()":
             print("self.template_id != False, ", self.template_id)
             self.template_backup = self.template_id
 
