@@ -17,7 +17,7 @@ class helpdesk_stage(models.Model):
     )
     template_id = fields.Many2one(
         'mail.template', 'Automated Answer Email Template',
-        domain="[('model', '=', 'helpdesk.ticket')]",
+        domain="[('model', '=', 'helpdesk.ticket')]", readonly=False,
         help="Automated email sent to the ticket's customer when the ticket reaches this stage.", compute="js_mail_template_enabler")
 
     def _compute_template_backup(self):
