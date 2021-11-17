@@ -36,6 +36,9 @@ class helpdesk_stage(models.Model):
     #@api.model
     @api.onchange('template_id')
     def onchange_template_id(self):
+        print(f'''
+            /{str(self.template_backup)}
+        ''')
         if self.template_backup:
             self.template_id = self.template_backup
 
