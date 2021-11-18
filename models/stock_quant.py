@@ -5,7 +5,7 @@ from odoo import models, fields, api, _
 class stock_quant(models.Model):
     _inherit = "stock.quant"
 
-    CSN = fields.Char(compute="_compute_CSN")
+    CSN = fields.Char("CSN", compute="_compute_CSN")
 
     def _compute_CSN(self):
         for rec in self:
