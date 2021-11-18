@@ -48,6 +48,7 @@
         'views/mail_views.xml',
         'views/helpdesk_views.xml',
         'views/stock_views.xml',
+        'views/stock_quant.xml',
         'views/user_credentials_views.xml',
         'security/ir.model.access.csv',
     ],
