@@ -25,6 +25,7 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
             args: [target],
           })
           .then(function (data) {
+            console.log(data);
             if (data[0] != false) {
               if (data[1] == "Asignado") {
                 _rpc
@@ -49,24 +50,61 @@ odoo.define("cl_minor_additions.confirm_stage_change", function (require) {
                     }
                   });
               } else {
-                /*
-                */
-                _rpc.query({model: "helpdesk.stage",
-                method: "js_get_template_sequence",
-                args: [target],}).then(function (data3) {
-                  console.log(data3)
-                });
-                Dialog.confirm(
-                  this,
-                  _t(
-                    "La etapa a la que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa?"
-                  ),
-                  {
-                    confirm_callback: function () {
-                      self._setValue(target);
-                    },
-                  }
-                );
+                _rpc
+                  .query({
+                    model: "helpdesk.stage",
+                    method: "js_get_template_sequence",
+                    args: [self.value.data.id, target],
+                  })
+                  .then(function (data3) {
+                    var self_seq = data3[0];
+                    var target_seq = data3[1];
+                    if (self_seq > target_seq) {
+                      Dialog.confirm(
+                        this,
+                        _t(
+                          "La etapa a la que estás intentando cambiar tiene una plantilla de mail. Quieres volver a enviar el mail?"
+                        ),
+                        {
+                          confirm_callback: function () {
+                            self._setValue(target);
+                          },
+
+                          cancel_callback: function () {
+                            _rpc
+                              .query({
+                                model: "helpdesk.stage",
+                                method: "js_mail_template_disabler",
+                                args: [target],
+                              })
+                              .then(function (data4) {
+                              });
+                            self._setValue(target);
+                            _rpc
+                              .query({
+                                model: "helpdesk.stage",
+                                method: "js_mail_template_enabler",
+                                args: [target],
+                              })
+                              .then(function (data4) {
+                              });
+                          },
+                        }
+                      );
+                    } else {
+                      Dialog.confirm(
+                        this,
+                        _t(
+                          "La etapa a la que estás intentando cambiar tiene una plantilla de mail. Estás segurx de que quieres cambiar a esa etapa?"
+                        ),
+                        {
+                          confirm_callback: function () {
+                            self._setValue(target);
+                          },
+                        }
+                      );
+                    }
+                  });
               }
             } else {
               self._setValue(target);
